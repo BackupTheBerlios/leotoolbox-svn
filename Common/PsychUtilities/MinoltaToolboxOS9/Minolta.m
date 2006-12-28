@@ -1,0 +1,1 @@
+% Part of Minolta toolbox% type 'help luminanceMeter' for more info.% Send comments and bug reports to: f.w.cornelissen@med.rug.nlhelp luminanceMeter

@@ -1,0 +1,1 @@
+function waitMouseUpbutton=1;[w,r]=screen('getfrontwindow');while button==1	[x,y,button] = GetMouse(w);end

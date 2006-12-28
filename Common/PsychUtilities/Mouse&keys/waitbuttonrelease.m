@@ -1,0 +1,1 @@
+function waitbuttonreleasebuttons=1;while any(buttons) % wait for button release	[a, b, buttons]=getmouse;end

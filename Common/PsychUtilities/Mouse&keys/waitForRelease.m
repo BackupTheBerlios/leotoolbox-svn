@@ -1,0 +1,1 @@
+function waitForRelease% makes sure that mouse and keys have been released before continuing% 19-02-04 fwc  removed window argument, flushevents to make OS X compatiblebutton=1;keyIsDown=1;while button==1 | keyIsDown == 1    [x,y,button] = GetMouse;	[keyIsDown,secs,keyCode] = KbCheck;end

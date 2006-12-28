@@ -1,0 +1,1 @@
+function waitForSpaceBarspacekey=KbName('space');while 1	[keyIsDown,secs,keyCode] = KbCheck;	if keyCode(spacekey)		break;	endend% make sure it is released before continuingwhile keyCode(spacekey)	[keyIsDown,secs,keyCode] = KbCheck;endFlushEvents('keyDown');

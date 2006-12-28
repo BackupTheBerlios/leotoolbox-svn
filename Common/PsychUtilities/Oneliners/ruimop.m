@@ -1,0 +1,1 @@
+%ruim opclear all;diary off;clear hidden;close all;close hidden;ShowCursor

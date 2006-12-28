@@ -1,0 +1,1 @@
+function [data, m, n]=newrawforbcheck(forb)data=-1;m=0;n=0;if forb.port > 0 % only if a serial port was succesfully initialized	data=SERIAL('Read',forb.port, forb.timeoutSecs);	[m,n]=size(data);	if m==1 & n==1 % prevent rubbish from spoiling the fun	endend

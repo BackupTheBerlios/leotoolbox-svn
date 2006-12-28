@@ -1,0 +1,1 @@
+function action=ckeckForAction% ckecks for presence of mouse and key pressesif nargin<1	waitForRelease=0;endaction=0;button=0;[w,r]=screen('getfrontwindow');[keyIsDown,secs,keyCode] = KbCheck;if keyIsDown	action=1;	return;end[x,y,button] = GetMouse(w);if button==1	action=1;	return;end
