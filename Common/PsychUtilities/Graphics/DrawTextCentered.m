@@ -1,0 +1,1 @@
+function DrawTextCentered( window, text, colour )% draws text horizontally centered on screen% USAGE: DrawTextCentered( window, text, colour )screenRect=SCREEN(window,'Rect');[x,y] = RectCenter(screenRect);width=SCREEN(window,'TextWidth',text);SCREEN(window,'DrawText',text,x-width/2,y,colour);

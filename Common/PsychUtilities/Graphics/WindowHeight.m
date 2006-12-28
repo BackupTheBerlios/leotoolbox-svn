@@ -1,0 +1,1 @@
+function height = windowheight(window)% height = windowheight(window)%% Returns a window's height%% 26/03/2001 fwc based on rectheight.mif nargin~=1	error('Usage:  height = windowheight(window)');endrect=SCREEN(window,'Rect');height = rect(RectBottom)-rect(RectTop);

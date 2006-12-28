@@ -1,0 +1,1 @@
+function rect=CenterRectInWindow(rect, window)% USAGE: rect=CenterRectInWindow(rect [, window])% centers the rect in window% default window is front window (not supported in OS X)if isempty(rect) | isempty(window)	return;end% if ~exist('window', 'var') % 	window=SCREEN('GetFrontWindow');% endwinrect=Screen('Rect', window);rect=CenterRect( rect, winrect );

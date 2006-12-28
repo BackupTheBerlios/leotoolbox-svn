@@ -1,0 +1,1 @@
+function paintArc( windowPtr, color, rect, width, startAngle, arcAngle)% paints arc sectionfor i=1:width	%SCREEN(windowPtr,'FrameArc',color,rect,startAngle,arcAngle);	SCREEN(windowPtr,'FrameArc');	rect=InsetRect(rect,1,1);end

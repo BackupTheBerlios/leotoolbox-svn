@@ -1,0 +1,1 @@
+function xyY=XYZToxyY(XYZ)% convert between tristimulus and cie xyY valuesif sum(XYZ)~=0    xyY(1)=XYZ(1)/sum(XYZ);    xyY(2)=XYZ(2)/sum(XYZ);else    xyY(1)=0;    xyY(2)=0;endxyY(3)=XYZ(2);

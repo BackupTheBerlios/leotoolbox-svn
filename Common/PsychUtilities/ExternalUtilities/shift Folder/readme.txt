@@ -1,0 +1,1 @@
+Here's a vector version of a shift function that I wrote. And another whichshifts in zeros instead of rotating. They _should_ work on both matriciesand vectors.-Mark Lubinski lubinski@eecs.umich.edu

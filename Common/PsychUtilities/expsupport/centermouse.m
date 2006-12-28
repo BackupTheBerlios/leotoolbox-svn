@@ -1,0 +1,1 @@
+function centermouse(window)if ~exist('window', 'var') | isempty(window)	window==SCREEN('GetFrontWindow');end[x,y] = windowcenter(window);waitsetmouse(x,y);

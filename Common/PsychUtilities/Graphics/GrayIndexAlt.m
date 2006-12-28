@@ -1,0 +1,1 @@
+function gray=GrayIndex(window)% returns index to get medium graywhite=WhiteIndex(window);black=BlackIndex(window);gray=round((white+black)/2);
