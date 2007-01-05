@@ -31,7 +31,12 @@ else
     Screen('Preference','SkipSyncTests',1)
     screennumber = max(Screen('Screens')); 
     [window, wRect] = Screen('OpenWindow', screennumber);
-    parameters = varargin{1};
+    
+    try
+        parameters = varargin{1};
+    catch 
+        parameters = -1;
+    end;
 end;
 
 for s = 1:size(stimulus,2)
@@ -45,8 +50,12 @@ for s = 1:size(stimulus,2)
             error('Not implemented yet.');
     end;
 
+if (strcmp(class(parameters), '') == 0)
+    pause;
+else
     WaitSecs(timeout - 0.0200);
     parameters = clear(stimulus, window, parameters);
+end;
 
 end;
     
