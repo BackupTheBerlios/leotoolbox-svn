@@ -29,7 +29,9 @@ while length(propertyArgIn) >= 2,
    switch prop
     
    case 'text'
-      fprintf('Not implemented yet...\n');
+      idx = size(c.elements, 2) + 1;
+      c.elements{idx} = val;
+      c.locations{idx} = [0 0];
    case 'bitmap'
       idx= size(c.elements, 2 ) +1; 
       c.elements{idx} = val;
