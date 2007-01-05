@@ -1,16 +1,33 @@
 function[ cmd, params ] = parse_iview_command( string )
-  spaces = strfind(string, ' ');
-  oddchar = 
+  param_divider = '(\ )|(\t)';
+  
+  string = regexprep(string, '\n', '');
+  spaces = regexp(string, param_divider);
+
+  
+  
   start = 1; J = 1;
   cmd = '';
+  ep = 0;
   for I = 1:size(spaces, 2)
       if start == 1,
           cmd = string(start:spaces(I)-1);
       else
-          params(J,:) = [ string(start:spaces(I)-1) ];
-          J = J+1;
+          ep = iview_command(cmd);
+          if (ep > 0),
+              parameter = str2num(char([ string(start:spaces(I)-1) ]));
+              params(J) = parameter;
+              J = J+1;
+          end;
       end;
       start = spaces(I)+1;
 
   end;
-  params(J,:) = [ string(start:size(string, 2)) ];
+  ep = iview_command(cmd);
+  
+  if ep > 0,
+    params(J) = str2num(char([ string(start:size(string, 2)) ]));  
+  else
+    params = [];
+  end;
+      
