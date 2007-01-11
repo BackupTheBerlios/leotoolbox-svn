@@ -36,6 +36,7 @@ while length(propertyArgIn) >= 2,
       idx= size(c.elements, 2 ) +1; 
       c.elements{idx} = val;
       c.locations{idx} = [0 0];
+      c.locationtypes{idx} = 'rel';
    case 'location'
       idx = size(c.elements,2 );
       c.locations{idx} = val;

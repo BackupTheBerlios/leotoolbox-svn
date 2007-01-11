@@ -27,7 +27,7 @@ switch( name )
     case 'ET_CSZ'  
         ep = 2; % cal. area (screen param)
     case 'ET_DEF'  
-        ep = 0; %default positinons of cal. points
+        ep = 0; %default positions of cal. points
     case 'ET_EIM'  
         ep = 0; % end transfer of mime video
     case 'ET_EST'  
@@ -60,6 +60,7 @@ switch( name )
 
     case 'ET_SIM' % = eye video image
     case 'ET_SPL' % = sample is generated
+        ep = 3;
     case 'ET_STP' % = stop recording
 
     case 'ET_STR' % = start continuous data output : param'ETer subsampling_factor

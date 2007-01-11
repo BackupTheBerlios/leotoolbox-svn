@@ -1,4 +1,4 @@
-function[] = iview_start
+function[s, window, wRect, host] = iview_start
 
   try
       iview_close(s);
@@ -10,10 +10,21 @@ function[] = iview_start
   s = iview_connect(host);
   assignin('base', 'socket', s);
   %try
-      iview_calibrate(s, host);
-      iview_close(s);
+  % initialize Psychtoolbox calibration screen
+  screennumber = max(Screen('Screens'));
+  Screen('Preference','SkipSyncTests',1)
+  [window, wRect] = Screen('OpenWindow', screennumber);
+  
+  startscreen = picture;
+  startscreen = add(startscreen, 'text', 'Calibration Instructions: Follow the crosses with your eyes.', 'location', [0 0]);
+  present(startscreen, window, wRect, -1);
+  
+  %iview_calibrate(s, host, window, wRect);
+  %iview_validate(s, host, window, wRect);
+       
   %catch
   %    fprintf(lasterr);
   %    fprintf('\n');
   %    iview_close(s);
   %end;
+  

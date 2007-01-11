@@ -24,7 +24,7 @@ switch(stimulus.type)
       
         Screen('FillRect', window, darkgray);
         new_parameters = flip(window, parameters, 'clear screen');
-        Eyelink('Message', 'clear screen');
+        %Eyelink('Message', 'clear screen');
     otherwise
         error('Function not implemented yet');
 end;

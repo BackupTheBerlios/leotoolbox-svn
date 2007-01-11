@@ -24,7 +24,6 @@ pictures = create_pictures(images);
 % initialise the screen and other parameters
 [window, wRect, parameterlist] = init_sal_exp (varargin );
 
-
 stimuli = create_stimuli( pictures );
 
 %set default durations to 3000 ms.

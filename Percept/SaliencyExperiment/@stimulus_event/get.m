@@ -5,7 +5,7 @@ s.name = '';
 s.index = '';
 s.duration = [];
 s.category = '';
-s.content = content;
+s.content = 0;
 
 switch propName
     case 'base'        

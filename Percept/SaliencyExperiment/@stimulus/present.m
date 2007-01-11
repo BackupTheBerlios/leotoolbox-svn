@@ -26,6 +26,7 @@ if (nargin > 2)
     window = varargin{1};
     wRect = varargin{2};
     parameters = varargin{3};
+    log_pointer = varargin{4};
 else
     %create new Screen buffer
     Screen('Preference','SkipSyncTests',1)
@@ -50,12 +51,12 @@ for s = 1:size(stimulus,2)
             error('Not implemented yet.');
     end;
 
-if (strcmp(class(parameters), '') == 0)
-    pause;
-else
-    WaitSecs(timeout - 0.0200);
-    parameters = clear(stimulus, window, parameters);
-end;
+%if (timeout > 2)
+%    pause;
+%else
+    WaitSecs(timeout);
+    %parameters = clear(stimulus, window, parameters);
+%end;
 
 end;
     

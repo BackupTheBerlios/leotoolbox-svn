@@ -3,6 +3,7 @@ function[new_parameters] = flip( window, parameters, description )
         description = '';
     end;
     c = clock;
+    
     Screen('Flip', window);
     
     if (strcmp(class(parameters), 'struct') == 1)

@@ -1,4 +1,4 @@
-function[ fp, name ] = createlog(name)
+function[ fp, name ] = createlog(path, name)
 
       d = datestr(now);
       d = regexprep(d, ' ', '_');

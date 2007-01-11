@@ -1,4 +1,4 @@
-function[pictures] = load_bitmaps
+function[pictures] = load_bitmaps ( bitmap_path )
 %
 %  loads all stimuli images from the preset directory
 %
@@ -16,31 +16,36 @@ function[pictures] = load_bitmaps
 %  06/12/2006    Created
 %  20/12/2006    Assignin base so no reloading every time is necessary
 
-try 
-    pictures = evalin('base', 'bitmaps');
-    if (class(pictures) == 'bitmap')
-       fprintf('Using images which are currently available in working memory\n');
-       return;
-    else
-        fprintf('Found bitmaps in working memory, but unknown type');
-    end;
-catch    
-        fprintf('No images currently available in working memory\n');
-end;
-
-
-fprintf('Loading image database\n');
-fprintf('One moment please...\n');
+% try 
+%     pictures = evalin('base', 'bitmaps');
+%     if (class(pictures) == 'bitmap')
+%        fprintf('Using images which are currently available in working memory\n');
+%        return;
+%     else
+%         fprintf('Found bitmaps in working memory, but unknown type');
+%     end;
+% catch    
+%         fprintf('No images currently available in working memory\n');
+% end;
 
 %resizeTo = [];
 %resizeTo = [300 300];
-resizeTo = 0.5;
+resizeTo = 1;
 
 %bitmap_path = '/Users/justvanes/Documents/JanBernard/SaliencyExperiment/stimuli/';
-bitmap_path =  '/Users/justvanes/Documents/faces/carolinsky/';
-files = dir(bitmap_path);
+if nargin == 0
+    bitmap_path =  '/Users/justvanes/Desktop/buildings/';
+end;
+    files = dir(bitmap_path);
 
-max_bitmap = 5;
+    
+
+fprintf('Loading image database from:\n');
+bitmap_path
+fprintf('One moment please...\n');
+
+    
+max_bitmap = -1;
 index = 1;
 pictures = bitmap;
 

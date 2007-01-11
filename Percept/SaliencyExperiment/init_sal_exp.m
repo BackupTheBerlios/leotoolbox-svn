@@ -3,6 +3,11 @@ function[window, wRect,  parameters] = init_sal_exp( varargin )
 %
 % initialisation of the saliency experiment
 % - global parameter definition 
+% - screen setupp( varargin )
+
+%
+% initialisation of the saliency experiment
+% - global parameter definition 
 % - screen setup
 %
 %  J.B.C. Marsman, 
@@ -39,9 +44,58 @@ function[window, wRect,  parameters] = init_sal_exp( varargin )
           EyelinkConn = EYELINK('InitializeDummy');
   end;
   
-  Screen('Preference','SkipSyncTests',1)
+  Screen('Preference','SkipSyncTests',1);
   screennumber = max(Screen('Screens'));
+  [window, wRect] = Screen('OpenWindow', screennumber);
+  HideCursor;
+  
+  white = WhiteIndex(window) ;
+  darkgray = white/2.2;
+  red = [200 0 0] ;
+  green = [0 200 0] ;
+  blue = [0 0 200];
 
+  [fp, uniquename] = createlog(name);
+  
+  %draw gray screen
+  
+%
+%  J.B.C. Marsman, 
+%
+%  7 - 12 - 2006
+%
+%  Neuroimaging Center
+%  Behavioural and Cognitive Neurosciences
+%  University Medical Center Groningen
+% 
+
+%  Revision history :
+%
+%   6/12/2006    Created
+%  11/12/2006    Debug functionality added
+
+  fprintf('Starting initialisation...\n');
+  if nargin >= 1,
+      DEBUGPARM = varargin{1}{1};
+      fprintf('-- Debug mode -- \n');
+      name = 'dummy_experiment1';
+  else
+      DEBUGPARM=false;
+      name = varargin{2};
+  end;
+
+  switch(DEBUGPARM)
+      case false
+          % test the connection and function calls with the eyetracker
+          % testcalls;
+          EyelinkConn = EYELINK('Initialize');
+      case true
+          % use dummy eyelink connection;
+          EyelinkConn = EYELINK('InitializeDummy');
+  end;
+  
+  Screen('Preference','SkipSyncTests',1);
+  screennumber = max(Screen('Screens'));
   [window, wRect] = Screen('OpenWindow', screennumber);
   HideCursor;
   
@@ -99,3 +153,4 @@ function[window, wRect,  parameters] = init_sal_exp( varargin )
   %if eye_used == el.BINOCULAR; % if both eyes are tracked
   %    eye_used = el.LEFT_EYE; % use left eye
   %end
+  
