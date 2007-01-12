@@ -24,12 +24,13 @@ parameterlist = parameters;
 [s, window, wRect, host] = iview_start;
 
 
-
+%% Start with calibration and wait for scanner
 fprintf('listening for trigger:\n');
 while true
     stroke = getkey;
     if (char(stroke) == 't')
         starting_time = now;
+        log('got starting trigger from scanner', log_pointer);
         fprintf('Starting experiment\n');
     break;
     end
@@ -38,18 +39,42 @@ while true
     end;
 end; 
 
+%% Clear previous Eyetracker data
 clear_buffer = ['ET_CLR'];
 iview_send(s, clear_buffer, host);
 
+%% Start recording of eyetracker
 start_recording = ['ET_REC'];
 iview_send(s, start_recording, host);
-parameterlist = present(all_events, window, wRect, parameterlist, log_pointer, s, host);
 
+%% Run the experiment
+parameterlist = present(all_events, window, wRect, parameterlist, logfilename, log_pointer, s, host);
+
+WaitSecs(3);
+%% Stop the recording of eyetracker
 stop_recording = ['ET_STP'];
 iview_send(s, stop_recording, host);
 
-save_command = ['ET_SAV "D:\JanBernard\housesfaces\' logfilename '.idf"' ];
+%% Save final dataset of Eyetracker data
+save_command = ['ET_SAV "D:\JanBernard\housesfaces\' logfilename '-final.idf"' ];
 iview_send(s, save_command, host);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function[ all_events ] =  load_in_events()
@@ -64,10 +89,16 @@ function[ all_events ] =  load_in_events()
 
    for s = 1:size(stimuli, 2),
       s_events(s) = stimulus_event('stimulus', stimuli(s), 'duration', 12000);
+      name = ['stimulus event ' num2str(s)];
+      s_events(s) = set(s_events(s), 'name', name);
    end
 
    stimulus_events = add_resting_periods(s_events);
 
-   all_events(1:12) = localisations;
-   all_events(13:133) = stimulus_events;
+   number1 = size(localisations, 2);
+   number2 = size(stimulus_events, 2);
+   all_events(1:number1) = localisations;
+   
+   all_events(number1+1:number2+number1) = stimulus_events;
    assignin('base', 'events', all_events);
+   

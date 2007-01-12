@@ -45,7 +45,7 @@ bitmap_path
 fprintf('One moment please...\n');
 
     
-max_bitmap = -1;
+max_bitmap = 30;
 index = 1;
 pictures = bitmap;
 

@@ -16,7 +16,7 @@ function[s, window, wRect, host] = iview_start
   [window, wRect] = Screen('OpenWindow', screennumber);
   
   startscreen = picture;
-  startscreen = add(startscreen, 'text', 'Calibration Instructions: Follow the crosses with your eyes.', 'location', [0 0]);
+  startscreen = add(startscreen, 'text', 'Calibration Instructions: Follow the crosses with your eyes.');
   present(startscreen, window, wRect, -1);
   
   %iview_calibrate(s, host, window, wRect);
