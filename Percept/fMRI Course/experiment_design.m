@@ -1,24 +1,39 @@
 function[ ] = experiment_design
+%
+%  Neuroimaging Center
+%  Behavioural and Cognitive Neurosciences
+%  University Medical Center Groningen
+% 
+%  Main routine for the first experiment:
+%  - Block design, showing 4 houses and 4 faces circular
+%  - Also using the eyetracker iViewX for reference data
 
+%  Revision history :
+%
+%  9/12/2006    Created
 
+run = evalin('base', 'run')
 try 
-    all_events = evalin('base', 'events');
-    if (class(all_events) == 'stimulus_event')
+    images = evalin('base', 'bitmaps');
+    if (class(images) == 'bitmap')
         fprintf('Using images which are currently available in working memory\n');
     else
       fprintf('Corrupt events exist, reloading required\n');
-      all_events = load_in_events;
+      images = load_images;
     end;
 catch
-    fprintf('No events found. Loading them in :\n');
-    all_events = load_in_events;
+    fprintf('No bitmaps found. Loading them in :\n');
+    images = load_images;
 end;
   
-  
+all_events = load_in_events ( images , run);
+assignin('base', 'events', all_events);  
 parameterlist = parameters;
   
 %% Open logfile.
-[log_pointer, logfilename] = createlog('/Users/justvanes/Desktop/Results/','houses_versus_faces');
+[log_pointer, logfilename] = createlog('/Users/justvanes/Desktop/Results/Logfile/','houses_versus_faces');
+log('logfile created', log_pointer);
+
 
 %% Setup Iview connection and Screen
 [s, window, wRect, host] = iview_start;
@@ -63,25 +78,17 @@ iview_send(s, save_command, host);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function[ all_events ] =  load_in_events()
+function[ images ] =  load_images
    images(1:30) = load_bitmaps('/Users/justvanes/Desktop/Houses/');
    clear bitmaps
    images(31:60) = load_bitmaps('/Users/justvanes/Desktop/Faces/');
-   pictures = create_pictures(images);
+   assignin('base', 'bitmaps', images);
+
+
+
+
+function[ all_events ] =  load_in_events( images, run )
+   pictures = create_pictures(images, run);
    stimuli = create_stimuli(pictures);
    %assignin('base', 'raw_images', images);
    %assignin('base', 'stimuli', stimuli);
@@ -100,5 +107,4 @@ function[ all_events ] =  load_in_events()
    all_events(1:number1) = localisations;
    
    all_events(number1+1:number2+number1) = stimulus_events;
-   assignin('base', 'events', all_events);
    

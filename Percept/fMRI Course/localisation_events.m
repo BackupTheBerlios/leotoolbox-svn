@@ -1,4 +1,13 @@
 function[events] = localisation_events (images)
+%
+%  Neuroimaging Center
+%  Behavioural and Cognitive Neurosciences
+%  University Medical Center Groningen
+% 
+
+%  Revision history :
+%
+%  9/12/2006    Created
 
 instruction = 'fixate on the object';
 instr_picture = picture;

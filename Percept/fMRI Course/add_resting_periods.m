@@ -1,5 +1,14 @@
 function[new_events] =  add_resting_periods( stimuli_events )
-  
+%
+%  Neuroimaging Center
+%  Behavioural and Cognitive Neurosciences
+%  University Medical Center Groningen
+% 
+
+%  Revision history :
+%
+%  9/12/2006    Created
+
 index = 1;
 
 i1 = picture;
@@ -24,7 +33,7 @@ instructions(3) = stimulus_event('stimulus', si3, 'duration', 5000);
 instructions(3) = set(instructions(3), 'name', 'instruction screen (fixate on any)');
 
 i4 = picture;
-i4 = add(i4, 'text', 'End of the experiment, thank you for participating.');
+i4 = add(i4, 'text', 'End of the experiment.');
 si4 = stimulus;    
 si4 = set(si4, 'data', i4);
 instructions(4) = stimulus_event('stimulus', si4, 'duration', 5000);
@@ -39,30 +48,32 @@ rest_event = stimulus_event('stimulus', rs, 'duration', 10000);
 rest_event = set(rest_event, 'name', 'fixation cross');
 
 
-sp = 1;
+sp = 2;
 
 for s = 1:size(stimuli_events, 2)
               
+      if (mod(s, 5) == 1)
+          name = get(stimuli_events(s), 'name');
+          newname = ['starting ' name];
+          stimuli_events(s) = set(stimuli_events(s), 'name', newname);
+      end
+      new_events(index) = stimuli_events(s);
+      index = index+1;
+
       if (mod(s,  5) == 0)
           new_events(index) = rest_event;      
           index = index +1;
           new_events(index) = instructions(sp);
+          sp
           index = index +1;
           sp = sp +1;
       end;
       
-      if (mod(s, 5) == 1)
-          name = get(stimuli_events(s), 'name')
-          newname = ['starting ' name];
-          stimuli_events(s) = set(stimuli_events(s), 'name', newname);
-      end  
       
       if (sp == 4)
           sp = 1;
       end;
 
-      new_events(index) = stimuli_events(s);      
-      index = index+1;
   end;
   
   length = size(new_events, 2);

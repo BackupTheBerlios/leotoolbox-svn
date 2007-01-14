@@ -1,4 +1,4 @@
-function[pictures] = create_pictures(bitmaps)
+function[pictures] = create_pictures(bitmaps, run)
 %
 % Creates the visual stimuli source screens.
 % In this function one can define the placement 
@@ -28,7 +28,8 @@ circular = true;
 %ordering(3,:) = [8 7 6 5 4 3 2 1];
 %ordering(4,:) = [8 7 6 5 4 3 2 1];
 
-ws = load('designmatrix');
+filename = ['designmatrix_run' num2str(run)]
+ws = load(filename);
 ordering = ws.d;
 
 

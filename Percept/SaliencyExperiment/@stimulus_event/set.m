@@ -1,4 +1,13 @@
 function s = set( stimulus_event, varargin )
+%
+%  Neuroimaging Center
+%  Behavioural and Cognitive Neurosciences
+%  University Medical Center Groningen
+% 
+
+%  Revision history :
+%
+%  9/12/2006    Created
 
 propertyArgIn = varargin;
 

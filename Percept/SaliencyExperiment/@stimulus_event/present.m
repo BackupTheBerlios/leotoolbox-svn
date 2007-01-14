@@ -10,41 +10,49 @@ function[ parameters ] = present(stim_event, window, wRect, parameters, logfilen
 
 %  Revision history :
 %
-%  9/12/2006    Created
+%  09/12/2006    Created
+%  12/01/2007    Adapted for fMRI course experiment
+first_time_trigger = true;
 
 for i=1:size(stim_event, 2)
     stimulus = stim_event(i).stimulus;
+    single_duration = stim_event(i).duration;
+    name = stim_event(i).name;
     
-    duration = stim_event(i).duration;
-    name = stim_event(i).name
+    if (i == 2)
+        first_time_trigger = false;
+    end;
+        
+    percentage = round( duration(stim_event(1:i)) / duration(stim_event) * 100);
+    status1 = ['stimulus ' num2str(i) ' of ' num2str(size(stim_event, 2)) '\n'];
+    status2 = ['Percentage completed : ' num2str(percentage) ' percent\n'];
+    fprintf(status1);
+    fprintf(status2);
     
-    %fprintf('stimulus information:\n');
-    %fprintf(' - name  : %s\n', stim_event(i).name);
-    %fprintf(' - index : %i\n', stim_event(i).index);
-    %fprintf(' - duration : %i ms\n\n', stim_event(i).duration);
-    %fprintf(' - content : \n');
-    %display([stimulus]);
-    %fprintf(' - - - - - - - - - - - - - - -\n\n');
-   
-    tic;
-    
-    
-    nostart_localisation = isempty(strfind(name, 'localisation stimulus 1'));
+    nostart_localisation  = isempty(strfind(name, 'localisation stimulus 1'));
     nostart_stimulusblock = isempty(strfind(name, 'starting stimulus'));
+ 
     if ( nostart_stimulusblock ~= 1 || nostart_localisation ~= 1)
-        wait_for_scanner(log_pointer);
+        if (first_time_trigger == false)
+            first_time_trigger = false;
+            wait_for_scanner(log_pointer);
+        end;
     end
 
+    
     text = ['presenting ' name];
     log(text, log_pointer); 
     remark_command = ['ET_REM "' text ' - name: ' name '"' ];
     iview_send(iview_socket, remark_command, host);
-    
-    parameters = present(stimulus, duration /   1000, window, wRect, parameters, log_pointer);
 
+    tic;    
+    parameters = present(stimulus, single_duration /   1000, window, wRect, parameters, log_pointer);
+
+    %% Increment set, set of eyedata per stimulus.
     increment_set = 'ET_INC';
     iview_send(iview_socket, increment_set, host);
 
+    %% Backup file on eyetracker operator PC
     stop_recording = ['ET_PSE'];
     iview_send(iview_socket, stop_recording, host);
 
