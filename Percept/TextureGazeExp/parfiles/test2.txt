@@ -1,1 +1,0 @@
-image	stimDur	orientation	contrast	stimSizekonijntjes1024x768	500	15	50	15wolk1	100	-15	25	20wolk2	250	45	10	15wolk3	1000	-45	25	10wolk4	1500	180	25	25

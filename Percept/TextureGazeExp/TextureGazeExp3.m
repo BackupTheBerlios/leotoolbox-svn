@@ -8,6 +8,15 @@ function TextureGazeExp(subject, session, parfile)
 
 commandwindow;
 cd(FunctionFolder(mfilename));
+
+dummymode=0;
+
+% if EyelinkInit()~= 1; %
+%     return;
+% end;
+result=EyelinkInit(dummymode);
+
+
 diary('TextureGazeExpLog.txt');
 
 if ~exist('subject', 'var') || isempty(subject)
@@ -44,6 +53,7 @@ end
 
 try
 
+
     % here we read in information from the parameter file
     % using the autotextread function. It returns all information
     % in a structure that we call 'par'. The parameters themselves
@@ -68,11 +78,11 @@ try
     screens=Screen('Screens');
     screenNumber=max(screens);
     [h v]=WindowSize(screenNumber);
-    mss=h*v
+    mss=h*v;
     for i=1:length(screens)  % but use bigger screen if there is one ;-)
         [h v]=WindowSize(screens(i));
         if h*v>mss
-            mss=h*v
+            mss=h*v;
             screenNumber=screens(i)
         end
     end
@@ -138,15 +148,38 @@ try
         goOn=1;
     end
 
+
+
+
+    % do eyelink stuff
+    el=EyelinkInitDefaults(window);
+    
+    el.backgroundcolour = gray;
+    el.foregroundcolour = white;
+    if dummymode==0
+        % make sure that we get gaze data from the Eyelink
+        Eyelink('command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');
+
+        % open file to record data to
+        Eyelink('openfile', 'demo.edf');
+
+        % STEP 4
+        % Calibrate the eye tracker
+        EyelinkDoTrackerSetup(el);
+
+    end
+
+
     % this is the start of the trial loop
     % consisting of stimulus creation, stimulus display,
     % response loop, and saving of response to a file
 
     nrTrials=length(par.imageDir); % use length of one of the parameter vectors to determine the number of trials
-    i=1; % initialize trial number
+    trial=1; % initialize trial number
     itiEnd=GetSecs+itiTime/1000*2; % set iti to double duration for the first trial
 
-    while goOn==1 & i<=nrTrials
+    while goOn==1 & trial<=nrTrials
+
 
         % we'll wait to make sure the subject
         % released any keys, before starting a new trial
@@ -156,6 +189,27 @@ try
         while GetSecs<itiEnd | KbCheck
             WaitSecs(0.01);
         end
+
+
+        % This supplies a title at the bottom of the eyetracker display
+        Eyelink('command', 'record_status_message ''TRIAL %d''', trial );
+
+        % Always send this message before starting to record.
+        % It marks the start of the trial and also
+        % contains trial condition data required for analysis.
+
+        Eyelink('message', 'TRIALID %d', trial );
+        % do a final check of calibration using driftcorrection
+        EyelinkDoDriftCorrection(el);
+
+        WaitSecs(0.1);
+        Eyelink('StartRecording');
+
+        eye_used = Eyelink('EyeAvailable'); % get eye that's tracked
+        if eye_used == el.BINOCULAR; % if both eyes are tracked
+            eye_used = el.LEFT_EYE; % use left eye
+        end
+
 
         % mark start of a new trial by showing the fixation point
         Screen('FillRect', window, gray);
@@ -175,16 +229,90 @@ try
         % this function prepares the stimulus
         % it won't show until we issue a flip command
         imageDir=['images' filesep par.imageDir{i}];
-        [imgfiles, nStim, xpos, ypos]=createImageStimulus(window, imageDir, par.nrStimuli(i), par.stimRadius(i), par.stimSize(i), par.stimOrient(i), par.maskSD(i));
-        %         targets=addSearchStimulus(window, xpos, ypos, par.targetSize(i), par.targetTrans(i) );
+        [imgfiles, nStim, xpos, ypos, gapangles]=createImageStimulus(window, imageDir, par.nrStimuli(i), par.stimRadius(i), par.stimSize(i), par.stimOrient(i), par.maskSD(i));
         % add fixationPoint
         drawFixationPoint(window, fixPtSize, fixPtCol);
 
-        [notUsed stimulusOnsetTime]=Screen('Flip', window, tDelayEnd);
+        % drift correction
+
+        % verify fixation stability for a particular amount of time
+        Eyelink('message', 'Check Fixation Start' );
+
+        [cx, cy]=WindowCenter(window);
+        if dummymode==1
+            ShowCursor;
+            WaitSetMouse(cx+200, cy+200, window);
+        end
+        ts=-1;
+        goOn=1;
+        while goOn==1
+
+
+            if dummymode==0
+                error=Eyelink('CheckRecording');
+                if(error~=0)
+                    break;
+                end
+
+                if Eyelink( 'NewFloatSampleAvailable') > 0
+                    % get the sample in the form of an event structure
+                    evt = Eyelink( 'NewestFloatSample');
+                    if eye_used ~= -1 % do we know which eye to use yet?
+                        % if we do, get current gaze position from sample
+                        x = evt.gx(eye_used+1); % +1 as we're accessing MATLAB array
+                        y = evt.gy(eye_used+1);
+                        % do we have valid data and is the pupil visible?
+                        if x~=el.MISSING_DATA & y~=el.MISSING_DATA & evt.pa(eye_used+1)>0
+                            mx=x;
+                            my=y;
+                        end
+                    end
+                end
+            else
+
+                % Query current mouse cursor position (our "pseudo-eyetracker") -
+                % (mx,my) is our gaze position.
+                [mx, my, buttons]=GetMouse;
+            end
+
+
+
+            d=sqrt((mx-cx)^2+(my-cy)^2);
+            if d<50
+                if ts<0
+                    ts=GetSecs;
+                elseif GetSecs-ts>1.0
+                    fprintf('fixation point fixated long enough\n');
+                    Eyelink('message', 'Check Fixation End' );
+
+                    break;
+                end
+            else
+                ts=-1;
+            end
+
+            [keyIsDown,secs,keyCode] = KbCheck;
+
+            % we'll only go into the code below if a key was pressed
+            if keyCode(quitKey)
+                display('User requested break');
+                goOn=0;
+                break;
+            end
+        end
+        %         HideCursor;
+
+        if goOn==0
+            break;
+        end
+
+        [notUsed stimulusOnsetTime]=Screen('Flip', window);
+        Eyelink('message', 'DISPLAY ON');	 % message for RT recording in analysis
+        Eyelink('message', 'SYNCTIME');	 	 % zero-plot time for EDFVIEW
         actDelayDur=stimulusOnsetTime-delayOnsetTime;
         tStimEnd=stimulusOnsetTime+par.stimDur(i)/1000;
         actStimDur=-999; % initialize for later storage of actual stimulus duration
-
+        target=-1;
 
         %         pause
         % this is the start of the response loop
@@ -193,9 +321,7 @@ try
 
         while 1
 
-            % check if we need to show the next frame of our movie stimulus
-            % we  test whether mfi (movieFrameIndex) is less than number of
-            % frame to show, indicating stimulus presentation has not ended yet.
+            % check if we need to remove the stimulus
             if GetSecs>tStimEnd & actStimDur<0
                 % time passed, show next frame!
                 Screen('FillRect', window, gray);
@@ -204,6 +330,48 @@ try
                 [notUsed stimulusOffsetTime]=Screen('Flip', window, tStimEnd);
                 actStimDur=stimulusOffsetTime-stimulusOnsetTime;
             end
+
+
+            % check whether the subject made an eye-movement to one of the
+            % targets
+
+            if dummymode==0
+                error=Eyelink('CheckRecording');
+                if(error~=0)
+                    break;
+                end
+
+                if Eyelink( 'NewFloatSampleAvailable') > 0
+                    % get the sample in the form of an event structure
+                    evt = Eyelink( 'NewestFloatSample');
+                    if eye_used ~= -1 % do we know which eye to use yet?
+                        % if we do, get current gaze position from sample
+                        x = evt.gx(eye_used+1); % +1 as we're accessing MATLAB array
+                        y = evt.gy(eye_used+1);
+                        % do we have valid data and is the pupil visible?
+                        if x~=el.MISSING_DATA & y~=el.MISSING_DATA & evt.pa(eye_used+1)>0
+                            mx=x;
+                            my=y;
+                        end
+                    end
+                end
+            else
+
+                % Query current mouse cursor position (our "pseudo-eyetracker") -
+                % (mx,my) is our gaze position.
+                [mx, my, buttons]=GetMouse;
+            end
+            d=sqrt((mx-cx)^2+(my-cy)^2);
+
+            if d>300
+                if target<0
+                    imdist=sqrt((xpos-mx).^2+(ypos-my).^2);
+                    target=find(imdist==min(imdist));
+                    Screen('FillOval', window, [255 0 0], CenterRectOnPoint([0 0 30 30], xpos(target), ypos(target)));
+                    Screen('Flip', window);
+                end
+            end
+
 
             % check state of keyboard
             [keyIsDown,secs,keyCode] = KbCheck;
@@ -233,8 +401,12 @@ try
             % return control to the OS for a short time, to keep it happy.
             % we may loose real-time priority if we do not. Make this time
             % shorter for more frequent sampling of keys
-            %             WaitSecs(0.001);
+            WaitSecs(0.001);
         end
+
+        Eyelink('message', 'TARGET %d', target );
+        Eyelink('message', 'RESPONSE %s', response );
+        Eyelink('StopRecording');
 
         % set the end of the inter trial interval
         itiEnd=GetSecs+itiTime/1000;
@@ -250,7 +422,7 @@ try
             actStimDur=stimulusOffsetTime-stimulusOnsetTime;
         end
 
-        Screen('Close'); % this will close all textures of the motion movie
+        Screen('Close'); % this will close all textures used
 
 
         % if we got an actual response, we now will save the data to a file
@@ -266,14 +438,14 @@ try
 
             % we distribute printing over a number of  commands for
             % readability
-            fprintf(fp, '%s\t%d\t%d\t%s\t%s\t', subject, session, i, date, time);
+            fprintf(fp, '%s\t%d\t%d\t%s\t%s\t', subject, session, trial, date, time);
             fprintf(fp, '%.1f\t%.1f\t%.1f\t%.1f\t', actDelayDur*1000, -999*1000, -999*1000, actStimDur*1000);
             fprintf(fp, '%s\t%d\t%s\t%.1f\n', 'dummy', -999, response, rt*1000);
             fclose(fp);
 
         end
         % increase the trial number
-        i=i+1;
+        trial=trial+1;
 
 
     end
@@ -285,6 +457,10 @@ try
         % in case of a break, some other message might be more appropriate
         disp('Please contact the experiment leader immediately, thanks!');
     end
+
+    % stop eyelink
+    Eyelink('ShutDown');
+
 
     Screen('CloseAll');
     ShowCursor;
@@ -415,7 +591,7 @@ stimuli=stimuli(1:min(nStim,length(stimuli)));
 j=1;
 for i=stimuli
     myimgfile{j}=fullfile(imageDir,dirList(i).name);
-%     fprintf('Loading image ''%s''\n', myimgfile{j});
+    %     fprintf('Loading image ''%s''\n', myimgfile{j});
     imdata=imread(myimgfile{j});
     transLayer=size(imdata,3)+1;
     imdata(:,:,transLayer)=mask;
@@ -472,57 +648,6 @@ nStim=length(tex);
 
 
 
-function targets=addSearchStimulus(window, xpos, ypos, size, transparency )
-
-
-white=WhiteIndex(window);
-black=BlackIndex(window);
-gray=GrayIndex(window);
-delta=40;
-color=[gray+delta gray-delta gray];
-color=GrayIndex(window,0.55);
-[h v]=WindowSize(window);
-
-size=round(size/100*h);
-
-rect=[0 0 size size];
-gaps={'top','bottom','right','left', 'horizontal', 'vertical'}; % options for
-gapor=randperm(4);
-gapor=gapor(1);
-gapor=3;
-
-ttex=Screen('OpenOffscreenWindow', window, black, rect);
-[x0 y0]=WindowCenter(ttex);
-landoltC(ttex, x0, y0, size, color, black, gaps{gapor});
-imdata=Screen('GetImage', ttex);
-
-imdata=imdata;
-imdata(:,:,4)=imdata(:,:,1)*(1-transparency/100);
-ttex2=Screen('MakeTexture', window, imdata);
-
-% gap=gaps{gapor};
-% ttex2=landoltCTexture(window, size, color, transparency, gap);
-
-rect=Screen('Rect', ttex2);
-
-targets=randperm(length(xpos)); % select two targets
-targets=targets(1:2);
-
-gapangle=linspace(0,360,length(xpos)+1);
-gapangle=gapangle(1:end-1);
-
-
-for i=1:length(xpos)
-    %     gapangle=0;
-    dRect=CenterRectOnPoint(rect, xpos(i), ypos(i));
-    %     Screen('DrawTexture', window, ttex2, [], dRect, gapangle(i));
-
-    %      landoltC(window, xpos(i), ypos(i), size, color, background, gap)
-end
-
-% close textures to free memory
-Screen('Close'); % closes all textures
-
 
 
 function lct=landoltCTexture(window, size, color, background, gap)
@@ -531,57 +656,5 @@ rect=[0 0 size size];
 lct=Screen('OpenOffscreenWindow', window, background, rect);
 [x0 y0]=WindowCenter(lct);
 landoltC(lct, x0, y0, size, color, background, gap);
-
-function lct=landoltCTexture2(window, size, color, transparency, gap)
-
-black=BlackIndex(window);
-rect=[0 0 size size];
-ttex=Screen('OpenOffscreenWindow', window, black, rect);
-[x0 y0]=WindowCenter(ttex);
-landoltC(ttex, x0, y0, size, color, black, gap);
-imdata=Screen('GetImage', ttex);
-imdata=imdata;
-% mask=zeros(size(imdata));
-imdata(:,:,4)=imdata(:,:,1)*(1-transparency/100); % set alpha value
-lct=Screen('MakeTexture', window, imdata);
-Screen('Close', ttex);
-
-
-
-function addSearchStimulus2(window, xpos, ypos, size, transparency )
-
-
-white=WhiteIndex(window);
-black=BlackIndex(window);
-gray=GrayIndex(window);
-
-[h v]=WindowSize(window);
-
-size=round(size/100*h)
-
-rect=[0 0 size size];
-gap='no';
-ttex=Screen('OpenOffscreenWindow', window, black, rect);
-[x0 y0]=WindowCenter(ttex);
-landoltC(ttex, x0, y0, size, white, black, gap)
-
-imdata=Screen('GetImage', ttex);
-
-imdata=imdata;
-imdata(:,:,4)=imdata(:,:,1)*(transparency/100);
-ttex2=Screen('MakeTexture', window, imdata);
-
-rect=Screen('Rect', ttex2);
-
-for i=1:length(xpos)
-    dRect=CenterRectOnPoint(rect, xpos(i), ypos(i));
-    Screen('DrawTexture', window, ttex2, [], dRect);
-
-    %     landoltC(window, xpos(i), ypos(i), size, color, background, gap)
-end
-
-% close textures to free memory
-Screen('Close'); % closes all textures
-
 
 

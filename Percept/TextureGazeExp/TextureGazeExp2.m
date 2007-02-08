@@ -68,11 +68,11 @@ try
     screens=Screen('Screens');
     screenNumber=max(screens);
     [h v]=WindowSize(screenNumber);
-    mss=h*v
+    mss=h*v;
     for i=1:length(screens)  % but use bigger screen if there is one ;-)
         [h v]=WindowSize(screens(i));
         if h*v>mss
-            mss=h*v
+            mss=h*v;
             screenNumber=screens(i)
         end
     end
@@ -175,16 +175,54 @@ try
         % this function prepares the stimulus
         % it won't show until we issue a flip command
         imageDir=['images' filesep par.imageDir{i}];
-        [imgfiles, nStim, xpos, ypos]=createImageStimulus(window, imageDir, par.nrStimuli(i), par.stimRadius(i), par.stimSize(i), par.stimOrient(i), par.maskSD(i));
-        %         targets=addSearchStimulus(window, xpos, ypos, par.targetSize(i), par.targetTrans(i) );
+        [imgfiles, nStim, xpos, ypos, gapangles]=createImageStimulus(window, imageDir, par.nrStimuli(i), par.stimRadius(i), par.stimSize(i), par.stimOrient(i), par.maskSD(i));
         % add fixationPoint
         drawFixationPoint(window, fixPtSize, fixPtCol);
+
+        % drift correction
+
+        % verify fixation stability for a particular amount of time
+        ShowCursor;
+        [cx, cy]=WindowCenter(window);
+        WaitSetMouse(cx+200, cy+200, window);
+        ts=-1;
+        goOn=1;
+        while goOn==1
+
+            [mx,my,buttons] = GetMouse;
+
+            d=sqrt((mx-cx)^2+(my-cy)^2);
+            if d<50
+                if ts<0
+                    ts=GetSecs;
+                elseif GetSecs-ts>0.5
+                    fprintf('fixation point fixated long enough\n');
+                    break;
+                end
+            else
+                ts=-1;
+            end
+
+            [keyIsDown,secs,keyCode] = KbCheck;
+
+            % we'll only go into the code below if a key was pressed
+            if keyCode(quitKey)
+                display('User requested break');
+                goOn=0;
+                break;
+            end
+        end
+        %         HideCursor;
+
+        if goOn==0
+            break;
+        end
 
         [notUsed stimulusOnsetTime]=Screen('Flip', window, tDelayEnd);
         actDelayDur=stimulusOnsetTime-delayOnsetTime;
         tStimEnd=stimulusOnsetTime+par.stimDur(i)/1000;
         actStimDur=-999; % initialize for later storage of actual stimulus duration
-
+        target=-1;
 
         %         pause
         % this is the start of the response loop
@@ -193,9 +231,7 @@ try
 
         while 1
 
-            % check if we need to show the next frame of our movie stimulus
-            % we  test whether mfi (movieFrameIndex) is less than number of
-            % frame to show, indicating stimulus presentation has not ended yet.
+            % check if we need to remove the stimulus
             if GetSecs>tStimEnd & actStimDur<0
                 % time passed, show next frame!
                 Screen('FillRect', window, gray);
@@ -204,6 +240,25 @@ try
                 [notUsed stimulusOffsetTime]=Screen('Flip', window, tStimEnd);
                 actStimDur=stimulusOffsetTime-stimulusOnsetTime;
             end
+
+
+            % check whether the subject made an eye-movement to one of the
+            % targets
+
+
+            [mx,my,buttons] = GetMouse;
+
+            d=sqrt((mx-cx)^2+(my-cy)^2);
+
+            if d>300
+                if target<0                    
+                    imdist=sqrt((xpos-mx).^2+(ypos-my).^2);
+                    target=find(imdist==min(imdist));
+                    Screen('FillOval', window, [255 0 0], CenterRectOnPoint([0 0 30 30], xpos(target), ypos(target)));
+                    Screen('Flip', window);
+                end
+            end
+
 
             % check state of keyboard
             [keyIsDown,secs,keyCode] = KbCheck;
@@ -415,7 +470,7 @@ stimuli=stimuli(1:min(nStim,length(stimuli)));
 j=1;
 for i=stimuli
     myimgfile{j}=fullfile(imageDir,dirList(i).name);
-%     fprintf('Loading image ''%s''\n', myimgfile{j});
+    %     fprintf('Loading image ''%s''\n', myimgfile{j});
     imdata=imread(myimgfile{j});
     transLayer=size(imdata,3)+1;
     imdata(:,:,transLayer)=mask;
@@ -472,57 +527,6 @@ nStim=length(tex);
 
 
 
-function targets=addSearchStimulus(window, xpos, ypos, size, transparency )
-
-
-white=WhiteIndex(window);
-black=BlackIndex(window);
-gray=GrayIndex(window);
-delta=40;
-color=[gray+delta gray-delta gray];
-color=GrayIndex(window,0.55);
-[h v]=WindowSize(window);
-
-size=round(size/100*h);
-
-rect=[0 0 size size];
-gaps={'top','bottom','right','left', 'horizontal', 'vertical'}; % options for
-gapor=randperm(4);
-gapor=gapor(1);
-gapor=3;
-
-ttex=Screen('OpenOffscreenWindow', window, black, rect);
-[x0 y0]=WindowCenter(ttex);
-landoltC(ttex, x0, y0, size, color, black, gaps{gapor});
-imdata=Screen('GetImage', ttex);
-
-imdata=imdata;
-imdata(:,:,4)=imdata(:,:,1)*(1-transparency/100);
-ttex2=Screen('MakeTexture', window, imdata);
-
-% gap=gaps{gapor};
-% ttex2=landoltCTexture(window, size, color, transparency, gap);
-
-rect=Screen('Rect', ttex2);
-
-targets=randperm(length(xpos)); % select two targets
-targets=targets(1:2);
-
-gapangle=linspace(0,360,length(xpos)+1);
-gapangle=gapangle(1:end-1);
-
-
-for i=1:length(xpos)
-    %     gapangle=0;
-    dRect=CenterRectOnPoint(rect, xpos(i), ypos(i));
-    %     Screen('DrawTexture', window, ttex2, [], dRect, gapangle(i));
-
-    %      landoltC(window, xpos(i), ypos(i), size, color, background, gap)
-end
-
-% close textures to free memory
-Screen('Close'); % closes all textures
-
 
 
 function lct=landoltCTexture(window, size, color, background, gap)
@@ -531,57 +535,5 @@ rect=[0 0 size size];
 lct=Screen('OpenOffscreenWindow', window, background, rect);
 [x0 y0]=WindowCenter(lct);
 landoltC(lct, x0, y0, size, color, background, gap);
-
-function lct=landoltCTexture2(window, size, color, transparency, gap)
-
-black=BlackIndex(window);
-rect=[0 0 size size];
-ttex=Screen('OpenOffscreenWindow', window, black, rect);
-[x0 y0]=WindowCenter(ttex);
-landoltC(ttex, x0, y0, size, color, black, gap);
-imdata=Screen('GetImage', ttex);
-imdata=imdata;
-% mask=zeros(size(imdata));
-imdata(:,:,4)=imdata(:,:,1)*(1-transparency/100); % set alpha value
-lct=Screen('MakeTexture', window, imdata);
-Screen('Close', ttex);
-
-
-
-function addSearchStimulus2(window, xpos, ypos, size, transparency )
-
-
-white=WhiteIndex(window);
-black=BlackIndex(window);
-gray=GrayIndex(window);
-
-[h v]=WindowSize(window);
-
-size=round(size/100*h)
-
-rect=[0 0 size size];
-gap='no';
-ttex=Screen('OpenOffscreenWindow', window, black, rect);
-[x0 y0]=WindowCenter(ttex);
-landoltC(ttex, x0, y0, size, white, black, gap)
-
-imdata=Screen('GetImage', ttex);
-
-imdata=imdata;
-imdata(:,:,4)=imdata(:,:,1)*(transparency/100);
-ttex2=Screen('MakeTexture', window, imdata);
-
-rect=Screen('Rect', ttex2);
-
-for i=1:length(xpos)
-    dRect=CenterRectOnPoint(rect, xpos(i), ypos(i));
-    Screen('DrawTexture', window, ttex2, [], dRect);
-
-    %     landoltC(window, xpos(i), ypos(i), size, color, background, gap)
-end
-
-% close textures to free memory
-Screen('Close'); % closes all textures
-
 
 
