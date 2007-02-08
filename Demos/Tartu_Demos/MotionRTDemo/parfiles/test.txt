@@ -1,0 +1,1 @@
+direction	orientation	contrast	cyclesPix	stimSize	frames1	15	50	0.025	15	12-1	-15	25	0.05	20	121	15	10	0.01	15	12-1	15	25	0.1	10	121	15	25	0.05	25	12

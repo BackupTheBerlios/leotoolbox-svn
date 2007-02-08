@@ -1,0 +1,1 @@
+image	stimDur	orientation	contrast	stimSizekonijn	500	15	50	15boekentas	100	-15	25	20lam	250	15	10	15mandala-3	1000	15	25	10winx-1	1500	15	25	25

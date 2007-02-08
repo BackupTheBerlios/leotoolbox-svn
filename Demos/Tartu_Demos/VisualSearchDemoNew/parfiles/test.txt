@@ -1,0 +1,1 @@
+color	tilt	cueTime	soa	stimSize	stimTime	objSizeH	objSizeV	nDistractors	target20	15	500	1000	30	500	8	2	3	yes-40	-15	500	1000	20	500	9	1	3	no10	15	500	1000	10	500	6	3	3	yes20	15	500	1000	20	500	3	1	2	no20	15	500	1000	30	500	2	0.5	1	yes

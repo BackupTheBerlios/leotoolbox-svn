@@ -1,0 +1,100 @@
+Subject name ('name')? 'd'
+Session nr (number)? 3
+Parameter file ('filename')? 'test2'
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+          image: {5x1 cell}
+        stimDur: [5x1 double]
+    orientation: [5x1 double]
+       contrast: [5x1 double]
+       stimSize: [5x1 double]
+
+PTB-INFO: Using GLEW version 1.3.5 for automatic detection of OpenGL extensions...
+PTB-INFO: Connection to kernel-level vbl handler establised (shmem = 0x13be7000).
+*****
+Size of fixation point: 10
+******
+
+imageFile =
+
+images/konijntjes1024x768.jpg
+
+*****
+Size of fixation point: 10
+******
+*****
+Size of fixation point: 10
+******
+*****
+Size of fixation point: 20
+******
+*****
+Size of fixation point: 10
+******
+
+imageFile =
+
+images/wolk1.jpg
+
+*****
+Size of fixation point: 10
+******
+*****
+Size of fixation point: 10
+******
+*****
+Size of fixation point: 20
+******
+*****
+Size of fixation point: 10
+******
+
+imageFile =
+
+images/wolk2.jpg
+
+*****
+Size of fixation point: 10
+******
+*****
+Size of fixation point: 10
+******
+*****
+Size of fixation point: 20
+******
+*****
+Size of fixation point: 10
+******
+
+imageFile =
+
+images/wolk3.jpg
+
+*****
+Size of fixation point: 10
+******
+*****
+Size of fixation point: 20
+******
+*****
+Size of fixation point: 10
+******
+
+imageFile =
+
+images/wolk4.jpg
+
+*****
+Size of fixation point: 10
+******
+User requested break
+*****
+Size of fixation point: 20
+******
+Please contact the experiment leader immediately, thanks!
