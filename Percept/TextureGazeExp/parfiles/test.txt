@@ -1,0 +1,1 @@
+imageDir	stimDur	stimOrient	stimContrast	stimRadius	stimSize	maskSD	nrStimuli	targetSize	targetTranscuret	2500	45	50	25	6	2.0	8	12	0curet	2500	45	50	25	6	2.0	8	12	0curet	2500	45	50	25	6	2.0	8	12	0curet	2500	45	50	25	6	2.0	8	12	0curet	2500	45	50	25	6	2.0	8	12	0

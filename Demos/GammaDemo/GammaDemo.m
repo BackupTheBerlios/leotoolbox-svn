@@ -56,9 +56,17 @@ downKey=KbName('LeftArrow');
 Screen('TextSize', window, 20);
 Screen('TextFont', window, 'helvetica');
 
-
+newTab=gTab;
 
 cStart=1024/2;
+    newTab(c+1,:)=[cStart cStart cStart]/1024;
+
+    
+        Screen('FillRect', window, c);
+
+    Screen('FillRect', window, c-1, rect);
+    Screen('Flip', window,[],1);
+
 
 while stop==0
 
@@ -69,18 +77,18 @@ while stop==0
 
     % change gamma table for color c
 
-    newTab=gTab;
+%     newTab=gTab;
     newTab(c,:)=[cStart cStart cStart]/1024;
     newTab(c,:)
 
 
 
 
-    Screen('FillRect', window, c);
-
-    Screen('FillRect', window, c-1, rect);
+%     Screen('FillRect', window, c);
+% 
+%     Screen('FillRect', window, c-1, rect);
     Screen('DrawText', window, ['color ', num2str(cStart)  ' ' ], white, 50, 50);
-    Screen('Flip', window);
+    Screen('Flip', window,[],1);
 
 
     oldTab=Screen('LoadNormalizedGammaTable', window, newTab);

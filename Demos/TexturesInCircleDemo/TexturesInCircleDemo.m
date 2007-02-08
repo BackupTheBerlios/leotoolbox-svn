@@ -1,9 +1,9 @@
 % this silly demo will show a number of textures on screen arranged on a cirlce
 % it will also react to mouse press by drawing a little coloured dot
 
-try
+% try
     commandwindow; % moves commandwindow up front, handy in case of a break.
-    fprintf('%s (%s)\n click on ESC key to stop\n', mfilename, datestr(now));
+    fprintf('%s (%s)\n Press ESC key to stop\n', mfilename, datestr(now));
 
     stimdir='stimuli';
     if 7~=exist(stimdir, 'dir')
@@ -34,15 +34,19 @@ try
     white=WhiteIndex(screenNumber);
     black=BlackIndex(screenNumber);
     gray=GrayIndex(screenNumber); % returns as default the mean gray value of screen
+            Screen('FillRect',w, gray);
+            Screen('Flip',w);
 
     drect=CenterRect([0 0 RectHeight(wRect)/2 RectHeight(wRect)/2], wRect);
     quitkey=KbName('Escape');
-    stimlist=dir('stimuli');
+    stimlist=dir('stimuli')
     i=1;
     einde=0;
     while einde==0
         ptlist=[];
         npts=0;
+        stimdir
+        stimlist(i).name
         mystimfile=fullfile(stimdir,stimlist(i).name)
         %         exist(mystimfile, 'file')
         if 2==exist(mystimfile, 'file') & stimlist(i).name(1)~='.'
@@ -106,13 +110,14 @@ try
     ShowCursor;
     fprintf('End of %s\n\n', mfilename);
 
-catch
-    %this "catch" section executes in case of an error in the "try" section
-    %above.  Importantly, it closes the onscreen window if its open.
-    Screen('CloseAll');
-    ShowCursor;
-    rethrow(lasterror);
-    commandwindow; % moves commandwindow up front, handy in case of a break.
-end %try..catch..
+% catch
+%     %this "catch" section executes in case of an error in the "try" section
+%     %above.  Importantly, it closes the onscreen window if its open.
+%     Screen('CloseAll');
+%     ShowCursor;
+%     rethrow(lasterror);
+%     commandwindow; % moves commandwindow up front, handy in case of a break.
+% end %try..catch..
+% 
 
-
+%
