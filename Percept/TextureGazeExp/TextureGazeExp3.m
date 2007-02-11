@@ -9,11 +9,8 @@ function TextureGazeExp(subject, session, parfile)
 commandwindow;
 cd(FunctionFolder(mfilename));
 
-dummymode=0;
+dummymode=1;
 
-% if EyelinkInit()~= 1; %
-%     return;
-% end;
 result=EyelinkInit(dummymode);
 
 
@@ -64,6 +61,17 @@ try
     myparfile=[myparfiledir filesep parfile '.txt'] % construct parfile name
     par=autotextread(myparfile)
 
+    % construct edf file name
+    sstr=sprintf('%s', num2str(session));
+    nl=8-length(sstr);  % edf file name limited to 8 chars
+    if length(subject)>nl
+        subjstr=subject(1:nl);
+    else
+        subjstr=subject;
+    end
+    edfFile=[ subjstr sstr '.edf'];
+
+    
     % suppress warnings and tests for now. In a real experiment
     % you would enable all these again, so to be sure your computer is
     % running okay.
@@ -78,12 +86,12 @@ try
     screens=Screen('Screens');
     screenNumber=max(screens);
     [h v]=WindowSize(screenNumber);
-    mss=h*v;
+    mss=1024*768; % hardcoded threshold
     for i=1:length(screens)  % but use bigger screen if there is one ;-)
         [h v]=WindowSize(screens(i));
         if h*v>mss
             mss=h*v;
-            screenNumber=screens(i)
+            screenNumber=screens(i);
         end
     end
 
@@ -99,7 +107,8 @@ try
     itiTime=1500; % minimal inter trial interval, in secs
     fixPtSize=1; % fixation point size, in percentage of screen size
     fixPtCol=white;
-
+    fixTolerance=2;
+    reqFixTime=1;
     % here we specify our response keys
     % keyNames is a structure containing relevant keys
     KbName('UnifyKeyNames'); % make sure that we can use same key names on different OS's
@@ -119,9 +128,14 @@ try
     myfile=[mydatadir filesep subject '_' num2str(session) '_' parfile '_' mfilename '_data' '.txt']; % create a meaningful name
 
     fp=fopen(myfile, 'w'); % 'w' for write which creates a new file always, alternative would be 'a' for append.
-    fprintf(fp, 'SUBJECT\tSESSION\tTRIAL\tDATE\tTIME\tDELAY\tACTCUETIME\tACTSOA\tACTSTIMDUR\tPRESENT\tTARGET\tRESP\tRT\n');
-    fclose(fp);
+fprintf(fp, 'SUBJECT\tSESSION\tTRIAL\tDATE\tTIME\tDELAY\tACTSTIMDUR\tTEXTURE\tTARGET\tRESP\tRT\tLAT\n');
+fclose(fp);
 
+    
+
+    
+    
+    
     % here we open a window and paint it gray
     [window, winrect]=Screen('OpenWindow',screenNumber);
     Screen(window,'BlendFunction',GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); % enable alpha blending
@@ -133,6 +147,30 @@ try
         frameRate=60; % good assumption for most labtopss/LCD screens
     end
 
+    % report some screen settings in results file
+    myresfile=[mydatadir filesep subject '_' num2str(session) '_' parfile '_' mfilename '_results' '.txt']; % create a meaningful name
+    fp=fopen(myresfile, 'w'); % open with 'a' for appending info to existing file.
+   
+    [w h]=WindowSize(window);
+    fprintf(fp, 'EXPERIMENTCODEFILE\t%s\n', mfilename);
+    fprintf(fp, 'PARAMETERFILE\t%s\n', myparfile);
+    fprintf(fp, 'DATAFILE\t%s\n', myfile);
+    fprintf(fp, 'RESULTSFILE\t%s\n', myresfile);
+    fprintf(fp, 'EDFFILE\t%s\n', edfFile);
+    fprintf(fp, 'SCREENSIZEPIX\t%d\t%d\n', w, h);
+    fprintf(fp, 'SCREENREFRESH\t%f\n', frameRate);
+    fprintf(fp, 'RESPONSEKEYS\t%s\t%s\n', keyNames.leftwardKey, keyNames.rightwardKey);
+        
+    
+             date=datestr(now, 'dd-mm-yyyy'); % record date of response
+   
+                fprintf(fp, 'SUBJECT\t%s\n', subject);
+            fprintf(fp, 'SESSION\t%d\n', session);
+            fprintf(fp, 'DATE\t%s\n', date);
+
+    fclose(fp);
+
+    
 
     % this function shows an instruction on the screen for the subject
     % instruction is defined in this function
@@ -156,12 +194,15 @@ try
     
     el.backgroundcolour = gray;
     el.foregroundcolour = white;
+    el.mousetriggersdriftcorr=1; % 1=allow mouse to trigger drift correction
     if dummymode==0
         % make sure that we get gaze data from the Eyelink
         Eyelink('command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');
+        Eyelink('command', 'link_event_data = GAZE,GAZERES,HREF,AREA,VELOCITY');
+        Eyelink('command', 'link_event_filter = LEFT,RIGHT,FIXATION,BLINK,SACCADE');
 
         % open file to record data to
-        Eyelink('openfile', 'demo.edf');
+        Eyelink('openfile', edfFile);
 
         % STEP 4
         % Calibrate the eye tracker
@@ -210,26 +251,30 @@ try
             eye_used = el.LEFT_EYE; % use left eye
         end
 
-
         % mark start of a new trial by showing the fixation point
         Screen('FillRect', window, gray);
         % seperate function for drawing fixation point, so we can reuse it
         drawFixationPoint(window, fixPtSize, fixPtCol); % show fixation point
         [notUsed delayOnsetTime]=Screen('Flip', window);
-        % determine a random delay between .5 and 1 secs.
-        tDelayEnd=delayOnsetTime+0.05+rand*0.05;
 
         % prepare stimulus , in a seperate function
-        % most of the information for creating the stimulus now comes from
+        % most of the information for creating the stimulus comes from
         % the parameter file/par structure.
         % and wait until end of the stimulus onset asynchrony time to
         % display stimulus on screen, screen's flip command also returns the
         % stimulus onset time
 
+        disp('Stim created');
+
         % this function prepares the stimulus
         % it won't show until we issue a flip command
-        imageDir=['images' filesep par.imageDir{i}];
-        [imgfiles, nStim, xpos, ypos, gapangles]=createImageStimulus(window, imageDir, par.nrStimuli(i), par.stimRadius(i), par.stimSize(i), par.stimOrient(i), par.maskSD(i));
+        imageDir=['images' filesep par.imageDir{trial}];
+        trial
+        length(par.stimRadius)
+        [imgfiles, nStim, xpos, ypos, gapangle, texAngle]=createImageStimulus(window, imageDir, par.nrStimuli(trial), par.stimRadius(trial), par.stimSize(trial), par.stimOrient(trial), par.maskSD(trial));
+
+        disp('Stim created');
+        
         % add fixationPoint
         drawFixationPoint(window, fixPtSize, fixPtCol);
 
@@ -237,7 +282,11 @@ try
 
         % verify fixation stability for a particular amount of time
         Eyelink('message', 'Check Fixation Start' );
+        disp('Check Fixation Start');
 
+        [h v]=WindowSize(window);
+        fixTolerancePix=round(fixTolerance/100*h);
+        movThresholdPix=round((par.stimRadius(trial)/100)*h/2);
         [cx, cy]=WindowCenter(window);
         if dummymode==1
             ShowCursor;
@@ -247,13 +296,11 @@ try
         goOn=1;
         while goOn==1
 
-
             if dummymode==0
                 error=Eyelink('CheckRecording');
                 if(error~=0)
                     break;
                 end
-
                 if Eyelink( 'NewFloatSampleAvailable') > 0
                     % get the sample in the form of an event structure
                     evt = Eyelink( 'NewestFloatSample');
@@ -269,22 +316,19 @@ try
                     end
                 end
             else
-
                 % Query current mouse cursor position (our "pseudo-eyetracker") -
                 % (mx,my) is our gaze position.
-                [mx, my, buttons]=GetMouse;
+                [mx, my, buttons]=GetMouse(window);
             end
 
 
-
             d=sqrt((mx-cx)^2+(my-cy)^2);
-            if d<50
+            if d<fixTolerancePix
                 if ts<0
                     ts=GetSecs;
-                elseif GetSecs-ts>1.0
+                elseif GetSecs-ts>reqFixTime
                     fprintf('fixation point fixated long enough\n');
                     Eyelink('message', 'Check Fixation End' );
-
                     break;
                 end
             else
@@ -310,14 +354,12 @@ try
         Eyelink('message', 'DISPLAY ON');	 % message for RT recording in analysis
         Eyelink('message', 'SYNCTIME');	 	 % zero-plot time for EDFVIEW
         actDelayDur=stimulusOnsetTime-delayOnsetTime;
-        tStimEnd=stimulusOnsetTime+par.stimDur(i)/1000;
+        tStimEnd=stimulusOnsetTime+par.stimDur(trial)/1000;
         actStimDur=-999; % initialize for later storage of actual stimulus duration
         target=-1;
 
         %         pause
         % this is the start of the response loop
-        % in it, we also check if we need to display the next frame of the
-        % movie
 
         while 1
 
@@ -330,7 +372,6 @@ try
                 [notUsed stimulusOffsetTime]=Screen('Flip', window, tStimEnd);
                 actStimDur=stimulusOffsetTime-stimulusOnsetTime;
             end
-
 
             % check whether the subject made an eye-movement to one of the
             % targets
@@ -359,14 +400,16 @@ try
 
                 % Query current mouse cursor position (our "pseudo-eyetracker") -
                 % (mx,my) is our gaze position.
-                [mx, my, buttons]=GetMouse;
+                [mx, my, buttons]=GetMouse(window);
             end
             d=sqrt((mx-cx)^2+(my-cy)^2);
 
-            if d>300
+            % find distance to objects, pick minimum one
+            if d>movThresholdPix
                 if target<0
                     imdist=sqrt((xpos-mx).^2+(ypos-my).^2);
                     target=find(imdist==min(imdist));
+                    latency=GetSecs-stimulusOnsetTime;
                     Screen('FillOval', window, [255 0 0], CenterRectOnPoint([0 0 30 30], xpos(target), ypos(target)));
                     Screen('Flip', window);
                 end
@@ -433,19 +476,41 @@ try
         % integers (whole numbers), %f for floating point numbers (with something after comma/dot).
         if goOn==1
             fp=fopen(myfile, 'a'); % open with 'a' for appending info to existing file.
-            date=datestr(now, 'dd.mm.yyyy'); % record date of response
-            time=datestr(now, 'HH:MM:SS'); % also record timestamp of response
+            time=datestr(now, 'HHMMSS'); %  record timestamp of response
+
+% %             fprintf(fp, 'SUBJECT\tSESSION\tTRIAL\tDATE\tTIME\tDELAY\tACTSTIMDUR\tTEXTURE\tTARGET\tRESP\tRT\tLAT\n');
 
             % we distribute printing over a number of  commands for
             % readability
             fprintf(fp, '%s\t%d\t%d\t%s\t%s\t', subject, session, trial, date, time);
-            fprintf(fp, '%.1f\t%.1f\t%.1f\t%.1f\t', actDelayDur*1000, -999*1000, -999*1000, actStimDur*1000);
-            fprintf(fp, '%s\t%d\t%s\t%.1f\n', 'dummy', -999, response, rt*1000);
+            fprintf(fp, '%.1f\t%.1f\t', actDelayDur*1000, actStimDur*1000);
+            fprintf(fp, '%s\t%d\t%s\t%.1f\t%.1f\n', imgfiles{target}, target, response, rt*1000, latency);
             fclose(fp);
 
+            
+            % alternate data file
+            fp=fopen(myresfile, 'a'); % open with 'a' for appending info to existing file.
+            fprintf(fp, 'TRIAL\t%d\n', trial);
+            fprintf(fp, 'TIME\t%s\n', time);
+            fprintf(fp, 'STIMULUS\n');
+            fprintf(fp, 'XPOS\tYPOS\tSIZE\tORIENT\tGAPANGLE\tISTARGET\tIMAGE\n');
+            for i=1:length(imgfiles)
+                fprintf(fp, '%d\t%d\t%d\t%.1f\t%d\t%d\t%s\n', xpos(i), ypos(i), -999, texAngle(i), gapangle(i), (i==target), imgfiles{i} );
+            end
+            fprintf(fp, 'DELAY\t%.f\n', actDelayDur*1000);
+            fprintf(fp, 'ACTSTIMDUR\t%.f\n', actStimDur*1000);
+            fprintf(fp, 'TEXTURE\t%s\n', imgfiles{target});
+            fprintf(fp, 'TARGET\t%d\n', target);
+            fprintf(fp, 'RESPONSE\t%s\n', response);
+            fprintf(fp, 'RT\t%.1f\n', rt*1000);
+            fprintf(fp, 'LATENCY\t%s\n', latency);
+            fprintf(fp, '--------------\n')
+           
+            
+            
         end
         % increase the trial number
-        trial=trial+1;
+        trial=trial+1
 
 
     end
@@ -457,6 +522,26 @@ try
         % in case of a break, some other message might be more appropriate
         disp('Please contact the experiment leader immediately, thanks!');
     end
+
+    
+    
+    Eyelink('CloseFile');
+    % download data file
+    try
+        fprintf('Receiving data file ''%s''\n', edfFile );
+        status=Eyelink('ReceiveFile');
+        if status > 0
+            fprintf('ReceiveFile status %d\n', status);
+        end
+        if 2==exist(edfFile, 'file')
+            fprintf('Data file ''%s'' can be found in ''%s''\n', edfFile, pwd );
+        end
+    catch
+        fprintf('Problem receiving data file ''%s''\n', edfFile );
+    end
+    
+    Eyelink('ShutDown');
+
 
     % stop eyelink
     Eyelink('ShutDown');
@@ -508,8 +593,8 @@ function goOn=showInstruction(window, keyNames)
 % with the experiment. Screen is erased before returning.
 
 tstring=['Welcome to this search experiment\n\n'];
-tstring=[tstring 'Press the ''' keyNames.leftwardKey ''' for nice stimuli\n'];
-tstring=[tstring 'Press the ''' keyNames.rightwardKey ''' for ugly stimuli\n\n'];
+tstring=[tstring 'Press the ''' keyNames.leftwardKey ''' for a gap on the left\n'];
+tstring=[tstring 'Press the ''' keyNames.rightwardKey ''' for a gap on the right\n\n'];
 tstring=[tstring 'Press the ''' keyNames.quitKey ''' key to abort,\n'];
 tstring=[tstring 'any other key to continue'];
 
@@ -555,7 +640,7 @@ Screen('FillRect', window, gray);
 Screen('Flip', window);
 
 
-function [myimgfile, nStim, xpos, ypos, gapangle]=createImageStimulus(window, imageDir, nStim, radius, siz, ori, masksd )
+function [myimgfile, nStim, xpos, ypos, gapangle, texAngle]=createImageStimulus(window, imageDir, nStim, radius, siz, ori, masksd )
 
 white=WhiteIndex(window);
 black=BlackIndex(window);
@@ -603,18 +688,13 @@ end
 [h v]=WindowSize(window);
 
 radius=radius/100*h;
-
-
 ang=linspace(0, 360, length(tex)+1);
 ang=ang(1:end-1);
 [x0 y0]=WindowCenter(window);
-
 xpos=x0+round(radius*cos(deg2rad(ang)));
 ypos=y0+round(radius*sin(deg2rad(ang)));
-
 siz=round(siz/100*h);
 rect=[0 0 2*siz+1 2*siz+1];
-
 lct=landoltCTexture(window, 2*siz+1, GrayIndex(window,0.55), gray, 'right');
 % gapangle=linspace(0,360,length(xpos)+1);
 % gapangle=gapangle(1:end-1);
@@ -625,24 +705,18 @@ gapangle=mod(gapangle,2)*180; % left or right
 gapangle=gapangle(randperm(length(gapangle)));
 
 
-
 for i=1:length(tex)
 
     dRect=CenterRectOnPoint(rect, xpos(i), ypos(i));
 
     Screen('DrawTexture', window, lct, [], dRect, gapangle(i));
 
-    texAngle=-ori+2*rand*ori;
+    texAngle(i)=-ori+2*rand*ori;
 
-    %     rect=Screen('Rect', tex(i));
-
-
-
-    Screen('DrawTexture', window, tex(i), [], dRect, texAngle);
+    Screen('DrawTexture', window, tex(i), [], dRect, texAngle(i));
 end
 % close textures to free memory
 Screen('Close'); % closes all textures
-
 nStim=length(tex);
 
 
