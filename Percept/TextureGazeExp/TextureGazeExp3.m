@@ -9,7 +9,7 @@ function TextureGazeExp(subject, session, parfile)
 commandwindow;
 cd(FunctionFolder(mfilename));
 
-dummymode=1;
+dummymode=0;
 
 result=EyelinkInit(dummymode);
 
@@ -71,7 +71,7 @@ try
     end
     edfFile=[ subjstr sstr '.edf'];
 
-    
+
     % suppress warnings and tests for now. In a real experiment
     % you would enable all these again, so to be sure your computer is
     % running okay.
@@ -107,8 +107,9 @@ try
     itiTime=1500; % minimal inter trial interval, in secs
     fixPtSize=1; % fixation point size, in percentage of screen size
     fixPtCol=white;
-    fixTolerance=2;
-    reqFixTime=1;
+    fixTolerance=4;
+    reqFixTime=.5;
+    stimDurAfterSaccOnset=.5;
     % here we specify our response keys
     % keyNames is a structure containing relevant keys
     KbName('UnifyKeyNames'); % make sure that we can use same key names on different OS's
@@ -128,14 +129,10 @@ try
     myfile=[mydatadir filesep subject '_' num2str(session) '_' parfile '_' mfilename '_data' '.txt']; % create a meaningful name
 
     fp=fopen(myfile, 'w'); % 'w' for write which creates a new file always, alternative would be 'a' for append.
-fprintf(fp, 'SUBJECT\tSESSION\tTRIAL\tDATE\tTIME\tDELAY\tACTSTIMDUR\tTEXTURE\tTARGET\tRESP\tRT\tLAT\n');
-fclose(fp);
+    fprintf(fp, 'SUBJECT\tSESSION\tTRIAL\tDATE\tTIME\tDELAY\tACTSTIMDUR\tTEXTURE\tTARGET\tRESP\tRT\tLAT\n');
+    fclose(fp);
 
-    
 
-    
-    
-    
     % here we open a window and paint it gray
     [window, winrect]=Screen('OpenWindow',screenNumber);
     Screen(window,'BlendFunction',GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); % enable alpha blending
@@ -150,7 +147,7 @@ fclose(fp);
     % report some screen settings in results file
     myresfile=[mydatadir filesep subject '_' num2str(session) '_' parfile '_' mfilename '_results' '.txt']; % create a meaningful name
     fp=fopen(myresfile, 'w'); % open with 'a' for appending info to existing file.
-   
+
     [w h]=WindowSize(window);
     fprintf(fp, 'EXPERIMENTCODEFILE\t%s\n', mfilename);
     fprintf(fp, 'PARAMETERFILE\t%s\n', myparfile);
@@ -160,17 +157,17 @@ fclose(fp);
     fprintf(fp, 'SCREENSIZEPIX\t%d\t%d\n', w, h);
     fprintf(fp, 'SCREENREFRESH\t%f\n', frameRate);
     fprintf(fp, 'RESPONSEKEYS\t%s\t%s\n', keyNames.leftwardKey, keyNames.rightwardKey);
-        
-    
-             date=datestr(now, 'dd-mm-yyyy'); % record date of response
-   
-                fprintf(fp, 'SUBJECT\t%s\n', subject);
-            fprintf(fp, 'SESSION\t%d\n', session);
-            fprintf(fp, 'DATE\t%s\n', date);
+
+
+    date=datestr(now, 'dd-mm-yyyy'); % record date of response
+
+    fprintf(fp, 'SUBJECT\t%s\n', subject);
+    fprintf(fp, 'SESSION\t%d\n', session);
+    fprintf(fp, 'DATE\t%s\n', date);
 
     fclose(fp);
 
-    
+
 
     % this function shows an instruction on the screen for the subject
     % instruction is defined in this function
@@ -191,12 +188,14 @@ fclose(fp);
 
     % do eyelink stuff
     el=EyelinkInitDefaults(window);
-    
+
     el.backgroundcolour = gray;
     el.foregroundcolour = white;
     el.mousetriggersdriftcorr=1; % 1=allow mouse to trigger drift correction
     if dummymode==0
         % make sure that we get gaze data from the Eyelink
+        Eyelink('command', 'file_sample_data = LEFT,RIGHT,GAZE,AREA');
+        Eyelink('command', 'file_event_data = GAZE,GAZERES,HREF,AREA,VELOCITY');
         Eyelink('command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');
         Eyelink('command', 'link_event_data = GAZE,GAZERES,HREF,AREA,VELOCITY');
         Eyelink('command', 'link_event_filter = LEFT,RIGHT,FIXATION,BLINK,SACCADE');
@@ -241,8 +240,8 @@ fclose(fp);
 
         Eyelink('message', 'TRIALID %d', trial );
         % do a final check of calibration using driftcorrection
-        EyelinkDoDriftCorrection(el);
-
+    if 0    EyelinkDoDriftCorrection(el);
+    end
         WaitSecs(0.1);
         Eyelink('StartRecording');
 
@@ -274,7 +273,7 @@ fclose(fp);
         [imgfiles, nStim, xpos, ypos, gapangle, texAngle]=createImageStimulus(window, imageDir, par.nrStimuli(trial), par.stimRadius(trial), par.stimSize(trial), par.stimOrient(trial), par.maskSD(trial));
 
         disp('Stim created');
-        
+
         % add fixationPoint
         drawFixationPoint(window, fixPtSize, fixPtCol);
 
@@ -350,7 +349,7 @@ fclose(fp);
             break;
         end
 
-        [notUsed stimulusOnsetTime]=Screen('Flip', window);
+        [notUsed stimulusOnsetTime]=Screen('Flip', window,[],1);
         Eyelink('message', 'DISPLAY ON');	 % message for RT recording in analysis
         Eyelink('message', 'SYNCTIME');	 	 % zero-plot time for EDFVIEW
         actDelayDur=stimulusOnsetTime-delayOnsetTime;
@@ -364,7 +363,7 @@ fclose(fp);
         while 1
 
             % check if we need to remove the stimulus
-            if GetSecs>tStimEnd & actStimDur<0
+            if 0 & GetSecs>tStimEnd & actStimDur<0
                 % time passed, show next frame!
                 Screen('FillRect', window, gray);
                 drawFixationPoint(window, fixPtSize, fixPtCol);
@@ -411,10 +410,13 @@ fclose(fp);
                     target=find(imdist==min(imdist));
                     latency=GetSecs-stimulusOnsetTime;
                     Screen('FillOval', window, [255 0 0], CenterRectOnPoint([0 0 30 30], xpos(target), ypos(target)));
-                    Screen('Flip', window);
+                    Screen('Flip', window, [],1);
                 end
             end
 
+            if target>0
+                break
+            end
 
             % check state of keyboard
             [keyIsDown,secs,keyCode] = KbCheck;
@@ -447,6 +449,12 @@ fclose(fp);
             WaitSecs(0.001);
         end
 
+        if goOn==1 % valid trial
+            % wait short time to give subject time to recognize target
+            WaitSecs(stimDurAfterSaccOnset);
+        end
+
+
         Eyelink('message', 'TARGET %d', target );
         Eyelink('message', 'RESPONSE %s', response );
         Eyelink('StopRecording');
@@ -478,7 +486,7 @@ fclose(fp);
             fp=fopen(myfile, 'a'); % open with 'a' for appending info to existing file.
             time=datestr(now, 'HHMMSS'); %  record timestamp of response
 
-% %             fprintf(fp, 'SUBJECT\tSESSION\tTRIAL\tDATE\tTIME\tDELAY\tACTSTIMDUR\tTEXTURE\tTARGET\tRESP\tRT\tLAT\n');
+            % %             fprintf(fp, 'SUBJECT\tSESSION\tTRIAL\tDATE\tTIME\tDELAY\tACTSTIMDUR\tTEXTURE\tTARGET\tRESP\tRT\tLAT\n');
 
             % we distribute printing over a number of  commands for
             % readability
@@ -487,7 +495,7 @@ fclose(fp);
             fprintf(fp, '%s\t%d\t%s\t%.1f\t%.1f\n', imgfiles{target}, target, response, rt*1000, latency);
             fclose(fp);
 
-            
+
             % alternate data file
             fp=fopen(myresfile, 'a'); % open with 'a' for appending info to existing file.
             fprintf(fp, 'TRIAL\t%d\n', trial);
@@ -505,9 +513,9 @@ fclose(fp);
             fprintf(fp, 'RT\t%.1f\n', rt*1000);
             fprintf(fp, 'LATENCY\t%s\n', latency);
             fprintf(fp, '--------------\n')
-           
-            
-            
+
+
+
         end
         % increase the trial number
         trial=trial+1
@@ -523,8 +531,8 @@ fclose(fp);
         disp('Please contact the experiment leader immediately, thanks!');
     end
 
-    
-    
+
+
     Eyelink('CloseFile');
     % download data file
     try
@@ -539,7 +547,7 @@ fclose(fp);
     catch
         fprintf('Problem receiving data file ''%s''\n', edfFile );
     end
-    
+
     Eyelink('ShutDown');
 
 

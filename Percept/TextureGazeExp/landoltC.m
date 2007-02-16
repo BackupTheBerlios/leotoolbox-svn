@@ -32,9 +32,9 @@ end
 % RectSize(rect)
 % paint bar
 
-
-d1=round((d-1)/2);
-d2=d-d1;
+gapsize=size/5;
+d1=round((gapsize)/2);
+d2=gapsize-d1;
 d3=round(size/2);
 
 % gap
