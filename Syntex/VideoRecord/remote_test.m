@@ -21,6 +21,8 @@ disp( [ mfilename ' start']);
 % with computername.local .
 
 remoteip='10.0.1.2';
+remoteip='10.0.1.4';
+
 
 [status, rmv]=remoteVideo('init', [], remoteip);
 
@@ -43,23 +45,23 @@ if status~=1
     return
 end
 
-WaitSecs(10);
+WaitSecs(20);
 
 % switch of live display (recording will continue)
 status=remoteVideo('send', rmv, 'displayOff')
 
-WaitSecs(4);
+WaitSecs(20);
 
 % switch on live display again
 
 status=remoteVideo('send', rmv, 'displayOn')
 
-WaitSecs(2);
+WaitSecs(10);
 
 % stop recording
 status=remoteVideo('send', rmv, 'stop')
 
-WaitSecs(1);
+WaitSecs(3);
 
 % shut down videorecording application on 
 % remote computer.

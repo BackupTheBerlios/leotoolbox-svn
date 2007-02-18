@@ -14,7 +14,7 @@ dummymode=1;
 result=EyelinkInit(dummymode);
 
 
-diary('TextureGazeExpLog.txt');
+diary([mfilename 'Log.txt']);
 
 if ~exist('subject', 'var') || isempty(subject)
     subject=input('Subject name (''name'')? ');
@@ -185,9 +185,6 @@ try
         goOn=1;
     end
 
-
-
-
     % do eyelink stuff
     el=EyelinkInitDefaults(window);
 
@@ -265,19 +262,13 @@ try
         % display stimulus on screen, screen's flip command also returns the
         % stimulus onset time
 
-        disp('Stim created');
-
         % this function prepares the stimulus
         % it won't show until we issue a flip command
         imageDir=['images' filesep par.imageDir{trial}];
-        trial
-        length(par.stimRadius)
         [imgfiles, nStim, xpos, ypos, gapangle, texAngle]=createImageStimulus(window, imageDir, par.nrStimuli(trial), par.stimRadius(trial), par.stimSize(trial), par.stimOrient(trial), par.maskSD(trial));
 
-        disp('Stim created');
-
         % add fixationPoint
-        drawFixationPoint(window, fixPtSize, fixPtCol);
+%         drawFixationPoint(window, fixPtSize, fixPtCol);
 
         % drift correction
 
@@ -468,7 +459,7 @@ try
         % erase screen after response
         % if response is very fast, the stimulus has not been erased yet.
         Screen('FillRect',window, gray);
-        drawFixationPoint(window, fixPtSize*2, fixPtCol); % we grow fix point to show response was recorded
+%         drawFixationPoint(window, fixPtSize*2, fixPtCol); % we grow fix point to show response was recorded
         [notUsed stimulusOffsetTime]=Screen('Flip', window);
         % if actual stimulus duration was not yet calculated, we do this
         % here.
