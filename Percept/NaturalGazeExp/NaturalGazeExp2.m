@@ -1,10 +1,12 @@
-function TextureGazeExp(subject, session, parfile)
-% texture gaze and saliency experiment
+function NaturalGazeExp(subject, session, parfile)
+% natural gaze and saliency experiment
 
 % Frans W. Cornelissen email: f.w.cornelissen@rug.nl
 %
 % History
 % 17-02-07  fwc adapted from TextureGazeExp4
+% 19-02-07  fwc now creates list of images based on directories in the par
+%               file. Allows to show rotated images. Set linear gamma.
 
 commandwindow;
 cd(FunctionFolder(mfilename));
@@ -100,7 +102,6 @@ try
     oldGammaTable=Screen('LoadNormalizedGammaTable', screenNumber, newGammaTable);
     %     size(oldGammaTable);
 
-    %     screenNumber=max(screens);
     white=WhiteIndex(screenNumber);
     black=BlackIndex(screenNumber);
     gray=GrayIndex(screenNumber);
@@ -131,7 +132,7 @@ try
     myfile=[mydatadir filesep subject '_' num2str(session) '_' parfile '_' mfilename '_data' '.txt']; % create a meaningful name
 
     fp=fopen(myfile, 'w'); % 'w' for write which creates a new file always, alternative would be 'a' for append.
-    fprintf(fp, 'SUBJECT\tSESSION\tTRIAL\tDATE\tTIME\tDELAY\tACTSTIMDUR\tTEXTURE\tTARGET\tRESP\tRT\tLAT\n');
+    fprintf(fp, 'SUBJECT\tSESSION\tTRIAL\tDATE\tTIME\tDELAY\tACTSTIMDUR\tTEXTURE\tLAT\n');
     fclose(fp);
 
 
@@ -184,22 +185,12 @@ try
     end
 
 
-    % this is the start of the experimental loop
-    % consisting of stimulus creation, stimulus display,
-    % response loop, and saving of response to a file
 
-    nrDirs=length(par.imageDir); % use length of one of the parameter vectors to determine the number of trials
-
-    % loop through the directories listed in the input file
-    dd=1;
-    ttc=1;
-    while goOn==1 && dd<=nrDirs
-
-
-        % get a list of valid image files in the current directory
-        %    we could also setup a complete file list drawn from all dirs
-
-        imageDir=['images' filesep par.imageDir{dd}];
+        %    we  setup a complete  list of valid image files drawn from all dirs
+    fim=0;
+    for k=1:length(par.imageDir)
+        
+        imageDir=['images' filesep par.imageDir{k}];
         dirList=dir(imageDir);
         % select valid image/texture files
         stimuli=zeros(1,length(dirList));
@@ -209,11 +200,22 @@ try
             end
         end
         stimuli=find(stimuli>0);
+        for j=1:length(stimuli)
+            imglist.file{fim+j}=fullfile(imageDir,dirList(stimuli(j)).name);
+            imglist.row(fim+j)=k;
+        end
+        fim=length(imglist.file);   % final image
+    end
 
         % randomize stimulus order
-        stimuli=stimuli(randperm(length(stimuli))); % prevents each texture from appearing more than once
+        stimuli=randperm(length(imglist.file)); % prevents each texture from appearing more than once
         nrTrials=length(stimuli);
 
+            % this is the start of the experimental loop
+    % consisting of stimulus creation, stimulus display,
+    % response loop, and saving of response to a file
+
+        
         trial=1; % initialize trial number
         itiEnd=GetSecs+itiTime/1000*2; % set iti to double duration for the first trial
 
@@ -221,14 +223,14 @@ try
 
             % this function prepares the stimulus
             % we first create texture of image, for later (fast) drawing
-            % it won't show until we issue a flip command
 
-            myimgfile=fullfile(imageDir,dirList(stimuli(trial)).name);
-            fprintf('Loading image ''%s''\n', myimgfile);
+            myimgfile=imglist.file{stimuli(trial)};
             imdata=imread(myimgfile);
             tex=Screen('MakeTexture', window, imdata);
             texRect=Screen('Rect', tex);
 
+            fprintf('Trial: %d, image ''%s'', orientation: %d\n', trial, myimgfile, par.stimOrient(imglist.row(stimuli(trial))));
+            
             % we make sure a certain amount of time (itiTime) has
             % passed before starting the new trial by waiting until itiEnd
 
@@ -237,13 +239,13 @@ try
             end
 
             % This supplies a title at the bottom of the eyetracker display
-            Eyelink('command', 'record_status_message ''TRIAL %d''', ttc );
+            Eyelink('command', 'record_status_message ''TRIAL %d''', trial );
 
             % Always send this message before starting to record.
             % It marks the start of the trial and also
             % contains trial condition data required for analysis.
 
-            Eyelink('message', 'TRIALID %d', ttc );
+            Eyelink('message', 'TRIALID %d', trial );
             Eyelink('message', 'IMAGE %s', myimgfile );
 
             % do a final check of calibration using driftcorrection
@@ -275,11 +277,11 @@ try
             Eyelink('message', 'SACCADE TARGET ON AT %d %d', dx, dy);	 % message for RT recording in analysis
 
             % draw stimulus, it won't be visible until we issue a flip command
-            Screen('DrawTexture', window, tex,[],CenterRect(smallerRect(texRect, winrect), winrect), par.stimOrient(dd));
+            Screen('DrawTexture', window, tex,[],CenterRect(smallerRect(texRect, winrect), winrect), par.stimOrient(imglist.row(stimuli(trial))));
 
             % check whether a saccade is made to target
             Eyelink('message', 'Check Saccade Start' );
-            disp('Check Saccade Start');
+%             disp('Check Saccade Start');
 
             [h v]=WindowSize(window);
             saccThresholdPix=round(saccThreshold/100*h);
@@ -314,7 +316,7 @@ try
                 d=sqrt((mx-dx)^2+(my-dy)^2);
                 if d<saccThresholdPix
                     Eyelink('message', 'SACCADE TARGET HIT');	 % message for RT recording in analysis
-                    disp('Check Saccade End');
+%                     disp('Check Saccade End');
                     latency=GetSecs-saccTargetOnsetTime; % this latency includes saccade duration itself
                     break;
                 end
@@ -339,12 +341,11 @@ try
             Eyelink('message', 'DISPLAY ON');	 % message for RT recording in analysis
             Eyelink('message', 'SYNCTIME');	 	 % zero-plot time for EDFVIEW
             actDelayDur=stimulusOnsetTime-saccTargetOnsetTime;
-            tStimEnd=stimulusOnsetTime+par.stimDur(dd)/1000;
+            tStimEnd=stimulusOnsetTime+par.stimDur(imglist.row(stimuli(trial)))/1000;
             actStimDur=-999; % initialize for later storage of actual stimulus duration
             target=-1;
             response='no';
             rt=-999;
-            latency=-999;
 
             while 1
                 % check if we need to remove the stimulus
@@ -399,9 +400,9 @@ try
 
                 % we distribute printing over a number of  commands for
                 % readability
-                fprintf(fp, '%s\t%d\t%d\t%s\t%s\t', subject, session, ttc, date, time);
+                fprintf(fp, '%s\t%d\t%d\t%s\t%s\t', subject, session, trial, date, time);
                 fprintf(fp, '%.1f\t%.1f\t', actDelayDur*1000, actStimDur*1000);
-                fprintf(fp, '%s\t%d\t%s\t%.1f\t%.1f\n', myimgfile, target, response, rt*1000, latency);
+                fprintf(fp, '%s\t%.1f\n', myimgfile, latency*1000);
                 fclose(fp);
 
             end
@@ -410,10 +411,7 @@ try
             
             % increase the trial number
             trial=trial+1;
-            ttc=ttc+1; % total trial count
         end
-        dd=dd+1;
-    end
 
     % display a message indicating that the experiment has finished
     if goOn==1
@@ -539,7 +537,7 @@ dist=minDist+rand*(maxDist-minDist);
 
 a=rand*2*pi;
 
-dx=x0+sin(a)*dist;
+dx=x0+cos(a)*dist;
 dy=y0+sin(a)*dist;
 
 stRect=CenterRectOnPoint([0 0 stSize stSize], dx, dy);

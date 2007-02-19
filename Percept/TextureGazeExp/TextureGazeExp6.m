@@ -6,14 +6,17 @@ function TextureGazeExp(subject, session, parfile)
 % History
 % 18-01-07  fwc created
 % 17-02-2007    FWC circularly defined gaussian mask, sharper edges too
+% 18-02-2007    fwc driftcorrection added.
+
+% to do
+%   complete logging (stim size)
+%   make flexible for different texture sizes (add cropping?)
+%   test on a really big screen
 
 commandwindow;
 cd(FunctionFolder(mfilename));
 
-dummymode=1;
-
-result=EyelinkInit(dummymode);
-
+dummymode=0;
 
 diary([mfilename 'Log.txt']);
 
@@ -50,7 +53,9 @@ if ~exist('parfile', 'var') | isempty(parfile)
 end
 
 try
+    % open connection to eye tracker
 
+    result=EyelinkInit(dummymode);
 
     % here we read in information from the parameter file
     % using the autotextread function. It returns all information
@@ -96,12 +101,10 @@ try
             screenNumber=screens(i);
         end
     end
-disp('hier 1');
     % set linear gamma!!
     newGammaTable=repmat((linspace(0,1024,256)/1024)',1,3);
     oldGammaTable=Screen('LoadNormalizedGammaTable', screenNumber, newGammaTable);
-    size(oldGammaTable)
-disp('hier 2');
+%     size(oldGammaTable);
 
     %     screenNumber=max(screens);
     white=WhiteIndex(screenNumber);
@@ -127,12 +130,10 @@ disp('hier 2');
     keyNames.leftwardKey='LeftArrow';
     keyNames.rightwardKey='RightArrow';
 
-    disp('hier 3');
     keyNames.pauseKey{1}='LeftControl';
+%     keyNames.pauseKey{1}='space';
     keyNames.pauseKey{2}='LeftAlt';
     keyNames.pauseKey{3}='LeftGUI';
-
-    disp('hier 4');
 
     % and convert them to codes for later use
     quitKey=KbName(keyNames.quitKey);
@@ -175,9 +176,6 @@ disp('hier 2');
     fprintf(fp, 'SCREENREFRESH\t%f\n', frameRate);
     fprintf(fp, 'RESPONSEKEYS\t%s\t%s\n', keyNames.leftwardKey, keyNames.rightwardKey);
 
-
-    date=datestr(now, 'dd-mm-yyyy'); % record date of response
-
     fprintf(fp, 'SUBJECT\t%s\n', subject);
     fprintf(fp, 'SESSION\t%d\n', session);
     fprintf(fp, 'DATE\t%s\n', date);
@@ -188,9 +186,6 @@ disp('hier 2');
 
     % this function shows an instruction on the screen for the subject
     % instruction is defined in this function
-    %     commandwindow;
-    %     showInstr=questdlg('Show Instruction?', 'Instruction')
-    %
     HideCursor;
 
     %     if strcmp(showInstr, 'yes')==1
@@ -199,8 +194,6 @@ disp('hier 2');
     else
         goOn=1;
     end
-
-    disp('hier 3');
 
     % do eyelink stuff
     el=EyelinkInitDefaults(window);
@@ -222,7 +215,6 @@ disp('hier 2');
         % Calibrate the eye tracker
         EyelinkDoTrackerSetup(el);
     end
-disp('hier 4');
 
     % this is the start of the trial loop
     % consisting of stimulus creation, stimulus display,
@@ -241,15 +233,10 @@ disp('hier 4');
         if goOn==0
             break;
         end
-
-        % we'll wait to make sure the subject
-        % released any keys, before starting a new trial
-        % moreover, we make sure a certain amount of time (itiTime) has
-        % passed before starting the new trial by waiting until itiEnd
-
-        while GetSecs<itiEnd || KbCheck
+        while KbCheck
             WaitSecs(0.01);
         end
+
 
 
         % This supplies a title at the bottom of the eyetracker display
@@ -268,8 +255,8 @@ disp('hier 4');
             EyelinkDoDriftCorrection(el);
         end
 
-        WaitSecs(0.1);
         Eyelink('StartRecording');
+        WaitSecs(0.1);
 
         eye_used = Eyelink('EyeAvailable'); % get eye that's tracked
         if eye_used == el.BINOCULAR; % if both eyes are tracked
@@ -296,6 +283,15 @@ disp('hier 4');
 
         % add fixationPoint
         %drawFixationPoint(window, fixPtSize, fixPtCol);
+
+        % we'll wait to make sure the subject
+        % released any keys, before starting a new trial
+        % moreover, we make sure a certain amount of time (itiTime) has
+        % passed before starting the new trial by waiting until itiEnd
+
+        while GetSecs<itiEnd % || KbCheck
+            WaitSecs(0.01);
+        end
 
         % verify fixation stability for a particular amount of time
         Eyelink('message', 'Check Fixation Start' );
@@ -518,7 +514,7 @@ disp('hier 4');
             % readability
             fprintf(fp, '%s\t%d\t%d\t%s\t%s\t', subject, session, trial, date, time);
             fprintf(fp, '%.1f\t%.1f\t', actDelayDur*1000, actStimDur*1000);
-            fprintf(fp, '%s\t%d\t%s\t%.1f\t%.1f\n', imgfiles{target}, target, response, rt*1000, latency);
+            fprintf(fp, '%s\t%d\t%s\t%.1f\t%.1f\n', imgfiles{target}, target, response, rt*1000, latency*1000);
             fclose(fp);
 
 
@@ -602,17 +598,6 @@ end
 
 
 
-%
-%
-% function drawFixationPoint(window, fpSize, fpCol);
-% [h v]=WindowSize(window);
-% fpSize=round(fpSize/100*h);
-% [x0 y0]=WindowCenter(window);
-% fpRect=CenterRectOnPoint([0 0 fpSize fpSize], x0, y0);
-%
-% Screen('FillOval', window, fpCol, fpRect);
-%
-
 
 function goOn=showInstruction(window, keyNames)
 
@@ -675,25 +660,6 @@ white=WhiteIndex(window);
 black=BlackIndex(window);
 gray=GrayIndex(window);
 
-%     We create a Luminance+Alpha matrix for use as a transparency mask:
-
-ms=100;
-[x,y]=meshgrid(-ms:ms, -ms:ms);
-
-% dist from center
-
-d=sqrt(x.^2+y.^2);
-pp=4; % 4 gives sharper edge
-dm=0;
-dsd=ms/1.5; % looks okay, empirically
-mask=uint8(round(exp(-((d-dm)/dsd).^pp)*white));
-
-
-% maskvariance=masksd;
-% maskvariance=1.8;
-% xsd=ms/maskvariance;
-% ysd=ms/maskvariance;
-% mask=uint8(round(exp(-((x/xsd).^pp)-((y/ysd).^pp))*white));
 
 % get listing of images in directory
 dirList=dir(imageDir);
@@ -717,12 +683,37 @@ for i=stimuli
     myimgfile{j}=fullfile(imageDir,dirList(i).name);
     %     fprintf('Loading image ''%s''\n', myimgfile{j});
     imdata=imread(myimgfile{j});
+
+    if ~exist('mask', 'var') || isempty(mask)
+        disp('calculating mask');
+        % here, we determine the size of stimulus, and make a fitting mask
+        % We create a Luminance+Alpha matrix for use as a transparency mask:
+        % for speed, we assume all images are uneven and identical in size!
+
+        msx=(size(imdata,1)-1)/2;
+        msy=msx; % should actually be equal by now
+
+        [x,y]=meshgrid(-msx:msx, -msy:msy);
+        % ms=100;
+        % [x,y]=meshgrid(-ms:ms, -ms:ms);
+
+        % dist from center
+
+        d=sqrt(x.^2+y.^2);
+        pp=4; % 4 gives sharper edge
+        dm=0; % center
+        dsd=msx/1.5; % looks okay, empirically
+        mask=uint8(round(exp(-((d-dm)/dsd).^pp)*white));
+
+    end
+    % this function is a bit slow on my G4
+    % imdata=cropAndAddMask(imdata, 4, 1.5, 0); % power, standard dev, offset from center
+
     transLayer=size(imdata,3)+1;
     imdata(:,:,transLayer)=mask;
     tex(j)=Screen('MakeTexture', window, imdata);
     j=j+1;
 end
-
 
 [h v]=WindowSize(window);
 
@@ -732,9 +723,10 @@ ang=ang(1:end-1);
 [x0 y0]=WindowCenter(window);
 xpos=x0+round(radius*cos(deg2rad(ang)));
 ypos=y0+round(radius*sin(deg2rad(ang)));
+
 siz=round(siz/100*h);
 rect=[0 0 2*siz+1 2*siz+1];
-lct=landoltCTexture(window, 2*siz+1, GrayIndex(window,0.55), gray, 'right');
+if 0 lct=landoltCTexture(window, 2*siz+1, GrayIndex(window,0.55), gray, 'right'); end
 % gapangle=linspace(0,360,length(xpos)+1);
 % gapangle=gapangle(1:end-1);
 % gapangle=gapangle(randperm(length(gapangle)));
@@ -743,10 +735,15 @@ gapangle=1:length(xpos);
 gapangle=mod(gapangle,2)*180; % left or right
 gapangle=gapangle(randperm(length(gapangle)));
 
-
 for i=1:length(tex)
 
-    dRect=CenterRectOnPoint(rect, xpos(i), ypos(i));
+    if 0
+        dRect=CenterRectOnPoint(rect, xpos(i), ypos(i));
+    else
+        % use native resolution of texture
+        dRect=CenterRectOnPoint(Screen('Rect', tex(i)), xpos(i), ypos(i));
+    end
+
 
     if 0 Screen('DrawTexture', window, lct, [], dRect, gapangle(i)); end
 
@@ -852,3 +849,87 @@ Screen('FillRect', window, gray);
 Screen('Flip', window);
 
 paused=1;
+
+
+function imdata=cropAndAddMask(imdata, pp, sd, dm)
+
+persistent mask oldpp oldsd olddm;
+% pp= power of gaussian mask
+% sd= standard deviation of gaussian mask
+% dm= offset of mask (non-zero will result in donut shaped mask
+
+% crop image data so that it becomes square (and uneven in size)
+
+% Crop image if it is even.
+
+[iy, ix, id]=size(imdata);
+
+if mod(ix,2)==0
+    dx=1;
+else
+    dx=0;
+end
+
+if mod(iy,2)==0
+    dy=1;
+else
+    dy=0;
+end
+
+imdata=imdata(1:iy-dy, 1:ix-dx,:);
+
+% Crop image again if it is non square.
+
+if ix>=iy
+    cl=round((ix-iy)/2);
+    cr=(ix-iy)-cl;
+else
+    cl=0;
+    cr=0;
+end
+
+if iy>=ix
+    ct=round((iy-ix)/2);
+    cb=(iy-ix)-cl;
+else
+    ct=0;
+    cb=0;
+end
+
+
+imdata=imdata(1+ct:iy-cb, 1+cl:ix-cr,:);
+[iy, ix, id]=size(imdata);
+
+%     We create a Luminance+Alpha matrix for use as a transparency mask:
+
+% pp~=oldpp
+% sd~=oldsd
+% dm~=olddm
+% isempty(mask)
+% size(mask,1)~=ix
+% size(mask,2)~=iy
+
+if isempty(oldpp) || isempty(oldsd) || isempty(olddm) || pp~=oldpp || sd~=oldsd || dm~=olddm || isempty(mask) || size(mask,1)~=ix || size(mask,2)~=iy
+    % calculate mask again
+    disp('calculating mask');
+    msx=(ix-1)/2;
+    msy=msx; % should actually be equal by now
+
+    [x,y]=meshgrid(-msx:msx, -msy:msy);
+
+    % calc dist from center
+
+    d=sqrt(x.^2+y.^2); % distance from center of image
+
+    dsd=msx/sd; % sd=1.5 looks okay, at least empirically
+    mask=uint8(round(exp(-((d-dm)/dsd).^pp)*255));
+end
+
+transLayer=size(imdata,3)+1; % transparency layer differs for b&w and colour images
+imdata(:,:,transLayer)=mask;
+
+size(imdata)
+% store old mask data
+oldpp=pp;
+oldsd=sd;
+olddm=dm;
