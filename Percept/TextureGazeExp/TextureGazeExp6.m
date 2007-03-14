@@ -16,7 +16,7 @@ function TextureGazeExp(subject, session, parfile)
 commandwindow;
 cd(FunctionFolder(mfilename));
 
-dummymode=0;
+dummymode=1;
 
 diary([mfilename 'Log.txt']);
 
@@ -55,7 +55,15 @@ end
 try
     % open connection to eye tracker
 
-    result=EyelinkInit(dummymode);
+    [result dummymode]=EyelinkInit(dummymode);
+    if result==0
+        if dummymode==1
+            disp('Could not dummy-initialize eye tracker, experiment stopped');
+        else
+            disp('Could not initialize eye-tracker, experiment stopped');
+        end
+        return;
+    end
 
     % here we read in information from the parameter file
     % using the autotextread function. It returns all information
@@ -147,7 +155,7 @@ try
     myfile=[mydatadir filesep subject '_' num2str(session) '_' parfile '_' mfilename '_data' '.txt']; % create a meaningful name
 
     fp=fopen(myfile, 'w'); % 'w' for write which creates a new file always, alternative would be 'a' for append.
-    fprintf(fp, 'SUBJECT\tSESSION\tTRIAL\tDATE\tTIME\tDELAY\tACTSTIMDUR\tTEXTURE\tTARGET\tRESP\tRT\tLAT\n');
+    fprintf(fp, 'SUBJECT\tSESSION\tTRIAL\tDATE\tTIME\tDELAY\tACTSTIMDUR\tTEXTURE\tTEXTANGLE\tTARGET\tLAT\n');
     fclose(fp);
 
 
@@ -478,6 +486,9 @@ try
 
 
         Eyelink('message', 'TARGET %d', target );
+        Eyelink('message', 'TARGET_ORIENTATION %.1f', texAngle(target) );
+        Eyelink('message', 'LATENCY_MS %.1', latency*1000 );
+       
         if 0   Eyelink('message', 'RESPONSE %s', response ); end
         Eyelink('StopRecording');
 
@@ -508,13 +519,12 @@ try
             fp=fopen(myfile, 'a'); % open with 'a' for appending info to existing file.
             time=datestr(now, 'HHMMSS'); %  record timestamp of response
 
-            % %             fprintf(fp, 'SUBJECT\tSESSION\tTRIAL\tDATE\tTIME\tDELAY\tACTSTIMDUR\tTEXTURE\tTARGET\tRESP\tRT\tLAT\n');
 
             % we distribute printing over a number of  commands for
             % readability
             fprintf(fp, '%s\t%d\t%d\t%s\t%s\t', subject, session, trial, date, time);
             fprintf(fp, '%.1f\t%.1f\t', actDelayDur*1000, actStimDur*1000);
-            fprintf(fp, '%s\t%d\t%s\t%.1f\t%.1f\n', imgfiles{target}, target, response, rt*1000, latency*1000);
+            fprintf(fp, '%s\t%.1f\t%d\t%.1f\n', imgfiles{target}, texAngle(target), target, response, latency*1000);
             fclose(fp);
 
 
@@ -529,11 +539,12 @@ try
             end
             fprintf(fp, 'DELAY\t%.f\n', actDelayDur*1000);
             fprintf(fp, 'ACTSTIMDUR\t%.f\n', actStimDur*1000);
-            fprintf(fp, 'TEXTURE\t%s\n', imgfiles{target});
-            fprintf(fp, 'TARGET\t%d\n', target);
-            fprintf(fp, 'RESPONSE\t%s\n', response);
-            fprintf(fp, 'RT\t%.1f\n', rt*1000);
-            fprintf(fp, 'LATENCY\t%s\n', latency);
+            fprintf(fp, 'TARGET_TEXTURE\t%s\n', imgfiles{target});
+            fprintf(fp, 'TARGET_TEXTURE_ANGLE\t%s\n', imgfiles{target});
+            fprintf(fp, 'TARGET_NR\t%d\n', target);
+%             fprintf(fp, 'RESPONSE\t%s\n', response);
+%             fprintf(fp, 'RT\t%.1f\n', rt*1000);
+            fprintf(fp, 'LATENCY_MS\t%.1f\n', latency*1000);
             fprintf(fp, '--------------\n')
 
         end

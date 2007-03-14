@@ -11,7 +11,9 @@ function NaturalGazeExp(subject, session, parfile)
 commandwindow;
 cd(FunctionFolder(mfilename));
 
-dummymode=1;
+dummymode=0;
+imgfmt='.jpg';
+imgfmt='.bmp';
 
 % suppress warnings and tests for now. In a real experiment
 % you would enable all these again, so to be sure your computer is
@@ -57,8 +59,15 @@ end
 
 try
 
-    result=EyelinkInit(dummymode);
-
+    [result dummymode]=EyelinkInit(dummymode);
+    if result==0
+        if dummymode==1
+            disp('Could not dummy-initialize eye tracker, experiment stopped');
+        else
+            disp('Could not initialize eye-tracker, experiment stopped');
+        end
+        return;
+    end
 
     % here we read in information from the parameter file
     % using the autotextread function. It returns all information
@@ -132,7 +141,7 @@ try
     myfile=[mydatadir filesep subject '_' num2str(session) '_' parfile '_' mfilename '_data' '.txt']; % create a meaningful name
 
     fp=fopen(myfile, 'w'); % 'w' for write which creates a new file always, alternative would be 'a' for append.
-    fprintf(fp, 'SUBJECT\tSESSION\tTRIAL\tDATE\tTIME\tDELAY\tACTSTIMDUR\tTEXTURE\tLAT\n');
+    fprintf(fp, 'SUBJECT\tSESSION\tTRIAL\tDATE\tTIME\tDELAY\tACTSTIMDUR\tIMAGE\tORIENTATION\tLAT\n');
     fclose(fp);
 
 
@@ -157,8 +166,6 @@ try
     else
         goOn=1;
     end
-
-
 
 
     % do eyelink stuff
@@ -186,16 +193,16 @@ try
 
 
 
-        %    we  setup a complete  list of valid image files drawn from all dirs
+    %    we  setup a complete  list of valid image files drawn from all dirs
     fim=0;
     for k=1:length(par.imageDir)
-        
+
         imageDir=['images' filesep par.imageDir{k}];
         dirList=dir(imageDir);
         % select valid image/texture files
         stimuli=zeros(1,length(dirList));
         for i=1:length(dirList)
-            if dirList(i).isdir==0 && strcmp(dirList(i).name(end-3:end), '.jpg')==1
+            if dirList(i).isdir==0 && strcmp(dirList(i).name(end-3:end), imgfmt)==1
                 stimuli(i)=1;
             end
         end
@@ -207,121 +214,190 @@ try
         fim=length(imglist.file);   % final image
     end
 
-        % randomize stimulus order
-        stimuli=randperm(length(imglist.file)); % prevents each texture from appearing more than once
-        nrTrials=length(stimuli);
+    % randomize stimulus order
+    stimuli=randperm(length(imglist.file)); % prevents each texture from appearing more than once
+    nrTrials=length(stimuli);
 
-            % this is the start of the experimental loop
+    % this is the start of the experimental loop
     % consisting of stimulus creation, stimulus display,
     % response loop, and saving of response to a file
 
+
+    % we'll first print some useful, non-trial specific information to the Eyelink file.
+
+    Eyelink('message', 'SUBJECT %s', subject );
+    Eyelink('message', 'SESSION %d', session );
+    Eyelink('message', 'PARAMETER_FILE %d', myparfile );
+    Eyelink('message', 'DATA_FILE %d', myfile );
+    Eyelink('message', 'EDF_FILE %d', edfFile );
+
+    [h v]=WindowSize(window);
+
+    Eyelink('message', 'SCREEN_SIZE_PIX_H %d SCREEN_SIZE_PIX_V %d', h, v);
+    Eyelink('message', 'SCREEN_REFRESH_INTERVAL_MS %.1f', monitorRefreshInterval*1000);
+    Eyelink('message', 'SCREEN_FRAME_RATE_HZ %.1f', frameRate);
+    
+    saccThresholdPix=round(saccThreshold/100*h);
+    Eyelink('message', 'SACCADE_THRESHOLD_PERC %f SACCADE_THRESHOLD_PIX %d', saccThreshold, saccThresholdPix);
+
+
+    trial=1; % initialize trial number
+    itiEnd=GetSecs+itiTime/1000*2; % set iti to double duration for the first trial
+
+    while goOn==1 && trial<=nrTrials
+
+        % this function prepares the stimulus
+        % we first create texture of image, for later (fast) drawing
+
+        myimgfile=imglist.file{stimuli(trial)};
+        imdata=imread(myimgfile);
+        tex=Screen('MakeTexture', window, imdata);
+        texRect=Screen('Rect', tex);
+
+        fprintf('Trial: %d, image ''%s'', orientation: %d\n', trial, myimgfile, par.stimOrient(imglist.row(stimuli(trial))));
+
+        % we make sure a certain amount of time (itiTime) has
+        % passed before starting the new trial by waiting until itiEnd
+
+        while GetSecs<itiEnd || KbCheck
+            WaitSecs(0.01);
+        end
+
+        % This supplies a title at the bottom of the eyetracker display
+        Eyelink('command', 'record_status_message ''TRIAL %d''', trial );
+
+        % Always send this message before starting to record.
+        % It marks the start of the trial and also
+        % contains trial condition data required for analysis.
+
+        Eyelink('message', 'TRIALID %d', trial );
+        Eyelink('message', 'IMAGE %s', myimgfile );
+        Eyelink('message', 'IMAGE_ORIENTATION %d', par.stimOrient(imglist.row(stimuli(trial))));
+%         texRect
+%         winrect
+%         smallerRect(texRect, winrect)
+        imageRect=CenterRect(smallerRect(texRect, winrect), winrect);
+        Eyelink('message', 'IMAGE_RECT %d %d %d %d', imageRect(1), imageRect(2), imageRect(3), imageRect(4));
         
-        trial=1; % initialize trial number
-        itiEnd=GetSecs+itiTime/1000*2; % set iti to double duration for the first trial
+        
+        % do a final check of calibration using driftcorrection
+        EyelinkDoDriftCorrection(el);
 
-        while goOn==1 && trial<=nrTrials
+        % we'll wait to make sure the subject
+        % released any keys, before starting the trial
+        while KbCheck
+            WaitSecs(0.01);
+        end
+        Eyelink('StartRecording');
+        WaitSecs(0.1);
 
-            % this function prepares the stimulus
-            % we first create texture of image, for later (fast) drawing
+        eye_used = Eyelink('EyeAvailable'); % get eye that's tracked
+        if eye_used == el.BINOCULAR; % if both eyes are tracked
+            eye_used = el.LEFT_EYE; % use left eye
+        end
 
-            myimgfile=imglist.file{stimuli(trial)};
-            imdata=imread(myimgfile);
-            tex=Screen('MakeTexture', window, imdata);
-            texRect=Screen('Rect', tex);
+        % mark start of a new trial by showing a saccade target at a random point
+        Screen('FillRect', window, gray);
+        [dx dy]=drawSaccadeTarget(window, imageRect, fixPtSize*2, fixPtCol);
+        [cx, cy]=WindowCenter(window);
+        if dummymode==1
+            ShowCursor;
+            WaitSetMouse(cx, cy, window);
+        end
 
-            fprintf('Trial: %d, image ''%s'', orientation: %d\n', trial, myimgfile, par.stimOrient(imglist.row(stimuli(trial))));
-            
-            % we make sure a certain amount of time (itiTime) has
-            % passed before starting the new trial by waiting until itiEnd
+        [notUsed saccTargetOnsetTime]=Screen('Flip', window);
+        Eyelink('message', 'SACCADE TARGET ON AT %d %d', dx, dy);	 % message for RT recording in analysis
 
-            while GetSecs<itiEnd || KbCheck
-                WaitSecs(0.01);
-            end
+        % draw stimulus, it won't be visible until we issue a flip command
+        Screen('DrawTexture', window, tex,[],imageRect, par.stimOrient(imglist.row(stimuli(trial))));
 
-            % This supplies a title at the bottom of the eyetracker display
-            Eyelink('command', 'record_status_message ''TRIAL %d''', trial );
+        % check whether a saccade is made to target
+        Eyelink('message', 'Check Saccade Start' );
+%                    disp('Check Saccade Start');
 
-            % Always send this message before starting to record.
-            % It marks the start of the trial and also
-            % contains trial condition data required for analysis.
-
-            Eyelink('message', 'TRIALID %d', trial );
-            Eyelink('message', 'IMAGE %s', myimgfile );
-
-            % do a final check of calibration using driftcorrection
-            EyelinkDoDriftCorrection(el);
-
-            % we'll wait to make sure the subject
-            % released any keys, before starting the trial
-            while KbCheck
-                WaitSecs(0.01);
-            end
-            Eyelink('StartRecording');
-            WaitSecs(0.1);
-
-            eye_used = Eyelink('EyeAvailable'); % get eye that's tracked
-            if eye_used == el.BINOCULAR; % if both eyes are tracked
-                eye_used = el.LEFT_EYE; % use left eye
-            end
-
-            % mark start of a new trial by showing a saccade target at a random point
-            Screen('FillRect', window, gray);
-            [dx dy]=drawSaccadeTarget(window, smallerRect(texRect, winrect), fixPtSize*2, fixPtCol);           
-            [cx, cy]=WindowCenter(window);
-            if dummymode==1
-                ShowCursor;
-                WaitSetMouse(cx, cy, window);
-            end
-            
-            [notUsed saccTargetOnsetTime]=Screen('Flip', window);
-            Eyelink('message', 'SACCADE TARGET ON AT %d %d', dx, dy);	 % message for RT recording in analysis
-
-            % draw stimulus, it won't be visible until we issue a flip command
-            Screen('DrawTexture', window, tex,[],CenterRect(smallerRect(texRect, winrect), winrect), par.stimOrient(imglist.row(stimuli(trial))));
-
-            % check whether a saccade is made to target
-            Eyelink('message', 'Check Saccade Start' );
-%             disp('Check Saccade Start');
-
-            [h v]=WindowSize(window);
-            saccThresholdPix=round(saccThreshold/100*h);
-            ts=-1;
-            goOn=1;
-            while goOn==1
-                if dummymode==0
-                    error=Eyelink('CheckRecording');
-                    if(error~=0)
-                        break;
-                    end
-                    if Eyelink( 'NewFloatSampleAvailable') > 0
-                        % get the sample in the form of an event structure
-                        evt = Eyelink( 'NewestFloatSample');
-                        if eye_used ~= -1 % do we know which eye to use yet?
-                            % if we do, get current gaze position from sample
-                            x = evt.gx(eye_used+1); % +1 as we're accessing MATLAB array
-                            y = evt.gy(eye_used+1);
-                            % do we have valid data and is the pupil visible?
-                            if x~=el.MISSING_DATA & y~=el.MISSING_DATA & evt.pa(eye_used+1)>0
-                                mx=x;
-                                my=y;
-                            end
-                        end
-                    end
-                else
-                    % Query current mouse cursor position (our "pseudo-eyetracker") -
-                    % (mx,my) is our gaze position.
-                    [mx, my, buttons]=GetMouse(window);
-                end
-
-                d=sqrt((mx-dx)^2+(my-dy)^2);
-                if d<saccThresholdPix
-                    Eyelink('message', 'SACCADE TARGET HIT');	 % message for RT recording in analysis
-%                     disp('Check Saccade End');
-                    latency=GetSecs-saccTargetOnsetTime; % this latency includes saccade duration itself
+        [h v]=WindowSize(window);
+        saccThresholdPix=round(saccThreshold/100*h);
+        ts=-1;
+        goOn=1;
+        while goOn==1
+            if dummymode==0
+                error=Eyelink('CheckRecording');
+                if(error~=0)
                     break;
                 end
+                if Eyelink( 'NewFloatSampleAvailable') > 0
+                    % get the sample in the form of an event structure
+                    evt = Eyelink( 'NewestFloatSample');
+                    if eye_used ~= -1 % do we know which eye to use yet?
+                        % if we do, get current gaze position from sample
+                        x = evt.gx(eye_used+1); % +1 as we're accessing MATLAB array
+                        y = evt.gy(eye_used+1);
+                        % do we have valid data and is the pupil visible?
+                        if x~=el.MISSING_DATA & y~=el.MISSING_DATA & evt.pa(eye_used+1)>0
+                            mx=x;
+                            my=y;
+                        end
+                    end
+                end
+            else
+                % Query current mouse cursor position (our "pseudo-eyetracker") -
+                % (mx,my) is our gaze position.
+                [mx, my, buttons]=GetMouse(window);
+            end
 
-                [keyIsDown,secs,keyCode] = KbCheck;
+            d=sqrt((mx-dx)^2+(my-dy)^2);
+            if d<saccThresholdPix
+                Eyelink('message', 'SACCADE TARGET HIT');	 % message for RT recording in analysis
+%                                      disp('Check Saccade End');
+                latency=GetSecs-saccTargetOnsetTime; % this latency includes saccade duration itself
+                break;
+            end
+
+            [keyIsDown,secs,keyCode] = KbCheck;
+            if keyCode(quitKey)
+                display('User requested break');
+                goOn=0;
+                break;
+            end
+        end
+
+        if goOn==0
+            break;
+        end
+
+        if dummymode==1
+            HideCursor;;
+        end
+
+        [notUsed stimulusOnsetTime]=Screen('Flip', window,[],1);
+        Eyelink('message', 'DISPLAY ON');	 % message for RT recording in analysis
+        Eyelink('message', 'SYNCTIME');	 	 % zero-plot time for EDFVIEW
+%         disp('DISPLAY ON');
+        actDelayDur=stimulusOnsetTime-saccTargetOnsetTime;
+        tStimEnd=stimulusOnsetTime+par.stimDur(imglist.row(stimuli(trial)))/1000;
+        actStimDur=-999; % initialize for later storage of actual stimulus duration
+        target=-1;
+        response='no';
+        rt=-999;
+
+        while 1
+            % check if we need to remove the stimulus
+            if GetSecs>tStimEnd-monitorRefreshInterval && actStimDur<0
+                % time passed, erase screen
+                Screen('FillRect', window, gray);
+                drawFixationPoint(window, fixPtSize, fixPtCol);
+                [notUsed stimulusOffsetTime]=Screen('Flip', window, tStimEnd);
+                actStimDur=stimulusOffsetTime-stimulusOnsetTime;
+                Eyelink('message', 'DISPLAY OFF');
+                break;
+            end
+
+            % check state of keyboard
+            [keyIsDown,secs,keyCode] = KbCheck;
+
+            % we'll only go into the code below if a key was pressed
+            if keyIsDown==1
+                % test if the user wanted to stop the program
                 if keyCode(quitKey)
                     display('User requested break');
                     goOn=0;
@@ -329,89 +405,46 @@ try
                 end
             end
 
-            if goOn==0
-                break;
-            end
-
-            if dummymode==1
-                HideCursor;;
-            end
-            
-            [notUsed stimulusOnsetTime]=Screen('Flip', window,[],1);
-            Eyelink('message', 'DISPLAY ON');	 % message for RT recording in analysis
-            Eyelink('message', 'SYNCTIME');	 	 % zero-plot time for EDFVIEW
-            actDelayDur=stimulusOnsetTime-saccTargetOnsetTime;
-            tStimEnd=stimulusOnsetTime+par.stimDur(imglist.row(stimuli(trial)))/1000;
-            actStimDur=-999; % initialize for later storage of actual stimulus duration
-            target=-1;
-            response='no';
-            rt=-999;
-
-            while 1
-                % check if we need to remove the stimulus
-                if GetSecs>tStimEnd-monitorRefreshInterval && actStimDur<0
-                    % time passed, erase screen
-                    Screen('FillRect', window, gray);
-                    drawFixationPoint(window, fixPtSize, fixPtCol);
-                    [notUsed stimulusOffsetTime]=Screen('Flip', window, tStimEnd);
-                    actStimDur=stimulusOffsetTime-stimulusOnsetTime;
-                    Eyelink('message', 'DISPLAY OFF');
-                    break;
-                end
-
-                % check state of keyboard
-                [keyIsDown,secs,keyCode] = KbCheck;
-
-                % we'll only go into the code below if a key was pressed
-                if keyIsDown==1
-                    % test if the user wanted to stop the program
-                    if keyCode(quitKey)
-                        display('User requested break');
-                        goOn=0;
-                        break;
-                    end
-                end
-
-                % return control to the OS for a short time, to keep it happy.
-                % we may loose real-time priority if we do not. Make this time
-                % shorter for more frequent sampling of keys
-                WaitSecs(0.001);
-                Screen('Close'); % close texture
-            end
-
-
-            WaitSecs(0.1);
-            Eyelink('StopRecording');
-
-            % set the end of the inter trial interval
-            itiEnd=GetSecs+itiTime/1000;
-
-            Screen('Close'); % this will close all textures used
-
-            % if we got an actual response, we now will save the data to a file
-            % note that we now append ('a') to the file! We'll multiply the rt
-            % and dl parameters by 1000 to get milliseconds. We immediately close the file
-            % again (just in case). Note the different symbols used to print
-            % out different types of parameters. %s for strings/letters, %d for
-            % integers (whole numbers), %f for floating point numbers (with something after comma/dot).
-            if goOn==1
-                fp=fopen(myfile, 'a'); % open with 'a' for appending info to existing file.
-                time=datestr(now, 'HHMMSS'); %  record timestamp of response
-
-                % we distribute printing over a number of  commands for
-                % readability
-                fprintf(fp, '%s\t%d\t%d\t%s\t%s\t', subject, session, trial, date, time);
-                fprintf(fp, '%.1f\t%.1f\t', actDelayDur*1000, actStimDur*1000);
-                fprintf(fp, '%s\t%.1f\n', myimgfile, latency*1000);
-                fclose(fp);
-
-            end
-
-            Eyelink('message', 'TRIAL END');
-            
-            % increase the trial number
-            trial=trial+1;
+            % return control to the OS for a short time, to keep it happy.
+            % we may loose real-time priority if we do not. Make this time
+            % shorter for more frequent sampling of keys
+            WaitSecs(0.001);
+            Screen('Close'); % close texture
         end
+
+
+        WaitSecs(0.1);
+        Eyelink('StopRecording');
+
+        % set the end of the inter trial interval
+        itiEnd=GetSecs+itiTime/1000;
+
+        Screen('Close'); % this will close all textures used
+
+        % if we got an actual response, we now will save the data to a file
+        % note that we now append ('a') to the file! We'll multiply the rt
+        % and dl parameters by 1000 to get milliseconds. We immediately close the file
+        % again (just in case). Note the different symbols used to print
+        % out different types of parameters. %s for strings/letters, %d for
+        % integers (whole numbers), %f for floating point numbers (with something after comma/dot).
+        if goOn==1
+            fp=fopen(myfile, 'a'); % open with 'a' for appending info to existing file.
+            time=datestr(now, 'HHMMSS'); %  record timestamp of response
+
+            % we distribute printing over a number of  commands for
+            % readability
+            fprintf(fp, '%s\t%d\t%d\t%s\t%s\t', subject, session, trial, date, time);
+            fprintf(fp, '%.1f\t%.1f\t', actDelayDur*1000, actStimDur*1000);
+            fprintf(fp, '%s\t%.1f\t%.1f\n', myimgfile, par.stimOrient(imglist.row(stimuli(trial))), latency*1000);
+            fclose(fp);
+
+        end
+
+        Eyelink('message', 'TRIAL END');
+
+        % increase the trial number
+        trial=trial+1;
+    end
 
     % display a message indicating that the experiment has finished
     if goOn==1
