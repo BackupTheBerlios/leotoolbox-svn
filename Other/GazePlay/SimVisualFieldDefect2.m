@@ -38,7 +38,7 @@ function GazePlay
 %   13/03/07  fwc     Added a few more modes, let it run (again) without a
 %                       tracker, loop through modes
 
-dummymode=1; % if 1, we force eyelink software to run in dummy mode.
+dummymode=0; % if 1, we force eyelink software to run in dummy mode.
 
 if 1, Screen('Preference', 'SkipSyncTests', 1); end
 commandwindow;

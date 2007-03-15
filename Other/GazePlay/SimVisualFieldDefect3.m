@@ -38,7 +38,7 @@ function GazePlay
 %   13/03/07  fwc     Added a few more modes, let it run (again) without a
 %                       tracker, loop through modes
 
-dummymode=1; % if 1, we force eyelink software to run in dummy mode.
+dummymode=0; % if 1, we force eyelink software to run in dummy mode.
 
 if 1, Screen('Preference', 'SkipSyncTests', 1); end
 commandwindow;
@@ -56,7 +56,7 @@ fprintf('Press a key to stop demo.\n');
 hurryup=0;
 
 mode = 1;
-usemodes=[1 3 2];
+usemodes=[1 2];
 maxmode=length(usemodes);
 % Setup default aperture size to 2*200 x 2*200 pixels.
 % if nargin < 2
@@ -104,7 +104,7 @@ end
 
 % do eyelink stuff
 el=EyelinkInitDefaults(w);
-
+el.backgroundcolour=gray;
 % make sure that we get gaze data from the Eyelink
 Eyelink('command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');
 
@@ -115,7 +115,7 @@ HideCursor;
 % Set background color to gray:
 backgroundcolor = gray;
 
-DrawFormattedText(w, 'Een momentje.....', 'center', 'center', white);
+DrawFormattedText(w, 'Eén moment.....', 'center', 'center', white);
 Screen('Flip', w);
 
 for im=1:length(imglist)
@@ -163,15 +163,16 @@ mRect=Screen('Rect', masktex);
 % fprintf('Size  mask texture: %d x %d\n', RectWidth(mRect), RectHeight(mRect));
 %
 
+goOn=1;
 
-
-while 1  % continue demo
+while goOn==1  % continue demo
     commandwindow;
     % The mouse-cursor position will define gaze-position (center of
     % fixation) to simulate (x,y) input from an eyetracker. Set cursor
     % initially to center of screen:
     [a,b]=WindowCenter(w);
     WaitSetMouse(a,b,w); % set cursor and wait for it to take effect
+    Screen('BlendFunction', w,GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); % enable alpha blending
 
     goOn=showInstruction(w);
 
@@ -186,11 +187,11 @@ while 1  % continue demo
     if dummymode==0
         DrawFormattedText(w, 'Nu eerst calibreren...\nVraag om assistentie!', 'center', 'center', white);
         Screen('Flip', w);
-        WaitSecs(5);
+        WaitSecs(3);
         EyelinkDoTrackerSetup(el);
 
         % do a final check of calibration using driftcorrection
-        EyelinkDoDriftCorrection(el);
+%         EyelinkDoDriftCorrection(el);
         WaitSecs(0.1);
     end
     Eyelink('StartRecording');
@@ -227,7 +228,8 @@ while 1  % continue demo
     disp('start');
 
 
-
+    mx=0;
+    my=0;
     mxold=0;
     myold=0;
     firstTime=1;
@@ -247,7 +249,7 @@ while 1  % continue demo
     % Infinite display loop: Whenever "gaze position" changes, we update
     % the display accordingly. Loop aborts on keyboard press or mouse
     % click or after 10000 frames...
-    while (ncount < 10000)
+    while (ncount < 10000 && goOn==1)
 
         [kx, ky, buttons]=GetMouse(w);
 
@@ -290,6 +292,7 @@ while 1  % continue demo
         if Eyelink('IsConnected')==el.connected
             error=Eyelink('CheckRecording');
             if(error~=0)
+                goOn=0;
                 break;
             end
 
@@ -322,6 +325,7 @@ while 1  % continue demo
             end;
         else
             Disp('Eyelink disconnected');
+            goOn=0;
             break;
         end
 
@@ -399,7 +403,7 @@ while 1  % continue demo
                 oldvbl=vbl;
                 ncount = ncount + 1;
             end;
-        end;
+        end
 
         % Keep track of last gaze position:
         mxold=mx;
@@ -413,11 +417,12 @@ while 1  % continue demo
 
         [keyIsDown, secs, keyCode] = KbCheck();
 
-        if keyCode(modKey) && keyCode(quitKey)
-            goOn=0;
+        if keyCode(modKey)==1 && keyCode(quitKey)==1
+            goOn=0
             break;
 
         elseif keyIsDown % break out of loop
+            fprintf('User break out of loop\n');
             break;
         end
 
@@ -430,12 +435,14 @@ while 1  % continue demo
 
     % stop eyelink
     Eyelink('StopRecording');
+    Eyelink('message', 'TRIAL END');
+
     Screen('TextFont',w, 'Arial');
     Screen('TextSize',w, 80);
     Screen('TextStyle', w, 1);
     DrawFormattedText(w, 'Demonstratie is klaar,\ntot ziens!', 'center', 'center', white);
     Screen('Flip', w);
-    WaitSecs(5);
+    WaitSecs(3);
     Screen('FillRect', w, backgroundcolor);
     Screen('Flip', w);
 end
