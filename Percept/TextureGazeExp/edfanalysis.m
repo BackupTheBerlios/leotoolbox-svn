@@ -4,83 +4,91 @@ commandwindow
 clear all
 edfdatadir='edfdata';
 ascdatadir='ascdata';
-
-edffile='v1';
-
 edf2ascconverter=[filesep 'Programma''s' filesep 'Eyelink' filesep 'edf2asc']
+
+edffile={'jb3cu','jb4cu','jb5cu'};
+
 
 fprintf('Reading and parsing eyelink data...\n');
 
-myAscFile=[ascdatadir filesep edffile '.asc']
 
-exist(myAscFile);
+for k=1:length(edffile)
 
-% return
+    myAscFile=[ascdatadir filesep edffile{k} '.asc']
 
-if 2~=exist(myAscFile)
-    if ~exist([edfdatadir filesep edffile '.edf'])
-        fprintf('No eyetracking data found! (file %s.edf is missing).\n', edffile);
-        return
+    exist(myAscFile);
+
+    % return
+
+    if 2~=exist(myAscFile)
+        if ~exist([edfdatadir filesep edffile{k} '.edf'])
+            fprintf('No eyetracking data found! (file %s.edf is missing).\n', edffile{k});
+            return
+        end
+        fprintf('Eyelink data not converted to ASC yet. Will do that now...\n');
+        waitSecs(0.25);
+        cstr=[edf2ascconverter ' ' pwd filesep edfdatadir filesep edffile{k} '.edf']
+        system(cstr);
     end
-    fprintf('Eyelink data not converted to ASC yet. Will do that now...\n');
-    waitSecs(0.25);
-    cstr=[edf2ascconverter ' ' pwd filesep edfdatadir filesep edffile '.edf']
-%     cstr=[edf2ascconverter ' ' pwd filesep edfdatadir filesep '*.*']
-    system(cstr);
+
+    if 2~=exist(myAscFile)
+        fprintf('File ''%s'' not found.\n', myAscFile);
+        return;
+    end
+
+    fid = fopen(myAscFile);
+    if fid<0
+        fprintf('Could not open file ''%s''.\n', myAscFile);
+        return;
+    end
+
+
+    fprintf('TRIALID\tTPOS\tCHOICEPOS\tLATENCY\n');
+    done=0;
+
+    while ~done
+        tpos=-999;
+        trialID=findTrialID(fid);
+        if trialID<0
+            break;
+        end
+        stime=findDisplayOnset(fid);
+        if stime<0
+            break;
+        end
+
+        % find first saccade with starttime that is later than the display
+        % onset
+        sstime=stime-1;
+        while sstime<stime
+            [sstime, setime, sdur, sspos, sepos, samp, pup, eyestr]=findSaccadeEvent(fid);
+        end
+        if sstime<0
+            break;
+        end
+        slat=sstime-stime; % saccadic latency
+
+        % find first fixation event
+        [stime, etime, fdur, pos, pup, eyestr]=findFixationEvent(fid);
+        if stime<0
+            break;
+        end
+
+        target=findTargetNr(fid);
+        if target<0
+            break;
+        end
+
+        %   fprintf('TRIALID\tTPOS\tCHOICEPOS\tLATENCY\n');
+        fprintf('%d\t%d\t%d\t%d\n', trialID, tpos, target, slat);
+
+    end
+
+    fclose(fid);
+
 end
 
-if 2~=exist(myAscFile)
-    fprintf('File ''%s'' not found.\n', myAscFile);
-    return;
-end
-
-fid = fopen(myAscFile);
-if fid<0
-    fprintf('Could not open file ''%s''.\n', myAscFile);
-    return;
-end
-
-
-fprintf('TRIALID\tLATENCY\tTARGET\n');
-done=0;
-
-while ~done
-
-    trialID=findTrialID(fid);
-    if trialID<0
-        break;
-    end
-    stime=findDisplayOnset(fid);
-    if stime<0
-        break;
-    end
-
-    % find first saccade with starttime that is later than the display
-    % onset
-    sstime=stime-1;
-    while sstime<stime
-        [sstime, setime, sdur, sspos, sepos, samp, pup, eyestr]=findSaccadeEvent(fid);
-    end
-    if sstime<0
-        break;
-    end
-    slat=sstime-stime; % saccadic latency
-
-    % find first fixation event
-    [stime, etime, fdur, pos, pup, eyestr]=findFixationEvent(fid);
-    if stime<0
-        break;
-    end
-    
-    target=findTargetNr(fid);
-    if target<0
-        break;
-    end
-
-    fprintf('%d\t%d\t%d\n', trialID, slat, target);
-
-end
-
+% *********************************************
 
 function id=findTrialID(fid)
 id=-999;
@@ -142,7 +150,7 @@ while 1
         break;
     end
     if 1==strncmp(s,'EFIX',4)
-        [efixstr, eyestr, stime, etime, fdur, pos(1), pos(2), pup] = strread(s,'%s%s%d%d%d%f%f%f%d');
+        [efixstr, eyestr, stime, etime, fdur, pos(1), pos(2), pup] = strread(s,'%s%s%d%d%d%f%f%d');
         return
     end
 end
