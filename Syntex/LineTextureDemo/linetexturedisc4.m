@@ -112,14 +112,14 @@ try
 
     [w h]=WindowSize(window);
 
-    ndots=6000;
+    ndots=2000;
     rmax=round(h/2);
     r_in=round(rmax/2);
-    ori=90; % base orientation
-    d_ori=90; % maximum delta
-    n_ori=45; % maximum noise
+    ori=0; % base orientation
+    d_ori=0; % maximum delta
+    n_ori=0; % maximum noise
     colvect=white;
-    svect=1;
+    svect=3;
     ll=7; % line length
     period=24;
     frames=10;
@@ -139,9 +139,69 @@ try
     el=2:2:ndots*2; % end positions in line xy matrix
     xymatrix=zeros(2,ndots*2); % matrix of start and end points
 
+    
+    
+    if ~exist('mask', 'var') || isempty(mask)
+%         disp('calculating mask');
+        % here, we determine the size of stimulus, and make a fitting mask
+        % We create a Luminance+Alpha matrix for use as a transparency mask:
+
+        msx=r_in;
+        msy=msx; % should actually be equal by now
+
+        [x,y]=meshgrid(-msx:msx, -msy:msy);
+        % dist from center
+
+        d=sqrt(x.^2+y.^2);
+        pp=4; % 4 gives sharper edge
+        dm=0; % center
+        dsd=msx/1.5; % looks okay, empirically
+%         mask=uint8(round(exp(-((d-dm)/dsd).^pp)*white));
+        transLayer=2;
+        mask=ones(2*msx+1, 2*msy+1, transLayer) * 0;
+
+        mask(:,:,transLayer)=(d<r_in)*white;
+%         mask(:,:,transLayer)=(d<r_in)*gray;
+        max(max(mask));
+        min(min(mask));
+        
+        masktex=Screen('MakeTexture', window, mask);
+        maskRect=Screen('Rect', masktex);
+        maskRect=CenterRect(maskRect, winrect);
+    end
+
+    if ~exist('mask2', 'var') || isempty(mask)
+%         disp('calculating mask');
+        % here, we determine the size of stimulus, and make a fitting mask
+        % We create a Luminance+Alpha matrix for use as a transparency mask:
+
+        msx=w/2;
+        msy=msx; % should actually be equal by now
+
+        [x,y]=meshgrid(-msx:msx, -msy:msy);
+        % dist from center
+
+        transLayer=2;
+        mask2=ones(2*msx+1, 2*msy+1, transLayer) * gray;
+
+        d=sqrt(x.^2+y.^2);
+        mask2(:,:,transLayer)=(d>rmax-10)*white;
+        
+        masktex2=Screen('MakeTexture', window, mask2);
+        maskRect2=Screen('Rect', masktex2);
+        maskRect2=CenterRect(maskRect2, winrect);
+    end
+    
+    osw=Screen('OpenOffscreenWindow', window, gray);
+    Screen(osw,'BlendFunction',GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); % enable alpha blending
+  
+%         Screen('BlendFunction', w, GL_ONE, GL_ZERO);
+%     Screen('FillRect', w, [128 128 128 0]); 
+
     td=GetSecs-ts;
     fprintf('preparation time: %.1f ms\n', td*1000);
 
+    
     count=0;
     st_ori=zeros(10000,1);
     st_time=zeros(10000,1);
@@ -189,10 +249,43 @@ try
 %         fprintf('Calculation time: %.1f ms\n', tc*1000);
 
         ts=GetSecs;
-        Screen('DrawLines', window, xymatrix, svect, colvect, center,1);  % change 1 to 0 to draw non anti-aliased lines.
+
+%         Screen('BlendFunction',osw,GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); % enable alpha blending
+        Screen('FillOval', osw, gray );
+%         Screen('FillRect', osw, [gray gray gray 255]);
+        Screen('DrawLines', osw, xymatrix, svect, colvect, center,0);  % change 1 to 0 to draw non anti-aliased lines.
         td=GetSecs-ts;
 %         fprintf('Line drawing time: %.1f ms\n', td*1000);
 
+%         Screen('BlendFunction',window,GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); % enable alpha blending
+        Screen('BlendFunction', window, GL_ONE, GL_ZERO);
+        Screen('FillRect', window, [gray gray gray 0]);
+%         Screen('FillRect', window, [0 0 0 0]);
+
+       if 1 
+        % DRAW MASK
+        Screen('BlendFunction', window, GL_ONE, GL_ONE);
+%         Screen('BlendFunction', window, GL_ONE, GL_ZERO);
+        Screen('DrawTexture', window, masktex, [], maskRect);
+
+        % draw central disc
+        Screen('BlendFunction', window, GL_DST_ALPHA, GL_ZERO);
+%         Screen('BlendFunction', window, GL_DST_ALPHA, GL_ONE);
+        Screen('DrawTexture', window, osw, [], [], -45);
+        
+        % Draw annulus
+        Screen('BlendFunction', window, GL_ONE_MINUS_DST_ALPHA, GL_ONE);
+%         Screen('BlendFunction', window, GL_ONE_MINUS_DST_ALPHA, GL_ZERO);
+        Screen('DrawTexture', window, osw, [], [], 45);
+  
+        Screen('BlendFunction', window, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        Screen('DrawTexture', window, masktex2, [], [], 0);
+
+                
+       end
+  
+        Screen('BlendFunction',window, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); % enable alpha blending
+%         Screen('DrawTexture', window, masktex, [], maskRect);
         Screen('FillOval', window, white, CenterRect([0 0 10 10], winrect));
         Screen('DrawingFinished', window); % Tell PTB that no further drawing commands will follow before Screen('Flip')
 
@@ -200,6 +293,7 @@ try
         tflip=actFlipTime+(frames-.5)*monitorRefreshInterval;
         st_time(count)=GetSecs-tstart;
 %         Waitsecs(0.003);
+%     Screen('Close', osw);
 
         [x,y,buttons] = GetMouse;
         if any(buttons)

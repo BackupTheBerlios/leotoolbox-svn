@@ -104,7 +104,7 @@ try
     Screen(window,'BlendFunction',GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); % enable alpha blending
     Screen('FillRect',window, gray);
     Screen('Flip', window);
-    monitorRefreshInterval =Screen('GetFlipInterval', window);
+    monitorRefreshInterval = Screen('GetFlipInterval', window);
     frameRate=Screen('FrameRate',screenNumber);
     if(frameRate==0)  %if MacOSX does not know the frame rate the 'FrameRate' will return 0.
         frameRate=60; % good assumption for most labtops/LCD screens
@@ -112,17 +112,20 @@ try
 
     [w h]=WindowSize(window);
 
-    ndots=6000;
+    ndots=1000;
     rmax=round(h/2);
     r_in=round(rmax/2);
-    ori=90; % base orientation
-    d_ori=90; % maximum delta
-    n_ori=45; % maximum noise
+    ori=0; % base orientation
+    v_ori=0; % max variation in base orientation
+    d_ori=[15 0]; % maximum delta
+    n_ori=0; % maximum noise
     colvect=white;
+    colvect2=white;
     svect=1;
-    ll=7; % line length
+    ll=15; % line length
     period=24;
-    frames=10;
+    frames=20;
+    requestedRefresh=frames*monitorRefreshInterval*1000;
 
     r = rmax * sqrt(rand(ndots,1));	% r
     t = 2*pi*rand(ndots,1);                     % theta polar coordinate
@@ -138,17 +141,81 @@ try
     sl=1:2:ndots*2; % start positions in line xy matrix
     el=2:2:ndots*2; % end positions in line xy matrix
     xymatrix=zeros(2,ndots*2); % matrix of start and end points
+    xymatrix_in=zeros(2,ndots*2); % matrix of start and end points
 
+    
+    
+    if ~exist('mask', 'var') || isempty(mask)
+%         disp('calculating mask');
+        % here, we determine the size of stimulus, and make a fitting mask
+        % We create a Luminance+Alpha matrix for use as a transparency mask:
+
+        msx=r_in;
+        msy=msx; % should actually be equal by now
+
+        [x,y]=meshgrid(-msx:msx, -msy:msy);
+        % dist from center
+
+        d=sqrt(x.^2+y.^2);
+        pp=4; % 4 gives sharper edge
+        dm=0; % center
+        dsd=msx/1.5; % looks okay, empirically
+%         mask=uint8(round(exp(-((d-dm)/dsd).^pp)*white));
+        transLayer=2;
+        mask=ones(2*msx+1, 2*msy+1, transLayer) * 0;
+
+        mask(:,:,transLayer)=(d<r_in)*white;
+%         mask(:,:,transLayer)=(d<r_in)*gray;
+        max(max(mask));
+        min(min(mask));
+        
+        masktex=Screen('MakeTexture', window, mask);
+        maskRect=Screen('Rect', masktex);
+        maskRect=CenterRect(maskRect, winrect);
+    end
+
+    if ~exist('mask2', 'var') || isempty(mask)
+%         disp('calculating mask');
+        % here, we determine the size of stimulus, and make a fitting mask
+        % We create a Luminance+Alpha matrix for use as a transparency mask:
+
+        msx=w/2;
+        msy=msx; % should actually be equal by now
+
+        [x,y]=meshgrid(-msx:msx, -msy:msy);
+        % dist from center
+
+        transLayer=2;
+        mask2=ones(2*msx+1, 2*msy+1, transLayer) * gray;
+
+        d=sqrt(x.^2+y.^2);
+        mask2(:,:,transLayer)=(d>rmax-10)*white;
+        
+        masktex2=Screen('MakeTexture', window, mask2);
+        maskRect2=Screen('Rect', masktex2);
+        maskRect2=CenterRect(maskRect2, winrect);
+    end
+    
+    osw=Screen('OpenOffscreenWindow', window, gray);
+    Screen(osw,'BlendFunction',GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); % enable alpha blending
+  
     td=GetSecs-ts;
     fprintf('preparation time: %.1f ms\n', td*1000);
-
+    
     count=0;
+    tw=zeros(10000,1);
+    tc=zeros(10000,1);
+    td=zeros(10000,1);
     st_ori=zeros(10000,1);
     st_time=zeros(10000,1);
+    storeActFlipTime=zeros(10000,1);
+
+    priorityLevel=MaxPriority(window);
+    oldPriorityLevel=Priority(priorityLevel);
 
     Screen('Flip', window);
     tstart=GetSecs;
-    tflip=tstart+0.050;
+    tflip=tstart+0.0050;
 
     while count<10000
         ts=GetSecs;
@@ -160,46 +227,80 @@ try
             t = 2*pi*rand(ndots,1);                     % theta polar coordinate
             cs = [cos(t), sin(t)];
             xy = [r r] .* cs;   % line positions in Cartesian coordinates (pixels from center)
-            l_in=find(r<r_in); % line positions in inner disk
-            l_out=find(r>=r_in); % line positions in annulus
         end
 
-        cd_ori=d_ori(1)*(1+sin((GetSecs-tstart)/period*2*pi))/2;  % modulate current delta as a function of time
+        if 0
+            cd_ori=d_ori(1)*(1+sin((GetSecs-tstart)/period*2*pi))/2;  % modulate current delta as a function of time
+        else
+            p=sin((GetSecs-tstart)/period*2*pi);
+            if p>0
+                cd_ori=d_ori(1);
+            else
+                cd_ori=d_ori(2);
+            end
+        end
+        
         st_ori(count)=cd_ori;
 
         if 1
-            c_ori=rand(1,1)*2*ori; % randomize base orientation
+            c_ori=ori-v_ori+rand(1,1)*2*v_ori; % randomize base orientation
         else
             c_ori=ori; % current base orientation
         end
         ori_in=(c_ori+cd_ori)*pi/180; % orientation of lines in disc
         ori_out=(c_ori-cd_ori)*pi/180; % orientation of lines in annulus
 
-        o=ones(ndots,1); % init orientation vector
-        o(l_in)=o(l_in)*ori_in;
-        o(l_out)=o(l_out)*ori_out;
-        no=rand(ndots,1)*n_ori*pi/180; % calculate orientation "noise" for each dot
-        o=o+no; % add noise to signal
+        no=rand(ndots,1)*n_ori*pi/180; % calculate orientation "noise" for each line
 
-        % calculate displacement for start- and endpoint of lines
+        % calculate displacement for start- and endpoint of annulus lines
+        o=ones(ndots,1)*ori_in+no; % init orientation vector and add noise
         dxdy=[cos(o)*ll sin(o)*ll];
         xymatrix(:, sl)=round(xy-dxdy)';
         xymatrix(:, el)=round(xy+dxdy)';
-        tc=GetSecs-ts;
-%         fprintf('Calculation time: %.1f ms\n', tc*1000);
+        
+        % calculate displacement for start- and endpoint of disc lines
+        o=ones(ndots,1)*ori_out+no; % init orientation vector and add noise
+        dxdy=[cos(o)*ll sin(o)*ll];
+        xymatrix_in(:, sl)=round(xy-dxdy)';
+        xymatrix_in(:, el)=round(xy+dxdy)';
+       
+        tc(count)=GetSecs-ts;
+%         fprintf('Calculation time: %.1f ms\n', tc(count)*1000);
 
         ts=GetSecs;
-        Screen('DrawLines', window, xymatrix, svect, colvect, center,1);  % change 1 to 0 to draw non anti-aliased lines.
-        td=GetSecs-ts;
-%         fprintf('Line drawing time: %.1f ms\n', td*1000);
 
+        Screen('BlendFunction', window, GL_ONE, GL_ZERO);
+        Screen('FillRect', window, [gray gray gray 0]);
+
+        % DRAW MASK
+        Screen('BlendFunction', window, GL_ONE, GL_ONE);
+        Screen('DrawTexture', window, masktex, [], maskRect);
+
+        % draw central disc
+        Screen('BlendFunction', window, GL_DST_ALPHA, GL_ONE);
+        Screen('DrawLines', window, xymatrix_in, svect, colvect, center, 1);  % change 1 to 0 to draw non anti-aliased lines.
+
+        % Draw annulus
+        Screen('BlendFunction', window, GL_ONE_MINUS_DST_ALPHA, GL_ONE);
+        Screen('DrawLines', window, xymatrix, svect, colvect2, center, 1);  % change 1 to 0 to draw non anti-aliased lines.
+  
+        Screen('BlendFunction', window, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        Screen('DrawTexture', window, masktex2, [], [], 0);
+                  
+
+        Screen('BlendFunction',window, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); % enable alpha blending
         Screen('FillOval', window, white, CenterRect([0 0 10 10], winrect));
-        Screen('DrawingFinished', window); % Tell PTB that no further drawing commands will follow before Screen('Flip')
+%         Screen('DrawingFinished', window); % Tell PTB that no further drawing commands will follow before Screen('Flip')
 
-        [dummy actFlipTime]=Screen('Flip', window, tflip);
-        tflip=actFlipTime+(frames-.5)*monitorRefreshInterval;
+        td(count)=GetSecs-ts;
+%         fprintf('Drawing time: %.1f ms\n', td*1000);
+        ts=GetSecs;
+        [dummy actFlipTime]=Screen('Flip', window, tflip, 2);
+        tw(count)=GetSecs-ts;
+        
+        storeActFlipTime(count)=actFlipTime;
+        tflip=actFlipTime+(frames-1)*monitorRefreshInterval;
         st_time(count)=GetSecs-tstart;
-%         Waitsecs(0.003);
 
         [x,y,buttons] = GetMouse;
         if any(buttons)
@@ -208,6 +309,7 @@ try
     end
     Waitsecs(0.5);
 
+    Priority(oldPriorityLevel);
 
     Screen('LoadNormalizedGammaTable', screenNumber, oldGammaTable);
     Screen('CloseAll');
@@ -217,6 +319,32 @@ try
     Screen('Preference', 'VisualDebugLevel', oldVisualDebugLevel);
     Screen('Preference', 'SuppressAllWarnings', oldSuppressAllWarnings);
 
+    storeActFlipTime=storeActFlipTime(find(storeActFlipTime>0));
+    storeActFlipTime=diff(storeActFlipTime);
+    me=mean(storeActFlipTime)*1000;
+    ma=max(storeActFlipTime)*1000;
+    mi=min(storeActFlipTime)*1000;
+    
+    fprintf('Refresh time (req: %.1f): mean: %.1f, max: %.1f, min: %.1f\n', requestedRefresh, me, ma, mi );
+
+    tc=tc(find(tc>0));
+    me=mean(tc)*1000;
+    ma=max(tc)*1000;
+    mi=min(tc)*1000;
+    fprintf('Calculation time: mean: %.1f, max: %.1f, min: %.1f\n', me, ma, mi );
+    
+    td=td(find(td>0));
+    me=mean(td)*1000;
+    ma=max(td)*1000;
+    mi=min(td)*1000;
+    fprintf('Drawing time: mean: %.1f, max: %.1f, min: %.1f\n', me, ma, mi );
+    
+    tw=tw(find(tw>0));
+    me=mean(tw)*1000;
+    ma=max(tw)*1000;
+    mi=min(tw)*1000;
+    fprintf('Wait time: mean: %.1f, max: %.1f, min: %.1f\n', me, ma, mi );
+    
     diary off
 
 %     plot(st_time(1:count),st_ori(1:count));
@@ -225,6 +353,8 @@ try
     % above.  Importantly, it closes the onscreen window if it's open.
 
 catch
+
+    Priority(0);
 
     Screen('LoadNormalizedGammaTable', screenNumber, oldGammaTable);
     Screen('CloseAll');

@@ -16,8 +16,9 @@ function TextureGazeExp(subject, session, parfile)
 commandwindow;
 cd(FunctionFolder(mfilename));
 
-dummymode=0;
+dummymode=1;
 autorun=0;   % no waiting for fixation
+oldGammaTable=[];
 diary([mfilename 'Log.txt']);
 
 if ~exist('subject', 'var') || isempty(subject)
@@ -43,7 +44,7 @@ if ~isnumeric(session)
     return
 end
 
-if ~exist('parfile', 'var') | isempty(parfile)
+if ~exist('parfile', 'var') || isempty(parfile)
     parfile=input('Parameter file (''filename'')? ');
     if isempty(parfile)
         disp('No parameter file given, experiment stopped');
@@ -52,7 +53,7 @@ if ~exist('parfile', 'var') | isempty(parfile)
     end
 end
 
-try
+% try
     % open connection to eye tracker
 
     [result dummymode]=EyelinkInit(dummymode);
@@ -302,7 +303,7 @@ disp(edfFile);
         % %         [imgfiles, nStim, xpos, ypos, gapangle,
         % texAngle]=createImageStimulus(window, imageDir, par.nrStimuli(trial), par.stimRadius(trial), par.stimSize(trial), par.stimOrient(trial), par.maskSD(trial));
 %         window
-        [oswin2, imgfiles, tpos, nStim, xpos, ypos, gapangle, texAngle]=createImageStimulus(window, oswin, targetDir, distrDir, par.nrStimuli(row), par.stimRadius(row), par.stimSize(row), par.stimOrient(row), par.maskSD(row));
+        [oswin2, imgfiles, tpos, nStim, xpos, ypos, gapangle, texAngle]=createImageStimulus(window, oswin, targetDir, distrDir, par.imgExt{row}, par.nrStimuli(row), par.stimRadius(row), par.stimSize(row), par.stimOrient(row), par.maskSD(row));
         % add fixationPoint
         %drawFixationPoint(window, fixPtSize, fixPtCol);
 
@@ -512,14 +513,14 @@ disp(edfFile);
         Eyelink('message', 'CHOICE %d', choice );
         Eyelink('message', 'RESPONSE %d', tpos==choice );
         Eyelink('message', 'CHOICE_IMAGE %s', imf );
-        Eyelink('message', 'CHOICE_ORIENTATION %d', ta );
+        Eyelink('message', 'CHOICE_ORIENTATION %d', round(ta) );
         Eyelink('message', 'TARGET_IMAGE %s', imgfiles{tpos} );
-        Eyelink('message', 'TARGET_ORIENTATION %d', texAngle(tpos) );
+        Eyelink('message', 'TARGET_ORIENTATION %d', round(texAngle(tpos)) );
         Eyelink('message', 'LATENCY_MS %d', round(latency*1000) );
         Eyelink('message','STIMULUS');
         Eyelink('message', 'XPOS YPOS ORIENT ISTARGETPOS ISCHOICE IMAGE');
         for i=1:length(imgfiles)
-            Eyelink('message', '%d %d %d %d %d %s', xpos(i), ypos(i), texAngle(i), gapangle(i), (i==tpos), (i==choice), imgfiles{i} );
+            Eyelink('message', '%d %d %d %d %d %s', xpos(i), ypos(i), round(texAngle(i)), round(gapangle(i)), (i==tpos), (i==choice), imgfiles{i} );
         end
 
         
@@ -627,21 +628,23 @@ disp(edfFile);
     % This "catch" section executes in case of an error in the "try" section
     % above.  Importantly, it closes the onscreen window if it's open.
     
-catch
-
-    Eyelink('ShutDown');
-    Screen('LoadNormalizedGammaTable', screenNumber, oldGammaTable);
-    Screen('CloseAll');
-    ShowCursor;
-
-    % Restore preferences
-    Screen('Preference', 'VisualDebugLevel', oldVisualDebugLevel);
-    Screen('Preference', 'SuppressAllWarnings', oldSuppressAllWarnings);
-
-    psychrethrow(psychlasterror);
-    diary off
-end
-
+% catch
+% 
+%     Eyelink('ShutDown');
+%     if ~isempty(oldGammaTable)
+%         Screen('LoadNormalizedGammaTable', screenNumber, oldGammaTable);
+%     end;
+%     Screen('CloseAll');
+%     ShowCursor;
+% 
+%     % Restore preferences
+%     Screen('Preference', 'VisualDebugLevel', oldVisualDebugLevel);
+%     Screen('Preference', 'SuppressAllWarnings', oldSuppressAllWarnings);
+% 
+%     psychrethrow(psychlasterror);
+%     diary off
+% end
+% 
 
 
 
@@ -700,7 +703,7 @@ Screen('FillRect', window, gray);
 Screen('Flip', window);
 
 
-function [oswin, myimgfile, tpos, nStim, xpos, ypos, gapangle, texAngle]=createImageStimulus(window, oswin, targetDir, distrDir, nStim, radius, siz, ori, masksd )
+function [oswin, myimgfile, tpos, nStim, xpos, ypos, gapangle, texAngle]=createImageStimulus(window, oswin, targetDir, distrDir, imgext,nStim, radius, siz, ori, masksd )
 
 white=WhiteIndex(window);
 black=BlackIndex(window);
@@ -712,7 +715,7 @@ dirList=dir(distrDir);
 stimuli=zeros(1,length(dirList));
 
 for i=1:length(dirList)
-    if dirList(i).isdir==0 && strcmp(dirList(i).name(end-3:end), '.jpg')==1
+    if dirList(i).isdir==0 && strcmp(dirList(i).name(end-3:end), ['.' imgext])==1
         stimuli(i)=1;
     end
 end
@@ -735,7 +738,7 @@ dirList=dir(targetDir);
 stimuli=zeros(1,length(dirList));
 
 for i=1:length(dirList)
-    if dirList(i).isdir==0 && strcmp(dirList(i).name(end-3:end), '.jpg')==1
+    if dirList(i).isdir==0 && strcmp(dirList(i).name(end-3:end), ['.' imgext])==1
         stimuli(i)=1;
     end
 end

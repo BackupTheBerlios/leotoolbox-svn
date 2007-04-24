@@ -1,0 +1,1 @@
+SUBJECT	SESSION	TRIAL	DATE	TIME	INSTRUCTION	ACTMOVDUR	MOVIE	R_angstig	R_blij	R_boos	R_neutraal	R_verdrietig	R_verrast	R_walgend

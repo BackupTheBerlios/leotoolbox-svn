@@ -1,0 +1,1934 @@
+Subject name ('name')? 'f'
+Session nr (number)? 1
+Parameter file ('filename')? 'test'
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+??? Error using ==> fprintf
+Invalid file identifier.  Use fopen to generate a valid file identifier.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,438,1">VideoExp at 438</a>
+    psychrethrow(psychlasterror);
+
+VideoExp
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+??? Reference to non-existent field 'movie'.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,438,1">VideoExp at 438</a>
+    psychrethrow(psychlasterror);
+
+VideoExp
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+ans =
+
+     3
+
+??? Reference to non-existent field 'movie'.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,438,1">VideoExp at 438</a>
+    psychrethrow(psychlasterror);
+
+VideoExp
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+??? Undefined function or method 'stimuli' for input arguments of type 'double'.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,433,1">VideoExp at 433</a>
+    psychrethrow(psychlasterror);
+
+VideoExp
+Subject name ('name')? 
+Experiment stopped
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov  : 235.335000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,245,1">VideoExp at 245</a>
+        EyelinkDoDriftCorrection(el);
+
+clear all
+VideoExp
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov  : 235.335000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,255,1">VideoExp at 255</a>
+                WaitSecs(0.01);
+
+sca
+VideoExp
+Subject name ('name')? 
+Experiment stopped
+Eyelink already initialized!
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov  : 235.335000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+??? Undefined function or variable "stimulusOnsetTime".
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,447,1">VideoExp at 447</a>
+    psychrethrow(psychlasterror);
+
+VideoExp
+Subject name ('name')?  
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov  : 235.335000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Subject name ('name')?   
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov  : 235.335000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+stop movie
+stop movie
+stop movie
+stop movie
+stop movie
+stop movie
+stop movie
+stop movie
+stop movie
+stop movie
+stop movie
+stop movie
+stop movie
+User requested break
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov  : 235.335000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    3.4449
+
+??? Undefined function or variable 'actDelayDur'.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,441,1">VideoExp at 441</a>
+    psychrethrow(psychlasterror);
+
+   date
+
+ans =
+
+20-Apr-2007
+
+VideoExp
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov  : 235.335000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    7.8310
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/marathon_man_QT.mov
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/marathon_man_QT.mov  : 121.386667 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    7.8982
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/Golden_pond_QT.mov
+
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/Golden_pond_QT.mov  : 44.810000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    4.5537
+
+The experiment has been completed, thanks for participating!
+Receiving data file 'dummy1.edf'
+Subject name ('name')?      
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov  : 235.335000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    2.5705
+
+??? Undefined function or method 'getNearest' for input arguments of type 'double'.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,449,1">VideoExp at 449</a>
+    psychrethrow(psychlasterror);
+
+  sca
+sca
+VideoExp
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov  : 235.335000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    2.3859
+
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov  : 235.335000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    1.3612
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/marathon_man_QT.mov
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/marathon_man_QT.mov  : 121.386667 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    7.9316
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/Golden_pond_QT.mov
+
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/Golden_pond_QT.mov  : 44.810000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    1.2940
+
+The experiment has been completed, thanks for participating!
+Receiving data file 'dummy1.edf'
+Subject name ('name')?          
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov  : 235.335000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    1.1595
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/marathon_man_QT.mov
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/marathon_man_QT.mov  : 121.386667 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    1.3104
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/Golden_pond_QT.mov
+
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/Golden_pond_QT.mov  : 44.810000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    1.1087
+
+The experiment has been completed, thanks for participating!
+Receiving data file 'dummy1.edf'
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+??? Undefined function or variable "rating".
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,458,1">VideoExp at 458</a>
+    psychrethrow(psychlasterror);
+
+VideoExp
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov  : 235.335000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    1.8990
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/marathon_man_QT.mov
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/marathon_man_QT.mov  : 121.386667 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    2.1507
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/Golden_pond_QT.mov
+
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/Golden_pond_QT.mov  : 44.810000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    2.0837
+
+The experiment has been completed, thanks for participating!
+Receiving data file 'dummy1.edf'
+Subject name ('name')?          
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov  : 235.335000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    1.4453
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/marathon_man_QT.mov
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/marathon_man_QT.mov  : 121.386667 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    3.2595
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/Golden_pond_QT.mov
+
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/Golden_pond_QT.mov  : 44.810000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    2.0334
+
+The experiment has been completed, thanks for participating!
+Receiving data file 'dummy1.edf'
+Subject name ('name')?          
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+       MOVIE: {3x1 cell}
+    MOVIEDIR: {3x1 cell}
+    BREAKDUR: [3x1 double]
+
+
+nrTrials =
+
+     3
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/my_bodyguard_QT.mov  : 235.335000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    4.5372
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/marathon_man_QT.mov
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/marathon_man_QT.mov  : 121.386667 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+   11.0408
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/Golden_pond_QT.mov
+
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli/Golden_pond_QT.mov  : 44.810000 seconds duration, 15.000000 fps, w x h = 320 x 240...
+stop movie
+
+actStimDur =
+
+    1.3450
+
+The experiment has been completed, thanks for participating!
+Receiving data file 'dummy1.edf'
+Subject name ('name')? 'dum'
+Session nr (number)? 1
+Parameter file ('filename')? 'emo'
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+nrTrials =
+
+   128
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_disgust.avi
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_disgust.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+stop movie
+
+actStimDur =
+
+   14.0151
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/GN/GN_surprise.avi
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/GN/GN_surprise.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+User requested break
+
+actStimDur =
+
+   10.1494
+
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dum1.edf'
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo].txt
+
+??? Undefined function or variable "screenNumber".
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,450,1">VideoExp at 450</a>
+    Screen('LoadNormalizedGammaTable', screenNumber, oldGammaTable);
+
+VideoExp('dummy',1,'emo')
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+nrTrials =
+
+   128
+
+??? Undefined function or variable "goOn".
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,459,1">VideoExp at 459</a>
+    psychrethrow(psychlasterror);
+
+VideoExp
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+nrTrials =
+
+   128
+
+User requested break
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+nrTrials =
+
+   128
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_disgust.avi
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_disgust.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+stop movie
+
+actStimDur =
+
+    8.7554
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/GN/GN_surprise.avi
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/GN/GN_surprise.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+User requested break
+
+actStimDur =
+
+    0.5875
+
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+nrTrials =
+
+   128
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_disgust.avi
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_disgust.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+Warning: Could not find an exact (case-sensitive) match for 'Getsecs'.
+/Users/frans/Development/ptb3/trunk/Psychtoolbox/PsychBasic/GetSecs.mexmac is a case-insensitive match and will be used instead.
+You can improve the performance of your code by using exact
+name matches and we therefore recommend that you update your
+usage accordingly. Alternatively, you can disable this warning using
+warning('off','MATLAB:dispatcher:InexactMatch').
+> In <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,293,1">VideoExp at 293</a>
+
+actStimDur =
+
+    2.8736
+
+User requested break
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+nrTrials =
+
+   128
+
+
+ans =
+
+     0
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_disgust.avi
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_disgust.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9235
+
+
+ans =
+
+     0
+
+User requested break
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo].txt
+
+??? Undefined function or variable "screenNumber".
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,456,1">VideoExp at 456</a>
+    Screen('LoadNormalizedGammaTable', screenNumber, oldGammaTable);
+
+VideoExp('dummy',1,'emo]')
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo].txt
+
+??? Undefined function or variable "screenNumber".
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,456,1">VideoExp at 456</a>
+    Screen('LoadNormalizedGammaTable', screenNumber, oldGammaTable);
+
+clear all
+
+
+VideoExp('dummy',1,'emo]')
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo].txt
+
+??? Undefined function or variable "screenNumber".
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,456,1">VideoExp at 456</a>
+    Screen('LoadNormalizedGammaTable', screenNumber, oldGammaTable);
+
+VideoExp('dummy',1,'emo')
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+nrTrials =
+
+   128
+
+
+ans =
+
+     0
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_neutral.avi
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_neutral.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9407
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/MS/MS_blowing.avi
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/MS/MS_blowing.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9402
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/HV/HV_happy.avi
+
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/HV/HV_happy.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9408
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/EB/EB_fear.avi
+
+Trial 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/EB/EB_fear.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    3.0243
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/MST/MST_sad.avi
+
+Trial 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/MST/MST_sad.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+User requested break
+
+actStimDur =
+
+    0.6890
+
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Subject name ('name')? 'dummy'
+Session nr (number)? 1
+Parameter file ('filename')? 'frans'
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/frans.txt
+
+
+par = 
+
+          MOVIE: {133x1 cell}
+       MOVIEDIR: {133x1 cell}
+       BREAKDUR: [133x1 double]
+    INSTRUCTION: {133x1 cell}
+
+
+nrTrials =
+
+   133
+
+
+ans =
+
+     0
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9906
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_neutral.avi
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_neutral.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9912
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LP/LP_happy.avi
+
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LP/LP_happy.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9744
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/MS/MS_surprise.avi
+
+Trial 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/MS/MS_surprise.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9576
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/TV/TV_blowing.avi
+
+Trial 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/TV/TV_blowing.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9912
+
+
+ans =
+
+     0
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/AD/AD_disgust.avi
+
+Trial 6, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/AD/AD_disgust.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9745
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/AD/AD_happy.avi
+
+Trial 7, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/AD/AD_happy.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9744
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi
+
+Trial 8, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+User requested break
+
+actStimDur =
+
+    0.4705
+
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Subject name ('name')? 'ccharms'
+Session nr (number)? 1
+Parameter file ('filename')? 'emo'
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+nrTrials =
+
+   128
+
+
+ans =
+
+     0
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_neutral.avi
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_neutral.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    3.0081
+
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'ccharms1.edf'
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+nrTrials =
+
+   128
+
+
+ans =
+
+     0
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_neutral.avi
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_neutral.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9069
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/MS/MS_blowing.avi
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/MS/MS_blowing.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9582
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/HV/HV_happy.avi
+
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/HV/HV_happy.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.8730
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/EB/EB_fear.avi
+
+Trial 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/EB/EB_fear.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    3.0080
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/MST/MST_sad.avi
+
+Trial 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/MST/MST_sad.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9744
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/GN/GN_disgust.avi
+
+Trial 6, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/GN/GN_disgust.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    3.0080
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/AB/AB_surprise.avi
+
+Trial 7, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/AB/AB_surprise.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    3.0416
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/GN/GN_anger.avi
+
+Trial 8, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/GN/GN_anger.avi  : 2.920000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.8568
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LP/LP_happy.avi
+
+Trial 9, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LP/LP_happy.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    3.0251
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/GN/GN_neutral.avi
+
+Trial 10, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/GN/GN_neutral.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    3.0080
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_blowing.avi
+
+Trial 11, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_blowing.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    3.0079
+
+
+ans =
+
+     1
+
+
+moviename =
+
+/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/TR/TR_anger.avi
+
+Trial 12, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/TR/TR_anger.avi  : 3.000000 seconds duration, 25.000000 fps, w x h = 720 x 576...
+
+actStimDur =
+
+    2.9906
+
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+ans =
+
+     0
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_neutral.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    2.9414
+
+
+ans =
+
+     1
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/MS/MS_blowing.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    2.9408
+
+
+ans =
+
+     1
+
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/HV/HV_happy.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    3.0250
+
+
+ans =
+
+     1
+
+Trial 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/EB/EB_fear.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    2.9744
+
+
+ans =
+
+     1
+
+Trial 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/MST/MST_sad.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    3.0255
+
+
+ans =
+
+     1
+
+Trial 6, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/GN/GN_disgust.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    2.9744
+
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+ans =
+
+     0
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_neutral.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    2.9234
+
+
+ans =
+
+     1
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/MS/MS_blowing.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    2.9913
+
+
+ans =
+
+     1
+
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/HV/HV_happy.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    2.9912
+
+
+ans =
+
+     1
+
+Trial 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/EB/EB_fear.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    3.0080
+
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+ans =
+
+     0
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_neutral.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    0.1003
+
+
+ans =
+
+     1
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/MS/MS_blowing.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    0.0672
+
+
+ans =
+
+     1
+
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/HV/HV_happy.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    0.0840
+
+
+ans =
+
+     1
+
+Trial 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/EB/EB_fear.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    0.1008
+
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+ans =
+
+     0
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_neutral.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    0.1176
+
+
+ans =
+
+     1
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/MS/MS_blowing.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    0.0672
+
+
+ans =
+
+     1
+
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/HV/HV_happy.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    0.0841
+
+
+ans =
+
+     1
+
+Trial 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/EB/EB_fear.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    0.1842
+
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+ans =
+
+     0
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_neutral.avi  , Duration: 3.000000 secs, 25.000000 fps
+Error in function DrawTexture: 	Invalid Window Index
+??? Usage:
+
+Screen('DrawTexture', windowPointer, texturePointer [,sourceRect] [,destinationRect] [,rotationAngle] [, filterMode] [, globalAlpha]);
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/VideoPresent/VideoExp.m,469,1">VideoExp at 469</a>
+    psychrethrow(psychlasterror);
+
+ 
+
+VideoExp('dummy',1,'emo')
+Eyelink: Opening Eyelink in DUMMY mode
+
+myparfile =
+
+parfiles/emo.txt
+
+
+par = 
+
+          MOVIE: {128x1 cell}
+       MOVIEDIR: {128x1 cell}
+       BREAKDUR: [128x1 double]
+    INSTRUCTION: {128x1 cell}
+
+
+ans =
+
+     0
+
+Trial 1, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_neutral.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    2.8904
+
+
+ans =
+
+     1
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/MS/MS_blowing.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    2.9582
+
+
+ans =
+
+     1
+
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/HV/HV_happy.avi  , Duration: 3.000000 secs, 25.000000 fps
+stop movie
+
+actStimDur =
+
+    0.4873
+
+
+ans =
+
+     1
+
+Trial 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/EB/EB_fear.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    2.9576
+
+
+ans =
+
+     1
+
+Trial 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/MST/MST_sad.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    2.9066
+
+
+ans =
+
+     1
+
+Trial 6, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/GN/GN_disgust.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    2.9246
+
+
+ans =
+
+     1
+
+Trial 7, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/AB/AB_surprise.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    2.9071
+
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
