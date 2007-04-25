@@ -21,7 +21,7 @@ disp( [ mfilename ' start']);
 % with computername.local .
 
 remoteip='10.0.1.2';
-remoteip='10.0.1.4';
+remoteip='10.0.1.6';
 
 
 [status, rmv]=remoteVideo('init', [], remoteip);
@@ -35,7 +35,15 @@ if status~=1
     return
 end
 
-WaitSecs(3);
+message=['moviedir' 'movies/test/test1'];
+status=remoteVideo('send', rmv, message);
+
+message=['moviename' 'mijnfilmpje'];
+status=remoteVideo('send', rmv, message);
+
+
+
+WaitSecs(1);
 
 % start recording on remote computer
 status=remoteVideo('send', rmv, 'start')
@@ -45,28 +53,42 @@ if status~=1
     return
 end
 
-WaitSecs(20);
+WaitSecs(5);
 
-% switch of live display (recording will continue)
-status=remoteVideo('send', rmv, 'displayOff')
+message=['message' ' ' 'eerste keer'];
+status=remoteVideo('send', rmv, 'message');
 
-WaitSecs(20);
+WaitSecs(2);
 
-% switch on live display again
+message=['message' ' ' 'nog een bericht'];
+status=remoteVideo('send', rmv, 'message');
 
-status=remoteVideo('send', rmv, 'displayOn')
+WaitSecs(2);
 
-WaitSecs(10);
+message=['message' ' ' 'weer wat aan de hand'];
+status=remoteVideo('send', rmv, 'message');
+
+
+% % switch of live display (recording will continue)
+% status=remoteVideo('send', rmv, 'displayOff')
+% 
+% WaitSecs(3);
+% 
+% % switch on live display again
+% 
+% status=remoteVideo('send', rmv, 'displayOn')
+% 
+WaitSecs(5);
 
 % stop recording
 status=remoteVideo('send', rmv, 'stop')
 
-WaitSecs(3);
+WaitSecs(1);
 
 % shut down videorecording application on 
 % remote computer.
-
+if 0
 status=remoteVideo('send', rmv, 'shutdown')
-
+end
 disp( [ mfilename ' finished']);
 

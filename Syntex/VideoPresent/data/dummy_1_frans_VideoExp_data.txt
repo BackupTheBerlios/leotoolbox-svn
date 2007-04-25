@@ -1,8 +1,0 @@
-SUBJECT	SESSION	TRIAL	DATE	TIME	INSTRUCTION	ACTMOVDUR	MOVIE	R_angstig	R_blij	R_boos	R_neutraal	R_verdrietig	R_verrast	R_walgend
-dummy	1	1	20-Apr-2007	17-29-18	Imiteer de expressies en beoordeel je gevoel t.a.v. de filmpjes	3.0	/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi	5.7	-0.0	-0.0	-0.0	-0.0	-0.0	-0.0
-dummy	1	2	20-Apr-2007	17-29-27	Imiteer de expressies en beoordeel je gevoel t.a.v. de filmpjes	3.0	/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_neutral.avi	-0.0	-0.0	-0.0	7.7	-0.0	-0.0	-0.0
-dummy	1	3	20-Apr-2007	17-29-46	Imiteer de expressies en beoordeel je gevoel t.a.v. de filmpjes	3.0	/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LP/LP_happy.avi	-0.0	-0.0	-0.0	6.5	-0.0	-0.0	-0.0
-dummy	1	4	20-Apr-2007	17-29-58	Imiteer de expressies en beoordeel je gevoel t.a.v. de filmpjes	3.0	/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/MS/MS_surprise.avi	-0.0	-0.0	-0.0	10.9	-0.0	-0.0	-0.0
-dummy	1	5	20-Apr-2007	17-30-09	Imiteer de expressies en beoordeel je gevoel t.a.v. de filmpjes	3.0	/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/TV/TV_blowing.avi	-0.0	-0.0	-0.0	9.8	-0.0	-0.0	-0.0
-dummy	1	6	20-Apr-2007	17-30-33	Beoordeel je gevoel t.a.v. de volgende filmpjes	3.0	/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/AD/AD_disgust.avi	-0.0	-0.0	-0.0	8.0	-0.0	-0.0	-0.0
-dummy	1	7	20-Apr-2007	17-32-27	Beoordeel je gevoel t.a.v. de volgende filmpjes	3.0	/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/female/AD/AD_happy.avi	-13.8	-3.1	12.4	-16.9	5.5	-135.5	-0.0

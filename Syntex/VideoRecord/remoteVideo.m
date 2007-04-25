@@ -136,18 +136,18 @@ switch lower(cstr)
         % code modified after  udp_send_demo.m
 
         if ~isempty(varargin)
-            sendstr=varargin{1}
+            sendstr=varargin{1};
 
             udp=pnet('udpsocket',ivx.socket);
             if udp~=-1,
-                try, % Failsafe
+                try % Failsafe
                     pnet(udp,'udpconnect',ivx.host,ivx.port);
                     %         [ip,port]=pnet(udp,'gethost')
                     %         stat=pnet(udp,'status')
                     pnet(udp,'write',[sendstr char(10)]);        % Write to write buffer
                     pnet(udp,'writepacket',ivx.host,ivx.port);   % Send buffer as UDP packet
 
-                catch,
+                catch
                     pnet('closeall');
                     disp(lasterr)
                 end

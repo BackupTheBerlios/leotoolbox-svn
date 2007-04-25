@@ -1,2 +1,0 @@
-SUBJECT	SESSION	TRIAL	DATE	TIME	ACTMOVDUR	MOVIE	R_angstig	R_blij	R_boos	R_neutraal	R_verdrietig	R_verrast	R_walgend
-dum	1	1	20-Apr-2007	16-53-14	14.0	/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_disgust.avi	-0.0	-0.0	-0.0	-12.4	9.0	-0.0	-0.0
