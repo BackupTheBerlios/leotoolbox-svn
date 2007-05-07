@@ -7,11 +7,16 @@ function VideoExp(subject, session, parfile)
 % 17-02-07  fwc adapted from TextureGazeExp4
 % 19-02-07  fwc now creates list of images based on directories in the par
 %               file. Allows to show rotated images. Set linear gamma.
+% 01-05-07  fwc fixed half movie size problem
 
 commandwindow;
 cd(FunctionFolder(mfilename));
 
 dummymode=1;
+
+movmag=1;
+movort=180;
+bgGrayLevel = 0.8;
 
 sliderTitles={'angstig','blij','boos','neutraal','verdrietig','verrast','walgend'};
 sliderInstr = 'Wat voor gevoel krijg je bij dit filmpje?';
@@ -81,8 +86,8 @@ try
     % parameter file. If we get an error, we quit the experiment
 
     myparfiledir='parfiles';
-    myparfile=[myparfiledir filesep parfile '.txt'] % construct parfile name
-    par=autotextread(myparfile)
+    myparfile=[myparfiledir filesep parfile '.txt']; % construct parfile name
+    par=autotextread(myparfile);
 
     % construct edf file name
     sstr=sprintf('%s', num2str(session));
@@ -109,6 +114,7 @@ try
     white=WhiteIndex(screenNumber);
     black=BlackIndex(screenNumber);
     gray=GrayIndex(screenNumber);
+    bgGray=GrayIndex(screenNumber, bgGrayLevel);
 
     % here we specify a number of important experimental variables
     % additional to those in the parameter file, but that are not
@@ -224,11 +230,11 @@ try
         % here we prepare the movie stimulus
 
         moviename=[par.MOVIEDIR{trial} filesep par.MOVIE{trial}];
-
+        
         % Open movie file and retrieve basic info about movie:
         [movie movieduration fps imgw imgh] = Screen('OpenMovie', window, moviename);
-
-        fprintf('Trial %d, Movie: %s  , Duration: %f secs, %f fps\n', trial, moviename, movieduration, fps);
+        
+        fprintf('Trial %d, Movie: %s  w: %d h: %d, Duration: %f secs, %f fps\n', trial, moviename, imgw, imgh, movieduration, fps);
 
         % Seek to start of movie (timeindex 0):
         Screen('SetMovieTimeIndex', movie, 0);
@@ -310,9 +316,12 @@ try
                     movieDone=1;
                     break;
                 end;
-
+                
+%                 myrect=Screen('Rect', tex);
+%                 [tw th]=RectSize(myrect)
                 % Draw the new texture immediately to screen:
-                Screen('DrawTexture', window, tex);
+                Screen('FillRect', window, bgGray);
+                Screen('DrawTexture', window, tex, [], CenterRect([0 0 movmag*imgw movmag*imgh], winrect ), movort);
 
                 % Update display:
                 vbl=Screen('Flip', window);

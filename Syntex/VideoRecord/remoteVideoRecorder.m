@@ -31,8 +31,9 @@ modkey=KbName('LeftGUI');
 
 moviedir='movies';
 movieStartTime=-1;
+waitTime=0.001;
 
-if ~IsOSX & ~IsWin
+if ~IsOSX && ~IsWin
     error('Sorry, this demo currently only works on OS/X and Windows.');
 end
 
@@ -56,6 +57,7 @@ end
 rmv.recordingOn=0;
 rmv.waitforimage=1;
 rmv.displayOn=1;
+rmv.logFramesOn=1;
 
 if nargin < 1
     %     error('You must provide a quicktime output movie name as first argument!');
@@ -133,15 +135,14 @@ try
     white=WhiteIndex(win);
     gray=GrayIndex(win);
     Screen('FillRect', win, gray);
-    DrawFormattedText(win, 'Remote Video Recorder is ready',[],[], white);
+    DrawFormattedText(win, 'Remote Video Recorder: ready',[],[], white);
     % Initial flip to a blank screen:
 
     Screen('Flip',win);
-
-
-
     % start remote control loop
     i=0;
+    np=MaxPriority(win);
+    op=Priority(np);
     pctime=GetSecs;
     stop=0;
     while stop==0
@@ -171,7 +172,7 @@ try
             %                 fprintf( '\n');
             %             end
             if rmv.recordingOn==0
-                WaitSecs(0.005);
+                WaitSecs(waitTime);
             end
             cstr='no';
 
@@ -241,20 +242,25 @@ try
                         end
                         oldpts = 0;
                         count = 0;
+                        totcnt=nrdropped;
                         t=GetSecs;
 
                         rmv.recordingOn=1;
                         rmv.displayOn=1;
                         if tex>0
                             movieStartTime=GetSecs;
-                            fprintf('%f FRM %d delta %f nrdropped %d\n', pts, count, 0, nrdropped);
+                            fprintf('%f MES start recording\n', pts );
+                            if 1==rmv.logFramesOn
+%                               fprintf('%f FRM %d delta %f nrdropped %d\n', pts, count, 0, nrdropped);
+                                fprintf('%f FRM %d totcnt %d delta %f nrdropped %d\n', pts, count, totcnt, delta, nrdropped);
+                            end
                         end
 
                     case 'stop',
                         % stop recording, close capture object and texture
                         telapsed = GetSecs - t;
-                        avgfps = count / telapsed
-
+                        avgfps = count / telapsed;
+                        fprintf('%f MES stop recording, avgfps: %f\n', pts, avgfps );
                         Screen('StopVideoCapture', grabber);
                         Screen('CloseVideoCapture', grabber);
                         Screen('Close', tex);
@@ -266,6 +272,10 @@ try
 
                     case 'displayoff',      % switch live display off
                         rmv.displayOn=0;
+                    case 'logframeson',       % switch frame logging on
+                        rmv.logFramesOn=1;
+                    case 'logframesoff',       % switch frame logging off
+                        rmv.logFramesOn=0;
 
                     case 'waitforimageon',  % not tested
                         rmv.waitforimage=1;
@@ -307,11 +317,11 @@ try
                     % Compute delta:
                     delta = (pts - oldpts) * 1000;
                     oldpts = pts;
+                    totcnt=totcnt+nrdropped;
                     Screen('DrawText', win, sprintf('%.4f', delta), 0, 20, 255);
-
-
-                    fprintf('%f FRM %d delta %f nrdropped %d\n', pts, count, delta, nrdropped);
-
+                    if 1==rmv.logFramesOn
+                        fprintf('%f FRM %d totcnt %d delta %f nrdropped %d\n', pts, count, totcnt, delta, nrdropped);
+                    end
                 end;
 
                 % Show it.
@@ -326,12 +336,15 @@ try
             count = count + 1;
         end;
 
+        WaitSecs(waitTime);
+        
     end
     diary off;
+    Priority(op);
     Screen('CloseAll');
     disp(['end ' mfilename]);
 catch
     disp(['Some error in ' mfilename]);
-
+    Priority(0);
     Screen('CloseAll');
 end;

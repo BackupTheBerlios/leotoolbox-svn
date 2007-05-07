@@ -1,5 +1,15 @@
-function status=remoteVideoControl(command, varargin)
-% attempt to make remote control for matlab video recording program
+function status= remoteVideoControl(command , varargin)
+% remote control for matlab video recording program
+% USAGE: [status=] remoteVideoControl(command [, varargin])
+% remoteVideoControl takes a command, and an optional list of
+% parameters. See remoteVideoControlTest.m for an example of
+% how to use it. This program makes only sense in combination
+% with remoteVideoRecorder.m, the script that "listens' to
+% the commmands being send by remoteVideoControl.m
+
+
+
+
 
 status=1;
 persistent rmv;
@@ -14,17 +24,14 @@ switch(lower(command))
             remoteip=varargin{1};
         end
         [status, rmv]=remoteVideo('init', [], remoteip);
-    case 'message',
-        message=['message' ' ' varargin{1}];
-        status=remoteVideo('send', rmv, message);
-
+        
     case {'start', 'startrecording'},
         % start recording on remote computer
         if isempty(rmv)
             status=0;
+            disp( [mfilename ': error, not properly initialized']);
             return;
         end
-
         status=remoteVideo('send', rmv, 'start')
     case {'stop', 'stoprecording'},
         if isempty(rmv)
@@ -38,6 +45,9 @@ switch(lower(command))
             return;
         end
         status=remoteVideo('send', rmv, 'shutdown')
+    case 'message',
+        message=['message' ' ' varargin{1}];
+        status=remoteVideo('send', rmv, message)
     case 'moviedir',
         message=['moviedir' ' ' varargin{1}];
         status=remoteVideo('send', rmv, message);
