@@ -32,7 +32,7 @@ rate=1;
 firstTriggerTime=-999999;
 
 % stuff for videorecording
-videoRecMode=2; % 0== rec off, 1==rec on, 2= dummymode
+videoRecMode=1; % 0== rec off, 1==rec on, 2= dummymode
 recmoviedir='movierecords';
 logVideoFrameMode='logFramesOff'; % 'logFramesOff;
 movieRecStartTime=0;
@@ -468,6 +468,8 @@ try
 
             end
 
+            VideoRecorder('gettimestamp');
+            
             % return control to the OS for a short time, to keep it happy.
             % we may loose real-time priority if we do not. Make this time
             % shorter for more frequent sampling of keys

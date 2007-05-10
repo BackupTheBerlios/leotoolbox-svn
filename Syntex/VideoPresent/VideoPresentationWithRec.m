@@ -17,9 +17,9 @@ cd(FunctionFolder(mfilename));
 
 dummymode=1;
 % stuff for videorecording
-videoRecMode=2; % 0== rec off, 1==rec on, 2= dummymode
+videoRecMode=1; % 0== rec off, 1==rec on, 2= dummymode
 recmoviedir='movierecords';
-logVideoFrameMode='logFramesOn'; % 'logFramesOff;
+logVideoFrameMode='logFramesOff'; % 'logFramesOff;
 movieRecStartTime=0;
 
 movmag=1;
@@ -389,7 +389,9 @@ end
                 Screen('Close', tex);
             end
 
-
+%             VideoRecorder('gettimestamp');
+            VideoRecorder('gettimestampnoblock');
+            
             % check state of keyboard
             [keyIsDown,secs,keyCode] = KbCheck;
             [mx, my, buttons]=GetMouse(window);

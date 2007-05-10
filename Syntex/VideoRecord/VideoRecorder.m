@@ -83,7 +83,7 @@ switch(lower(commandstr))
         vr.grabber=-1;
         % specify the video codec
         % the codec is added to the moviefilename
-        vr.codec=1;
+        vr.codec=0;
 
         switch(vr.codec)
             case 0,
