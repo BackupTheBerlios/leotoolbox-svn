@@ -1,5 +1,5 @@
 MOVIE	MOVIEDIR	BREAKDUR	INSTRUCTION
-male/LT/LT_neutral.avi	/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag	1	"Beoordeel je gevoel t.a.v. de volgende filmpjes"
+male/LT/LT_neutral.avi	/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag	1	"Beoordeel je gevoel t.a.v. het filmpje"
 male/MS/MS_blowing.avi	/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag	1	No
 female/HV/HV_happy.avi	/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag	1	No
 female/EB/EB_fear.avi	/Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag	1	No

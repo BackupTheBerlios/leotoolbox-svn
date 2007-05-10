@@ -1,0 +1,1761 @@
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+       EVENTDUR: [8x1 double]
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+VideoRecorder: Movie dir: movierecords/dummy
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session1.mov
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session1
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session1_log.txt
+VideoRecorder: initialized in dummymode.\n
+??? Undefined function or variable 'instr'.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/Presentation3.m,523,1">Presentation3 at 523</a>
+    psychrethrow(psychlasterror);
+
+Presentation3
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+       EVENTDUR: [8x1 double]
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+VideoRecorder: Movie dir: movierecords/dummy
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session11.mov
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session11
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session11_log.txt
+VideoRecorder: initialized in dummymode.\n
+Upcoming event: WaitForScanner
+preploop
+preploop
+Waiting for trigger
+Trigger received
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   8.9058e+03
+
+Upcoming event: Movie
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Waiting for trigger
+Trigger received
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   8.9160e+03
+
+Upcoming event: Movie
+preploop
+Event 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Waiting for trigger
+Trigger received
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   8.9231e+03
+
+Upcoming event: Movie
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_surprise.avi  , Duration: 3.000000 secs, 25.000000 fps
+Waiting for trigger
+Trigger received
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   8.9300e+03
+
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   8.9375e+03
+
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   8.9443e+03
+
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   8.9510e+03
+
+stop recording
+The experiment has been completed, thanks for participating!
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+       EVENTDUR: [8x1 double]
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session12
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session12_log.txt
+VideoRecorder: initialized in dummymode.\n
+Upcoming event: WaitForScanner
+preploop
+preploop
+Waiting for trigger
+Trigger received
+Trigger received
+resp and display loop
+Upcoming event: Movie
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Waiting for trigger
+Trigger received
+Trigger received
+resp and display loop
+Upcoming event: Movie
+preploop
+Event 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Waiting for trigger
+Trigger received
+Trigger received
+resp and display loop
+Upcoming event: Movie
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_surprise.avi  , Duration: 3.000000 secs, 25.000000 fps
+Waiting for trigger
+Trigger received
+Trigger received
+resp and display loop
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+Trigger received
+resp and display loop
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+Trigger received
+resp and display loop
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+Trigger received
+resp and display loop
+stop recording
+The experiment has been completed, thanks for participating!
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+       EVENTDUR: [8x1 double]
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session13
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session13_log.txt
+VideoRecorder: initialized in dummymode.\n
+Upcoming event: WaitForScanner
+preploop
+preploop
+Waiting for trigger
+Trigger received
+resp and display loop
+Upcoming event: Movie
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Waiting for trigger
+Trigger received
+resp and display loop
+Upcoming event: Movie
+preploop
+Event 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Waiting for trigger
+Trigger received
+resp and display loop
+Upcoming event: Movie
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_surprise.avi  , Duration: 3.000000 secs, 25.000000 fps
+Waiting for trigger
+Trigger received
+resp and display loop
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+resp and display loop
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+resp and display loop
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+resp and display loop
+stop recording
+The experiment has been completed, thanks for participating!
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+       EVENTDUR: [8x1 double]
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session14
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session14_log.txt
+VideoRecorder: initialized in dummymode.\n
+Upcoming event: WaitForScanner
+preploop
+preploop
+Waiting for trigger
+Trigger received
+resp and display loop
+Upcoming event: Movie
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Waiting for trigger
+Trigger received
+resp and display loop
+Upcoming event: Movie
+preploop
+Event 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Waiting for trigger
+Trigger received
+resp and display loop
+Upcoming event: Movie
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_surprise.avi  , Duration: 3.000000 secs, 25.000000 fps
+Waiting for trigger
+Trigger received
+resp and display loop
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+resp and display loop
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+resp and display loop
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+resp and display loop
+stop recording
+The experiment has been completed, thanks for participating!
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+       EVENTDUR: [8x1 double]
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session15
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session15_log.txt
+VideoRecorder: initialized in dummymode.\n
+Upcoming event: WaitForScanner
+preploop
+preploop
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+preploop
+
+tex =
+
+    11
+
+
+pts =
+
+     0
+
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+preploop
+
+tex =
+
+    12
+
+
+pts =
+
+     0
+
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+preploop
+
+tex =
+
+    13
+
+
+pts =
+
+     0
+
+Waiting for trigger
+Trigger received
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+Upcoming event: Image
+preploop
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+       EVENTDUR: [8x1 double]
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session16
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session16_log.txt
+VideoRecorder: initialized in dummymode.\n
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Image
+Waiting for trigger
+Trigger received
+Upcoming event: Image
+Waiting for trigger
+Trigger received
+Upcoming event: Image
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+       EVENTDUR: [8x1 double]
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session17
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session17_log.txt
+VideoRecorder: initialized in dummymode.\n
+start video recording
+first dummy texture
+VideoRecorder: gettimestampnoblock: frame interval: 12776811.8697
+Upcoming event: WaitForScanner
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Fixation
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Movie
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Movie
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Movie
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Image
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Image
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Image
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+stop recording
+The experiment has been completed, thanks for participating!
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+       EVENTDUR: [8x1 double]
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session18
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session18_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+first dummy texture
+VideoRecorder: gettimestampnoblock: frame interval: 12990578.927
+Upcoming event: WaitForScanner
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Fixation
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Movie
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Movie
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Movie
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Image
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Image
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+User requested break
+VideoRecorder: gettimestampnoblock: frame interval: 0
+stop recording
+Please contact the experiment leader immediately, thanks!
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {5x1 cell}
+       STIMULUS: {5x1 cell}
+        STIMDIR: {5x1 cell}
+       EVENTDUR: [5x1 double]
+        STIMDUR: [5x1 double]
+    INSTRUCTION: {5x1 cell}
+
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session19
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session19_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+first dummy texture
+VideoRecorder: gettimestampnoblock: frame interval: 13355844.5626
+Upcoming event: WaitForScanner
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Fixation
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Movie
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Movie
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Upcoming event: Movie
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+Waiting for trigger
+Trigger received
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+VideoRecorder: gettimestampnoblock: frame interval: 0
+stop recording
+The experiment has been completed, thanks for participating!
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {5x1 cell}
+       STIMULUS: {5x1 cell}
+        STIMDIR: {5x1 cell}
+       EVENTDUR: [5x1 double]
+        STIMDUR: [5x1 double]
+    INSTRUCTION: {5x1 cell}
+
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session110
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session110_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+first dummy texture
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {5x1 cell}
+       STIMULUS: {5x1 cell}
+        STIMDIR: {5x1 cell}
+       EVENTDUR: [5x1 double]
+        STIMDUR: [5x1 double]
+    INSTRUCTION: {5x1 cell}
+
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session111
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session111_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+first dummy texture
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session112
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session112_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+first dummy texture
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session113
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session113_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+first dummy texture
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+tex =
+
+    12
+
+
+pts =
+
+     0
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.0800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.1200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.1600
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.2000
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.2400
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.2800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.3200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.3600
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.4000
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.4400
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.4800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.5200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.5600
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.6000
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.6400
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.6800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.7200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.7600
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.8000
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.8400
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.8800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.9200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    0.9600
+
+
+tex =
+
+    12
+
+
+pts =
+
+     1
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.0400
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.0800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.1200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.1600
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.2000
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.2400
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.2800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.3200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.3600
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.4000
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.4400
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.4800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.5200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.5600
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.6000
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.6400
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.6800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.7200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.7600
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.8000
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.8400
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.8800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.9200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    1.9600
+
+
+tex =
+
+    12
+
+
+pts =
+
+     2
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.0400
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.0800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.1200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.1600
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.2000
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.2400
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.2800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.3200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.3600
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.4000
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.4400
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.4800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.5200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.5600
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.6000
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.6400
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.6800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.7200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.7600
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.8000
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.8400
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.8800
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.9200
+
+
+tex =
+
+    12
+
+
+pts =
+
+    2.9600
+
+
+tex =
+
+    -1
+
+
+pts =
+
+    -1
+
+Error in function Close: 	Invalid Window Index
+??? Usage:
+
+Screen('Close', [windowOrTextureIndex]);
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/Presentation3.m,542,1">Presentation3 at 542</a>
+    psychrethrow(psychlasterror);
+
+Presentation3
+Subject name ('name')?  
+Experiment stopped
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session114
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session114_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+first dummy texture
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Movie dummy play duration: 3.004047
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session115
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session115_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+first dummy texture
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Movie dummy play duration: 1.001048
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session116
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session116_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+first dummy texture
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Movie dummy play duration: 0.102754
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session117
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session117_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+first dummy texture
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Movie dummy play duration: 0.142610
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session118
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session118_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+first dummy texture
+Event 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_surprise.avi  , Duration: 3.000000 secs, 25.000000 fps
+Movie dummy play duration: 0.102927
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session119
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session119_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+first dummy texture
+Event 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_surprise.avi  , Duration: 3.000000 secs, 25.000000 fps
+Movie dummy play duration: 0.096391
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session120
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session120_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+first dummy texture
+Event 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_surprise.avi  , Duration: 3.000000 secs, 25.000000 fps
+Movie dummy play duration: 0.102509
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+User requested break
+stop recording
+Please contact the experiment leader immediately, thanks!
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session121
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session121_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+first dummy texture
+Event 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_surprise.avi  , Duration: 3.000000 secs, 25.000000 fps
+Movie dummy play duration: 0.101068
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!

@@ -1,0 +1,4136 @@
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+??? Undefined function or method 'makedir' for input arguments of type 'char'.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,377,1">presentation at 377</a>
+    psychrethrow(psychlasterror);
+
+which makedir
+'makedir' not found.
+presentation
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+ans =
+
+WaitForScanner
+
+Please contact the experiment leader immediately, thanks!
+
+myparfile =
+
+parfiles/test.txt
+
+
+ans =
+
+WaitForScanner
+
+Please contact the experiment leader immediately, thanks!
+
+myparfile =
+
+parfiles/test.txt
+
+
+ans =
+
+WaitForScanner
+
+Please contact the experiment leader immediately, thanks!
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+ans =
+
+WaitForScanner
+
+Please contact the experiment leader immediately, thanks!
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+??? Undefined function or variable 'responseMaxWait'.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,377,1">presentation at 377</a>
+    psychrethrow(psychlasterror);
+
+presentation
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+??? Undefined function or variable "responseEnd".
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,377,1">presentation at 377</a>
+    psychrethrow(psychlasterror);
+
+presentation
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+ans =
+
+Movie
+
+??? Undefined function or variable 'trial'.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,377,1">presentation at 377</a>
+    psychrethrow(psychlasterror);
+
+presentation
+Subject name ('name')? tt
+??? Error using ==> input
+Undefined function or variable 'tt'.
+
+Subject name ('name')? tt
+??? Error using ==> input
+Undefined function or variable 'tt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+ans =
+
+Movie
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+??? Undefined function or variable "first".
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,377,1">presentation at 377</a>
+    psychrethrow(psychlasterror);
+
+presentation
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+ans =
+
+Movie
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+??? Undefined function or variable "responseEnd".
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,378,1">presentation at 378</a>
+    psychrethrow(psychlasterror);
+
+presentation
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+ans =
+
+Movie
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+ans =
+
+Movie
+
+Trigger received
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_neutral.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+ans =
+
+Image
+
+User requested break
+??? Reference to non-existent field 'EventType'.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,381,1">presentation at 381</a>
+    psychrethrow(psychlasterror);
+
+tt
+??? Undefined function or variable 'tt'.
+
+
+
+
+
+presentation
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+ans =
+
+Movie
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+ans =
+
+Movie
+
+Trigger received
+Trial 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_neutral.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+ans =
+
+Image
+
+Trigger received
+The experiment has been completed, thanks for participating!
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+------------------------------------------------------------------------
+             Bus error detected at Fri Apr 27 12:03:53 2007
+------------------------------------------------------------------------
+
+Configuration:
+  MATLAB Version:   7.4.0.287 (R2007a)
+  MATLAB License:   198530
+  Operating System: Darwin 8.8.0 Darwin Kernel Version 8.8.0: Fri Sep  8 17:18:57 PDT 2006; root:xnu-792.12.6.obj~1/RELEASE_PPC Power Macintosh
+  Window System:    The XFree86 Project, Inc (40400000), display :0.0
+  Current Visual:   0x22 (class 4, depth 24)
+  Virtual Machine:  Java 1.5.0_06 with "Apple Computer, Inc." Java HotSpot(TM) Client VM mixed mode, sharing
+  Default Charset:  ISO-8859-1
+
+  r0 = 05d01fa0   r8 = f0ffbfa0  r16 = f0ffcf18  r24 = f0ffc658
+  r1 = f0ffbf00   r9 = 0000000c  r17 = 00000000  r25 = f0ffcc80
+  r2 = a07ba274  r10 = 00000000  r18 = 05f544a0  r26 = 00000001
+  r3 = 00000000  r11 = 569f8e04  r19 = 00000000  r27 = 06809600
+  r4 = 569f92d0  r12 = 907ce94c  r20 = 00000002  r28 = 569f92d0
+  r5 = 00000587  r13 = 00000002  r21 = 00000000  r29 = f0ffc110
+  r6 = 9070e1a4  r14 = 00000001  r22 = f0ffcc00  r30 = 00000000
+  r7 = 04270a80  r15 = 00000000  r23 = f0ffd33c  r31 = 907ce954
+  cr = 88244244   lr = 907ce954  xer = 00000004  ctr = 907ce94c
+  vrsave = 00000000
+Stack Trace:
+  [0] CoreFoundation:CFDictionaryGetValue~ + 56 bytes
+  [1] Screen.mexmac:PsychGetScreenSize~ + 152 bytes
+  [2] Screen.mexmac:PsychGetScreenRect~ + 56 bytes
+  [3] Screen.mexmac:SCREENRect~ + 276 bytes
+  [4] Screen.mexmac:mexFunction~ + 1924 bytes
+  [5] libmex.dylib:mexRunMexFile + 100 bytes
+  [6] libmex.dylib:Mfh_mex::runMexFileWithSignalProtection(int, mxArray_tag**, int, mxArray_tag**) + 100 bytes
+  [7] libmex.dylib:Mfh_mex::dispatch_file(int, mxArray_tag**, int, mxArray_tag**) + 232 bytes
+  [8] libmwm_dispatcher.dylib:Mfh_file::dispatch_fh(int, mxArray_tag**, int, mxArray_tag**) + 252 bytes
+  [9] libmwm_interpreter.dylib:__stub_getrealaddr + 168972 bytes
+  [10] libmwm_interpreter.dylib:ResolverFunctionDesc::CallFunction(int, mxArray_tag**, int, mxArray_tag**) + 184 bytes
+  [11] libmwm_interpreter.dylib:Resolver::CallMFunction(int, int, _m_operand*, m_operand_storage*, int, _m_operand*, m_operand_storage*, int*) + 964 bytes
+  [12] libmwm_interpreter.dylib:inResolveMFunctionCall(_m_function_desc*, int, int, _m_operand*, m_operand_storage*, int, _m_operand*, m_operand_storage*, int*, inMarshalType*, int, mpsTypeSequenceNlhs const*) + 172 bytes
+  [13] libmwm_interpreter.dylib:accelMFunctionCall(_accelOp*, _accelOp**, int*, inMarshalType*, void*) + 188 bytes
+  [14] libmwm_interpreter.dylib:accelImpl::Exec() + 232 bytes
+  [15] libmwm_interpreter.dylib:accelCode::Call(inMarshalType*, int*) const + 64 bytes
+  [16] libmwm_interpreter.dylib:inExecuteHotSegment(_inJitAccelInfo*, opcodes*, int*, int*) + 3252 bytes
+  [17] libmwm_interpreter.dylib:inExecuteMFunctionOrScript(Mfh_mp*, bool) + 544 bytes
+  [18] libmwm_interpreter.dylib:inWordsj + 420 bytes
+  [19] libmwm_dispatcher.dylib:Mfh_file::dispatch_fh(int, mxArray_tag**, int, mxArray_tag**) + 252 bytes
+  [20] libmwm_interpreter.dylib:__stub_getrealaddr + 168972 bytes
+  [21] libmwm_interpreter.dylib:ResolverFunctionDesc::CallFunction(int, mxArray_tag**, int, mxArray_tag**) + 184 bytes
+  [22] libmwm_interpreter.dylib:Resolver::CallMFunction(int, int, _m_operand*, m_operand_storage*, int, _m_operand*, m_operand_storage*, int*) + 964 bytes
+  [23] libmwm_interpreter.dylib:inResolveMFunctionCall(_m_function_desc*, int, int, _m_operand*, m_operand_storage*, int, _m_operand*, m_operand_storage*, int*, inMarshalType*, int, mpsTypeSequenceNlhs const*) + 172 bytes
+  [24] libmwm_interpreter.dylib:accelMFunctionCall(_accelOp*, _accelOp**, int*, inMarshalType*, void*) + 188 bytes
+  [25] libmwm_interpreter.dylib:accelImpl::Exec() + 232 bytes
+  [26] libmwm_interpreter.dylib:accelCode::Call(inMarshalType*, int*) const + 64 bytes
+  [27] libmwm_interpreter.dylib:inExecuteHotSegment(_inJitAccelInfo*, opcodes*, int*, int*) + 3252 bytes
+  [28] libmwm_interpreter.dylib:inInterp(inDebugCheck, int, int, opcodes, inPcodeNest_tag volatile*, int*) + 440 bytes
+  [29] libmwm_interpreter.dylib:__stub_getrealaddr + 183832 bytes
+  [30] libmwm_interpreter.dylib:inInterPcodeSJ(inDebugCheck, int, int, opcodes, inPcodeNest_tag*, int*) + 288 bytes
+  [31] libmwm_interpreter.dylib:inExecuteMFunctionOrScript(Mfh_mp*, bool) + 844 bytes
+  [32] libmwm_interpreter.dylib:inWordsj + 420 bytes
+  [33] libmwm_dispatcher.dylib:Mfh_file::dispatch_fh(int, mxArray_tag**, int, mxArray_tag**) + 252 bytes
+  [34] libmwm_interpreter.dylib:inDispatchWithDebug + 336 bytes
+  [35] libmwm_interpreter.dylib:inDispatchFromStack + 980 bytes
+  [36] libmwm_interpreter.dylib:inDispatchCall(char const*, int, int, int, int*, int*) + 212 bytes
+  [37] libmwm_interpreter.dylib:inInterp(inDebugCheck, int, int, opcodes, inPcodeNest_tag volatile*, int*) + 5580 bytes
+  [38] libmwm_interpreter.dylib:__stub_getrealaddr + 183832 bytes
+  [39] libmwm_interpreter.dylib:inInterPcodeSJ(inDebugCheck, int, int, opcodes, inPcodeNest_tag*, int*) + 288 bytes
+  [40] libmwm_interpreter.dylib:inInterPcode + 84 bytes
+  [41] libmwm_interpreter.dylib:inEvalStringWithIsVarFcn(_memory_context*, char const*, EvalType, int, mxArray_tag**, inDebugCheck, _pcodeheader*, int*, bool (*)(void*, char const*), void*) + 2680 bytes
+  [42] libmwm_interpreter.dylib:inEvalCmdWithLocalReturnandtype(char const*, int*, inDebugCheck) + 112 bytes
+  [43] libmwbridge.dylib:ThrowSignal(char const*) + 72 bytes
+  [44] libmwbridge.dylib:mnParser + 500 bytes
+  [45] libmwmcr.dylib:mcrInstance::mnParser() + 36 bytes
+  [46] MATLAB:find_atexit_10_3 + 4 bytes
+  [47] libmwmcr.dylib:runMcrMain(void*) + 48 bytes
+  [48] libSystem.B.dylib:thread_create_running~ + 484 bytes
+
+This error was detected while a MEX-file was running. If the MEX-file
+is not an official MathWorks function, please examine its source code
+for errors. Please consult the External Interfaces Guide for information
+on debugging MEX-files.
+
+If it is an official MathWorks function, please
+follow these steps to report this problem to The MathWorks so we
+have the best chance of correcting it:
+
+The next time MATLAB is launched under typical usage, a dialog box will
+open to help you send the error log to The MathWorks. Alternatively, you
+can send an e-mail to segv@mathworks.com with the following file attached:
+    /Users/frans/matlab_crash_dump.4668
+
+If the problem is reproducible, please submit a Service Request via:
+    http://www.mathworks.com/support/contact_us/ts/help_request_1.html
+
+A technical support engineer might contact you with further information.
+
+Thank you for your help. Save your workspace and restart MATLAB.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,91,1">presentation at 91</a>
+    [h v]=WindowSize(screenNumber);
+
+clear all
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+??? Cell contents reference from a non-cell array object.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,370,1">presentation at 370</a>
+    psychrethrow(psychlasterror);
+
+Presentation('dummy', 1, 'test')
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+??? Cell contents reference from a non-cell array object.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,370,1">presentation at 370</a>
+    psychrethrow(psychlasterror);
+
+presentation
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+Warning: Could not find an exact (case-sensitive) match for 'Getsecs'.
+/Users/frans/Development/ptb3/trunk/Psychtoolbox/PsychBasic/GetSecs.mexmac is a case-insensitive match and will be used instead.
+You can improve the performance of your code by using exact
+name matches and we therefore recommend that you update your
+usage accordingly. Alternatively, you can disable this warning using
+warning('off','MATLAB:dispatcher:InexactMatch').
+> In <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,192,1">presentation at 192</a>
+
+ans =
+
+Movie
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+ans =
+
+Fixation
+
+Trigger received
+??? Undefined function or variable 'fixPtInBetweenMovies'.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,370,1">presentation at 370</a>
+    psychrethrow(psychlasterror);
+
+presentation
+Subject name ('name')? tt
+??? Error using ==> input
+Undefined function or variable 'tt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+ans =
+
+Movie
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+ans =
+
+Fixation
+
+Trigger received
+
+ans =
+
+Movie
+
+Trigger received
+
+ans =
+
+Fixation
+
+Trigger received
+Error in function CloseMovie: 	Usage error
+Invalid moviehandle provided. No movie associated with this handle !!!
+??? Usage:
+
+Screen('CloseMovie', moviePtr);
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,384,1">presentation at 384</a>
+    psychrethrow(psychlasterror);
+
+presentation
+Subject name ('name')? tttttt
+??? Error using ==> input
+Undefined function or variable 'tttttt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+ans =
+
+Movie
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Error in function DrawTexture: 	Invalid Window Index
+??? Usage:
+
+Screen('DrawTexture', windowPointer, texturePointer [,sourceRect] [,destinationRect] [,rotationAngle] [, filterMode] [, globalAlpha]);
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,390,1">presentation at 390</a>
+    psychrethrow(psychlasterror);
+
+presentation
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+ans =
+
+Movie
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Error in function DrawTexture: 	Invalid Window Index
+??? Usage:
+
+Screen('DrawTexture', windowPointer, texturePointer [,sourceRect] [,destinationRect] [,rotationAngle] [, filterMode] [, globalAlpha]);
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,323,1">presentation at 323</a>
+                Screen('DrawTexture', window, tex);
+
+presentation
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? Presentation('dummy', 1, 'test')
+??? Error using ==> presentation
+Too many output arguments.
+
+Subject name ('name')? Presentation('dummy', 1, 'test')
+??? Error using ==> presentation
+Too many output arguments.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+ans =
+
+Movie
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+ans =
+
+Fixation
+
+Trigger received
+
+ans =
+
+Movie
+
+Trigger received
+Error in function GetMovieImage: 	Usage error
+Invalid moviehandle provided. No movie associated with this handle.
+??? Usage:
+
+[ texturePtr [timeindex]]=Screen('GetMovieImage', windowPtr, moviePtr, [waitForImage=1], [fortimeindex]);
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,254,1">presentation at 254</a>
+                    [tex pts] = Screen('GetMovieImage', window, movie, 1);
+
+presentation
+Subject name ('name')? ttt
+??? Error using ==> input
+Undefined function or variable 'ttt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+ans =
+
+Movie
+
+Trial 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+ans =
+
+Fixation
+
+
+ans =
+
+Movie
+
+Trial 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_neutral.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+ans =
+
+Fixation
+
+
+ans =
+
+Image
+
+
+ans =
+
+Fixation
+
+
+ans =
+
+Image
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+       EVENTDUR: [8x1 double]
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+ans =
+
+Movie
+
+Event 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+??? Undefined function or variable 'responseEnd'.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,246,1">presentation at 246</a>
+        while GetSecs<responseEnd
+
+presentation
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+       EVENTDUR: [8x1 double]
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+ans =
+
+Movie
+
+Event 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+ans =
+
+Fixation
+
+
+ans =
+
+Movie
+
+Event 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_neutral.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+ans =
+
+Fixation
+
+
+ans =
+
+Image
+
+
+ans =
+
+Fixation
+
+
+ans =
+
+Image
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? 
+Experiment stopped
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+       EVENTDUR: [8x1 double]
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+ans =
+
+Movie
+
+Event 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+??? Undefined function or variable "stimulusOn".
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,279,1">presentation at 279</a>
+            if stimulusOn==1
+
+presentation
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {8x1 cell}
+       STIMULUS: {8x1 cell}
+        STIMDIR: {8x1 cell}
+       EVENTDUR: [8x1 double]
+        STIMDUR: [8x1 double]
+    INSTRUCTION: {8x1 cell}
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+ans =
+
+Movie
+
+Event 2, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+stimulusOnsetTime =
+
+   5.7235e+05
+
+
+actStimDur =
+
+     0
+
+
+ans =
+
+Fixation
+
+Trigger received
+
+ans =
+
+Movie
+
+Event 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_neutral.avi  , Duration: 3.000000 secs, 25.000000 fps
+
+ans =
+
+Fixation
+
+Trigger received
+
+ans =
+
+Image
+
+Trigger received
+
+ans =
+
+Fixation
+
+Trigger received
+
+ans =
+
+Image
+
+Trigger received
+The experiment has been completed, thanks for participating!
+Subject name ('name')? tttttt
+??? Error using ==> input
+Undefined function or variable 'tttttt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+
+ans =
+
+WaitForScanner
+
+Trigger received
+
+stimulusOnsetTime =
+
+   5.7339e+05
+
+
+actStimDur =
+
+     0
+
+
+ans =
+
+Movie
+
+
+ans =
+
+Fixation
+
+
+ans =
+
+Movie
+
+
+ans =
+
+Fixation
+
+
+ans =
+
+Image
+
+
+ans =
+
+Fixation
+
+
+ans =
+
+Image
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+Trigger received
+
+stimulusOnsetTime =
+
+   5.7405e+05
+
+
+actStimDur =
+
+     0
+
+Upcoming event: Movie
+Upcoming event: Fixation
+Upcoming event: Movie
+Upcoming event: Fixation
+Upcoming event: Image
+Upcoming event: Fixation
+Upcoming event: Image
+The experiment has been completed, thanks for participating!
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+Trigger received
+
+stimulusOnsetTime =
+
+   5.7414e+05
+
+Upcoming event: Movie
+Upcoming event: Fixation
+Upcoming event: Movie
+Upcoming event: Fixation
+Upcoming event: Image
+Upcoming event: Fixation
+Upcoming event: Image
+The experiment has been completed, thanks for participating!
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+
+stimPrepReady =
+
+     0
+
+preploop
+preploop
+Trigger received
+
+stimulusOnsetTime =
+
+   5.7422e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     1
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     1
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     1
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     1
+
+Upcoming event: Image
+
+stimPrepReady =
+
+     1
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     1
+
+Upcoming event: Image
+
+stimPrepReady =
+
+     1
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+
+stimPrepReady =
+
+     0
+
+<a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,181,1">181 </a>    while stimPrepReady==0
+dbcont
+preploop
+dbcont
+preploop
+dbcont
+Trigger received
+
+stimulusOnsetTime =
+
+   5.7441e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     1
+
+dbcont
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     1
+
+dbcont
+Upcoming event: Movie
+
+stimPrepReady =
+
+     1
+
+dbcont
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     1
+
+dbcont
+Upcoming event: Image
+
+stimPrepReady =
+
+     1
+
+dbcont
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     1
+
+dbcont
+Upcoming event: Image
+
+stimPrepReady =
+
+     1
+
+dbcont
+The experiment has been completed, thanks for participating!
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+
+stimPrepReady =
+
+     0
+
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7457e+05
+
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+Upcoming event: Movie
+
+stimPrepReady =
+
+     1
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     1
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     1
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     1
+
+Upcoming event: Image
+
+stimPrepReady =
+
+     1
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     1
+
+Upcoming event: Image
+
+stimPrepReady =
+
+     1
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')? t
+??? Error using ==> input
+Undefined function or variable 't'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+
+stimPrepReady =
+
+     0
+
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7464e+05
+
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+Upcoming event: Movie
+
+stimPrepReady =
+
+     0
+
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7465e+05
+
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+resp and display loop
+Error in function PlayMovie: 	Usage error
+Invalid moviehandle provided. No movie associated with this handle !!!
+??? Usage:
+
+[droppedframes] = Screen('PlayMovie', moviePtr, rate, [loop], [soundvolume]);
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,272,1">presentation at 272</a>
+                Screen('PlayMovie', movie, rate, 0, 1.0);
+
+presentation
+Subject name ('name')? tt
+??? Error using ==> input
+Undefined function or variable 'tt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+
+stimPrepReady =
+
+     0
+
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7476e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     0
+
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7476e+05
+
+Error in function PlayMovie: 	Usage error
+Invalid moviehandle provided. No movie associated with this handle !!!
+??? Usage:
+
+[droppedframes] = Screen('PlayMovie', moviePtr, rate, [loop], [soundvolume]);
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,272,1">presentation at 272</a>
+                Screen('PlayMovie', movie, rate, 0, 1.0);
+
+presentation
+Subject name ('name')? tt
+??? Error using ==> input
+Undefined function or variable 'tt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+
+stimPrepReady =
+
+     0
+
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7497e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     0
+
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7498e+05
+
+
+actStimDur =
+
+    2.9738
+
+Error in function CloseMovie: 	Usage error
+Invalid moviehandle provided. No movie associated with this handle !!!
+??? Usage:
+
+Screen('CloseMovie', moviePtr);
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,318,1">presentation at 318</a>
+                Screen('CloseMovie', movie);
+
+presentation
+Subject name ('name')? tt
+??? Error using ==> input
+Undefined function or variable 'tt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+
+stimPrepReady =
+
+     0
+
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7508e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     0
+
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7509e+05
+
+
+actStimDur =
+
+    2.9745
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7510e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     0
+
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_neutral.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7511e+05
+
+
+actStimDur =
+
+    3.0080
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7512e+05
+
+Upcoming event: Image
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7513e+05
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7515e+05
+
+Upcoming event: Image
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7516e+05
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')? tttttttt
+??? Error using ==> input
+Undefined function or variable 'tttttttt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+
+stimPrepReady =
+
+     0
+
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7546e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     0
+
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7547e+05
+
+
+actStimDur =
+
+    2.9745
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7547e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     0
+
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_neutral.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7548e+05
+
+
+actStimDur =
+
+    3.0081
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7549e+05
+
+Upcoming event: Image
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7550e+05
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7551e+05
+
+Upcoming event: Image
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7552e+05
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')? ttttttttt
+??? Error using ==> input
+Undefined function or variable 'ttttttttt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+
+stimPrepReady =
+
+     0
+
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7561e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     0
+
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7563e+05
+
+
+actStimDur =
+
+    2.9240
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7563e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     0
+
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7564e+05
+
+
+actStimDur =
+
+    2.9576
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7565e+05
+
+Upcoming event: Image
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7566e+05
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7567e+05
+
+Upcoming event: Image
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7567e+05
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')? ttttttttt
+??? Error using ==> input
+Undefined function or variable 'ttttttttt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+
+stimPrepReady =
+
+     0
+
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7579e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     0
+
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+User requested break
+Please contact the experiment leader immediately, thanks!
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+
+stimPrepReady =
+
+     0
+
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7636e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     0
+
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7637e+05
+
+
+actStimDur =
+
+    2.9744
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7638e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     0
+
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7639e+05
+
+
+actStimDur =
+
+    2.9738
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7639e+05
+
+Upcoming event: Image
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+??? Undefined function or variable "stimEnd".
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,310,1">presentation at 310</a>
+        if 1==strcmp( par.EVENTTYPE{event}, 'Image') && GetSecs>stimEnd
+
+presentation
+Subject name ('name')? tttttt
+??? Error using ==> input
+Undefined function or variable 'tttttt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+
+stimPrepReady =
+
+     0
+
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7647e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     0
+
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7648e+05
+
+
+actStimDur =
+
+    2.9744
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7649e+05
+
+Upcoming event: Movie
+
+stimPrepReady =
+
+     0
+
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7650e+05
+
+
+actStimDur =
+
+    3.0081
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7650e+05
+
+Upcoming event: Image
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7651e+05
+
+
+actStimDur =
+
+    0.5203
+
+Upcoming event: Fixation
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7652e+05
+
+Upcoming event: Image
+
+stimPrepReady =
+
+     0
+
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   5.7653e+05
+
+
+actStimDur =
+
+    0.5203
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+Trigger received
+Warning: Could not find an exact (case-sensitive) match for 'Getsecs'.
+/Users/frans/Development/ptb3/trunk/Psychtoolbox/PsychBasic/GetSecs.mexmac is a case-insensitive match and will be used instead.
+You can improve the performance of your code by using exact
+name matches and we therefore recommend that you update your
+usage accordingly. Alternatively, you can disable this warning using
+warning('off','MATLAB:dispatcher:InexactMatch').
+> In <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/presentation.m,257,1">presentation at 257</a>
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0720e+05
+
+Upcoming event: Movie
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0721e+05
+
+
+actStimDur =
+
+    2.8898
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0722e+05
+
+Upcoming event: Movie
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0722e+05
+
+
+actStimDur =
+
+    2.9576
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0723e+05
+
+Upcoming event: Image
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0724e+05
+
+
+actStimDur =
+
+    0.5207
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0725e+05
+
+Upcoming event: Image
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0725e+05
+
+
+actStimDur =
+
+    0.5209
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')? tttttttttt
+??? Error using ==> input
+Undefined function or variable 'tttttttttt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0764e+05
+
+Upcoming event: Movie
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0765e+05
+
+
+actStimDur =
+
+    2.9240
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0765e+05
+
+Upcoming event: Movie
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0766e+05
+
+
+actStimDur =
+
+    2.9912
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0767e+05
+
+Upcoming event: Image
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0768e+05
+
+
+actStimDur =
+
+    0.5215
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0769e+05
+
+Upcoming event: Image
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0770e+05
+
+
+actStimDur =
+
+    0.5546
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+User requested break
+User requested break
+Please contact the experiment leader immediately, thanks!
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+User requested break
+User requested break
+Please contact the experiment leader immediately, thanks!
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0846e+05
+
+Upcoming event: Movie
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0847e+05
+
+
+actStimDur =
+
+    2.8904
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0849e+05
+
+Upcoming event: Movie
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0849e+05
+
+
+actStimDur =
+
+    2.8562
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0850e+05
+
+Upcoming event: Image
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0851e+05
+
+
+actStimDur =
+
+    0.5211
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0851e+05
+
+Upcoming event: Image
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0852e+05
+
+
+actStimDur =
+
+    0.5204
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')? ttttttttttttttttt
+??? Error using ==> input
+Undefined function or variable 'ttttttttttttttttt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0861e+05
+
+Upcoming event: Movie
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0862e+05
+
+
+actStimDur =
+
+    2.9570
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0864e+05
+
+Upcoming event: Movie
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0864e+05
+
+
+actStimDur =
+
+    2.9402
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0865e+05
+
+Upcoming event: Image
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0866e+05
+
+
+actStimDur =
+
+    0.5551
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0867e+05
+
+Upcoming event: Image
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0868e+05
+
+
+actStimDur =
+
+    0.5208
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0921e+05
+
+Upcoming event: Movie
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+User requested break
+User requested break
+Please contact the experiment leader immediately, thanks!
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0925e+05
+
+Upcoming event: Movie
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0927e+05
+
+
+actStimDur =
+
+    2.7554
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0928e+05
+
+Upcoming event: Movie
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0928e+05
+
+
+actStimDur =
+
+    2.9235
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0929e+05
+
+Upcoming event: Image
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0930e+05
+
+
+actStimDur =
+
+    0.5372
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0931e+05
+
+Upcoming event: Image
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0932e+05
+
+
+actStimDur =
+
+    0.5378
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')?  ttttttttt
+??? Error using ==> input
+Undefined function or variable 'ttttttttt'.
+
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0983e+05
+
+Upcoming event: Movie
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0984e+05
+
+
+actStimDur =
+
+    2.8736
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0984e+05
+
+Upcoming event: Movie
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0985e+05
+
+
+actStimDur =
+
+    3.0080
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0986e+05
+
+Upcoming event: Image
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0987e+05
+
+
+actStimDur =
+
+    0.5210
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0987e+05
+
+Upcoming event: Image
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.0988e+05
+
+
+actStimDur =
+
+    0.5215
+
+The experiment has been completed, thanks for participating!
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.1034e+05
+
+Upcoming event: Movie
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.1034e+05
+
+
+actStimDur =
+
+    2.9235
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.1035e+05
+
+Upcoming event: Movie
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.1036e+05
+
+
+actStimDur =
+
+    2.9745
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.1037e+05
+
+Upcoming event: Image
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.1038e+05
+
+
+actStimDur =
+
+    0.5210
+
+Upcoming event: Fixation
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.1038e+05
+
+Upcoming event: Image
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   6.1039e+05
+
+
+actStimDur =
+
+    0.5041
+
+The experiment has been completed, thanks for participating!

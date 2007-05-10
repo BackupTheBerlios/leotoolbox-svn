@@ -46,6 +46,8 @@ end
 t1=GetSecs;
 mousedown = 0;
 nearest_slider = -1;
+origin=a; % -50 - +50
+% origin=minSlider; % 0-100
 first=1;
 while 1
     WaitSecs(.01);
@@ -57,7 +59,7 @@ while 1
     % if mouse moved
     if omx~=mx || omy~=my
         % rescale
-        mxs=round(a+((mx-a)*(100-2*insetSlider)/100));
+        mxs=round(origin+((mx-origin)*(100-2*insetSlider)/100));
 
         % check for each slider
         for ind=1:nJudg
@@ -87,7 +89,7 @@ while 1
     if any(buttons)
         mousedown = 1;
         rt=GetSecs-t1;
-        r=(mxs-a)/(maxSlider-minSlider)*100;
+        r=(mxs-origin)/(maxSlider-minSlider)*100;
         nearest_slider = getNearest(my,svs);
     else
         if mousedown==1 % fix rating on release
