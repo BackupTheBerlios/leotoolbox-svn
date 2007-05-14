@@ -91,11 +91,17 @@ gray=GrayIndex(screenNumber);
 Screen(window,'BlendFunction',GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); % enable alpha blending
 Screen('FillRect',window, gray);
 Screen('Flip', window);
+Screen('FillRect',window, gray);
+Screen('Flip', window,[],2);
 monitorRefreshInterval =Screen('GetFlipInterval', window);
 frameRate=Screen('FrameRate',screenNumber);
 if(frameRate==0)  %if MacOSX does not know the frame rate the 'FrameRate' will return 0.
     frameRate=60; % good assumption for most labtopss/LCD screens
 end
+
+Screen('TextFont',window, 'Arial');
+Screen('TextSize',window, 30);
+Screen('TextStyle', window, 1);
 
 
 
@@ -119,11 +125,11 @@ if videoRecMode>0
     end
     % log each frame?
     VideoRecorder( logVideoFrameMode );
-    VideoRecorder( 'DisplayOff' );
+    VideoRecorder( 'DisplayOn' );
 
     VideoRecorder('message', ['Subject: ' subject ] );
     VideoRecorder('message', ['Session: ' num2str(session) ] );
-%     VideoRecorder('message', ['Par file: ' myparfile ] );
+    %     VideoRecorder('message', ['Par file: ' myparfile ] );
 end
 
 
@@ -149,11 +155,13 @@ op=Priority(np);
 WaitSecs(1);
 
 
-goOn=WaitForScanner(window, keyNames);
+% goOn=WaitForScanner(window, keyNames);
 VideoRecorder('message', ['Wait for scanner'] );
 VideoRecorder('message', sprintf('MovieTriggerTime\tExpTriggerTime\tTriggerInterval'));
 
-
+delta=0;
+frameCount=1;
+pts=0;
 TR=2.5;
 prevTriggerTime=-1;
 nextTriggerDelay=TR-0.5;
@@ -191,25 +199,36 @@ while 1
 
         tt=triggerTime-movieRecStartTime; % triggertime relative to moviestart
         VideoRecorder('message', sprintf('%.2f\t%.2f\t%.2f\t', tt, expTT, deltaTT ));
-        
-        
-        
+
+        Screen('FillRect', window, gray, [0 0 h 40]);
+        DrawFormattedTextOnPoint(window, ['Tt: ' sprintf('%.2f', tt)], 400, 20, white, 'center', 'center');
+
+        doFlip=1;
     end
 
-%     [status tex ts]=VideoRecorder('getframe');
-    [status tex ts]=VideoRecorder('gettimestampnoblock');
-    
+    [status tex ts]=VideoRecorder('getframe');
+    %     [status tex ts]=VideoRecorder('gettimestampnoblock');
+
     if tex>0
-        Screen('DrawTexture', window, tex, [], [], 0, 0);
-        Screen('Close', tex);
-        
-        DrawFormattedTextOnPoint(window, ['Trigger: ' sprintf('%.2f', )], 400, 20, WhiteIndex(window), 'center', 'center');
-
-        Screen('Flip', window, [], 2); 
+        frameCount=frameCount+1;
+        %         Screen('DrawTexture', window, tex, [], [], 0, 0);
+        %         Screen('Close', tex);
+        %         tex=0;
+        Screen('FillRect', window, gray, [0 v-50 h v]);
+        if frameCount>1
+          delta=ts-pts;
+            DrawFormattedTextOnPoint(window, ['Dt: ' sprintf('%d', round(delta*1000))], 400, v-40, white, 'center', 'center');
+        pts=ts;
+            doFlip=1;
+        end
     end
-    
-    
-    
+    if doFlip==1
+        Screen('Flip', window, [], 2);
+        doFlip=0;
+    end
+
+
+
     WaitSecs(waitTime);
 end
 
