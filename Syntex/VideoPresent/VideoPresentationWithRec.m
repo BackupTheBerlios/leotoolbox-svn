@@ -128,7 +128,7 @@ end
     % here we specify a number of important experimental variables
     % additional to those in the parameter file, but that are not
     % likely to change with every trial
-    itiTime=100; % minimal inter trial interval, in msecs
+    itiTime=1000; % minimal inter trial interval, in msecs
     fixPtSize=1; % fixation point size, in percentage of screen size
     fixPtCol=white;
     % here we specify our response keys
@@ -265,7 +265,7 @@ end
 
         if trial==1 || 0==strcmp(par.INSTRUCTION{trial}, 'No')
             currInstr=par.INSTRUCTION{trial};
-            goOn=showInstruction(window, currInstr, keyNames);
+            goOn=showInstruction(window, currInstr, keyNames, (videoRecMode==1));
             if goOn==0
                 break;
             end
@@ -292,6 +292,10 @@ end
         % passed before starting the new trial by waiting until itiEnd
 
         while GetSecs<itiEnd || KbCheck
+            if videoRecMode>0
+                 [status vtx vts(dltc)]=VideoRecorder('gettimestampnoblock');
+  
+            end
             WaitSecs(0.01);
         end
 
@@ -334,10 +338,14 @@ end
         if eye_used == el.BINOCULAR; % if both eyes are tracked
             eye_used = el.LEFT_EYE; % use left eye
         end
+        
+        vts=zeros(10000,1);
+        vtsc=1;
 
         if videoRecMode>0
-            [status temp ts]=VideoRecorder('GetTimeStamp'); % this waits for a recorded frame, in principle the
+            [status temp vts(vtsc)]=VideoRecorder('GetTimeStamp'); % this waits for a recorded frame, in principle the
             %  movie will probably have started playing at the next frame
+            vtsc=vtsc+1;
         end
         % Start playback of stimulus movie. This will start
         % the realtime playback clock and playback of audio tracks, if any.
@@ -389,8 +397,9 @@ end
                 Screen('Close', tex);
             end
 
-%             VideoRecorder('gettimestamp');
-            VideoRecorder('gettimestampnoblock');
+%             status=VideoRecorder('gettimestamp');
+            [status vtx vts(vtsc)]=VideoRecorder('gettimestampnoblock');
+            vtsc=vtsc+1;
             
             % check state of keyboard
             [keyIsDown,secs,keyCode] = KbCheck;
@@ -416,11 +425,11 @@ end
             %
             % shorter for more frequent sampling of keys
             WaitSecs(0.001);
-
+            
         end
 
         % Done. Stop playback:
-        droppedcount = Screen('PlayMovie', movie, 0, 0, 0);
+        droppedcount = Screen('PlayMovie', movie, 0, 0, 0)
 
         %         Screen('PlayMovie', movie, 0);
         Screen('FillRect', window, gray);
@@ -445,10 +454,16 @@ end
 
         Screen('Close'); % this will close any textures used
 
+        
+        vts=vts(find(vts>0));
+        vts=diff(vts);
+        mi=min(vts)
+        ma=max(vts)
+        me=mean(vts)
 
         % get response from subject
         sliderInstr=currInstr;
-        [rating, rt, stop] = mult_SliderResponse(window,sliderTitles,sliderInstr);
+        [rating, rt, stop] = mult_SliderResponseVideo(window,sliderTitles,sliderInstr);
         Screen('FillRect', window, gray);
         vbl=Screen('Flip', window);
 
@@ -546,7 +561,7 @@ end
 % end
 % 
 
-function goOn=showInstruction(window, instr, keyNames)
+function goOn=showInstruction(window, instr, keyNames, videoRec)
 
 % show instruction on screen
 % keyNames is a structure containing relevant keys
@@ -594,6 +609,11 @@ while 1
         end
         break;
     end
+    
+    if videoRec==1
+        status=VideoRecorder('gettimestampnoblock');
+    end
+    
     WaitSecs(0.01);
 end
 

@@ -1932,3 +1932,211 @@ actStimDur =
 
 Please contact the experiment leader immediately, thanks!
 Receiving data file 'dummy1.edf'
+Eyelink: Opening Eyelink in DUMMY mode
+
+ans =
+
+     0
+
+Error in function OpenMovie: 	Usage error
+Couldn't load movie /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/LT/LT_neutral.avi! Quicktime error code -43 [File not found.]
+??? Usage:
+
+[ moviePtr [duration] [fps] [width] [height] [count]]=Screen('OpenMovie', windowPtr, moviefile [, async=0]);
+
+Error in ==> <a href="error:/Users/frans/Matlab/leotoolbox/Syntex/VideoPresent/VideoExp.m,478,1">VideoExp at 478</a>
+    psychrethrow(psychlasterror);
+
+ 
+
+
+VideoExp
+Subject name ('name')? VideoExp('dummy',1,'emo2')
+??? Error using ==> VideoExp
+Too many output arguments.
+
+Subject name ('name')? 
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+ans =
+
+     0
+
+Trial 1, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/male/LT/LT_neutral.avi  w: 720 h: 576, Duration: 3.000000 secs, 25.000000 fps
+Warning: Could not find an exact (case-sensitive) match for 'Getsecs'.
+/Users/frans/Matlab/Psychtoolbox/PsychBasic/GetSecs.mexmaci is a case-insensitive match and will be used instead.
+You can improve the performance of your code by using exact
+name matches and we therefore recommend that you update your
+usage accordingly. Alternatively, you can disable this warning using
+warning('off','MATLAB:dispatcher:InexactMatch').
+> In <a href="error:/Users/frans/Matlab/leotoolbox/Syntex/VideoPresent/VideoExp.m,303,1">VideoExp at 303</a>
+
+actStimDur =
+
+    3.0109
+
+??? Attempt to reference field of non-structure array.
+
+Error in ==> <a href="error:/Users/frans/Matlab/leotoolbox/Syntex/VideoPresent/VideoExp.m,478,1">VideoExp at 478</a>
+    psychrethrow(psychlasterror);
+
+VideoExp
+Subject name ('name')?  
+Experiment stopped
+Eyelink: Opening Eyelink in DUMMY mode
+
+ans =
+
+     0
+
+User requested break
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'
+Eyelink: Opening Eyelink in DUMMY mode
+
+ans =
+
+     0
+
+Trial 1, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/male/LT/LT_neutral.avi  w: 720 h: 576, Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    3.0109
+
+
+ans =
+
+     1
+
+Trial 2, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/male/MS/MS_blowing.avi  w: 720 h: 576, Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    3.0276
+
+
+ans =
+
+     1
+
+Trial 3, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/female/HV/HV_happy.avi  w: 720 h: 576, Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    3.0276
+
+
+ans =
+
+     1
+
+Trial 4, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/female/EB/EB_fear.avi  w: 720 h: 576, Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    3.0276
+
+
+ans =
+
+     1
+
+Trial 5, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/female/MST/MST_sad.avi  w: 720 h: 576, Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    3.0109
+
+
+ans =
+
+     1
+
+Trial 6, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/female/GN/GN_disgust.avi  w: 720 h: 576, Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    3.0275
+
+
+ans =
+
+     1
+
+Trial 7, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/female/AB/AB_surprise.avi  w: 720 h: 576, Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    3.0275
+
+
+ans =
+
+     1
+
+Trial 8, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/female/GN/GN_anger.avi  w: 720 h: 576, Duration: 2.920000 secs, 25.000000 fps
+
+actStimDur =
+
+    2.9444
+
+
+ans =
+
+     1
+
+Trial 9, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/male/LP/LP_happy.avi  w: 720 h: 576, Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    3.0275
+
+
+ans =
+
+     1
+
+Trial 10, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/female/GN/GN_neutral.avi  w: 720 h: 576, Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    3.0109
+
+
+ans =
+
+     1
+
+Trial 11, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/male/LT/LT_blowing.avi  w: 720 h: 576, Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    3.0276
+
+
+ans =
+
+     1
+
+Trial 12, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/male/TR/TR_anger.avi  w: 720 h: 576, Duration: 3.000000 secs, 25.000000 fps
+
+actStimDur =
+
+    3.0276
+
+
+ans =
+
+     1
+
+Trial 13, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/male/LP/LP_disgust.avi  w: 720 h: 576, Duration: 3.000000 secs, 25.000000 fps
+User requested break
+
+actStimDur =
+
+    2.5784
+
+Please contact the experiment leader immediately, thanks!
+Receiving data file 'dummy1.edf'

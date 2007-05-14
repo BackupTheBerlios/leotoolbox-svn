@@ -49,8 +49,15 @@ switch(lower(commandstr))
             vr.dummymode=0;
         end
         % set some defaults
-        vr.imwidth=640;
-        vr.imheigth=480;
+        if 1
+            vr.imwidth=640;
+            vr.imheigth=480;
+        else
+            vr.imwidth=320;
+            vr.imheigth=240;
+        end
+        vr.captureArea=[0 0  vr.imwidth vr.imheigth];
+
         vr.recordingOn=0;
         vr.displayOn=0; % If non-zero, video will be shown onscreen during recording (default: Show it).
         vr.logFramesOn=0;
@@ -119,7 +126,8 @@ switch(lower(commandstr))
 
         % Capture video + audio to disk:
         if vr.dummymode==0
-            vr.grabber = Screen('OpenVideoCapture', vr.win, 0, [0 0 vr.imwidth vr.imheigth],[] ,[], [] ,[vr.moviefullname vr.codec vr.extension], vr.withsound);
+            %             vr.grabber = Screen('OpenVideoCapture', vr.win, 0, [0 0 vr.imwidth vr.imheigth],[] ,[], [] ,[vr.moviefullname vr.codec vr.extension], vr.withsound);
+            vr.grabber = Screen('OpenVideoCapture', vr.win, 0, vr.captureArea,[] ,[], [] ,[vr.moviefullname vr.codec vr.extension], vr.withsound);
             %             vr.grabber = Screen('OpenVideoCapture', vr.win, [], [0 0 vr.imwidth vr.imheigth],[] ,[], [] ,[vr.moviefullname vr.codec vr.extension], vr.withsound);
             if vr.grabber<0
                 disp([mfilename ': No grabber available.']);
@@ -146,16 +154,16 @@ switch(lower(commandstr))
             error([mfilename ': error, unable to open movie log file: ' vr.logfilename] );
         end
         % print movie name
-        disp([mfilename ': Movie name: ' vr.moviefullname]);
+        disp([mfilename ': Movie name: ' vr.moviefullname vr.extension]);
         disp([mfilename ': Logfilename: ' vr.logfilename]);
         fprintf(vr.logfp, 'Movie name: %s\n', vr.moviefullname);
         fprintf(vr.logfp, 'Logfilename: %s\n', vr.logfilename);
 
         if vr.dummymode==1
             fprintf(vr.logfp, [ mfilename ': initialized in dummymode.\n']);
-            disp([ mfilename ': initialized in dummymode.']);
+            disp([ mfilename ': initialized in dummymode.\n']);
         else
-            fprintf(vr.logfp, [ mfilename ': initialized.']);
+            fprintf(vr.logfp, [ mfilename ': initialized.\n']);
             disp([ mfilename ': initialized.\n']);
         end
 
@@ -171,7 +179,7 @@ switch(lower(commandstr))
         % we could also get a new one here, but this may cause delays (up
         % to 50 ms, at 20 Hz recording speed
         VideoRecorder('gettimestampnoblock'); % this should update vr.ts if a new frame has become available
-%         ts
+        %         ts
         mtime=ctime-vr.movieStartTime; % message time
         if isfield(vr, 'logfp') && vr.logfp>0
             fprintf(vr.logfp, '%f MES %f %s\n', vr.ts, mtime, varargin{1});
@@ -190,13 +198,13 @@ switch(lower(commandstr))
             temp=[vr.moviefullname num2str(i)];
         end
         vr.moviefullname=temp;
-%         disp([mfilename ': Movie name: ' vr.moviefullname vr.extension]);
+        %         disp([mfilename ': Movie name: ' vr.moviefullname vr.extension]);
         %         DrawFormattedText(vr.win, ['Movie: ' moviefullname],[],80, white);
 
     case 'moviedir',
         vr.moviedir=varargin{1};
         makedir(vr.moviedir);
-%         disp([mfilename ': Movie dir: ' vr.moviedir]);
+        %         disp([mfilename ': Movie dir: ' vr.moviedir]);
 
         %         DrawFormattedText(vr.win, ['Moviedir: ' vr.moviedir],[],160, white);
 
@@ -228,7 +236,7 @@ switch(lower(commandstr))
             vr.ts=GetSecs;
             vr.nrdropped=0;
             % should we make a texture?
-%             disp('first dummy texture');
+            %             disp('first dummy texture');
             imdata=round(rand(vr.imheigth, vr.imwidth)*255);
             if vr.tex >0 % close existing texture
                 Screen('Close', vr.tex);
@@ -308,9 +316,9 @@ switch(lower(commandstr))
                 [vr.tex vr.ts vr.nrdropped]=Screen('GetCapturedImage', vr.win, vr.grabber, waitforimage, vr.tex);
             elseif waitforimage==1
                 % should we make a texture?
-%                 disp('dummy texture');
+                %                 disp('dummy texture');
 
-            imdata=round(rand(vr.imheigth, vr.imwidth)*255);
+                imdata=round(rand(vr.imheigth, vr.imwidth)*255);
                 if vr.tex >0 % close existing texture
                     Screen('Close', vr.tex);
                 end
@@ -336,7 +344,7 @@ switch(lower(commandstr))
                     vr.delta = (vr.ts - vr.oldts) * 1000;
                     vr.oldts = vr.ts;
                     vr.totcnt=vr.totcnt+vr.nrdropped;
-%                     disp([mfilename ': ' commandstr ': frame interval: ' num2str(vr.delta)]);
+                    %                     disp([mfilename ': ' commandstr ': frame interval: ' num2str(vr.delta)]);
                     %                     Screen('DrawText', vr.win, sprintf('%.4f', vr.delta), 0, 20, vr.textColour);
                     if 1==vr.logFramesOn
                         fprintf(vr.logfp, '%f FRM %d totcnt %d frame interval %f nrdropped %d\n', vr.ts, vr.count, vr.totcnt, vr.delta, vr.nrdropped);

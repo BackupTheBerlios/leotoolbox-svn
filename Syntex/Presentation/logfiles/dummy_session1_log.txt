@@ -1845,6 +1845,29 @@ Waiting for trigger
 Trigger received
 stop recording
 The experiment has been completed, thanks for participating!
+<<<<<<< .mine
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session14
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session14_log.txt
+VideoRecorder: initialized.\n
+start video recording
+Event 4, Movie: /Users/frans/Matlab/Charmaine/CvdGaag/male/FW/FW_surprise.avi  , Duration: 3.000000 secs, 25.000000 fps
+Movie dummy play duration: 0.102921
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!
+=======
 Error in function OpenVideoCapture: 	Usage error
 Couldn't connect to video capture device! Device offline or disconnected?
 ??? Usage:
@@ -1914,3 +1937,4 @@ Waiting for trigger
 Trigger received
 stop recording
 The experiment has been completed, thanks for participating!
+>>>>>>> .r43

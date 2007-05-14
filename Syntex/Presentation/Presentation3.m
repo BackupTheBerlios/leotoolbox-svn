@@ -206,6 +206,7 @@ try
 
     % set priority to highest possible
     np=MaxPriority(window);
+    np=4;
     oldPriority=Priority(np);
 
 

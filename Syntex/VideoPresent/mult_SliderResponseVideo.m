@@ -50,9 +50,10 @@ origin=a; % -50 - +50
 % origin=minSlider; % 0-100
 first=1;
 while 1
-    WaitSecs(.005);
+    WaitSecs(.002);
                 
-%     VideoRecorder('gettimestampnoblock');
+    status=VideoRecorder('gettimestampnoblock');
+%     status=VideoRecorder('gettimestamp');
 
     % get mouse buttons:
     % make sure the experiment screen contains the menu bar at the
