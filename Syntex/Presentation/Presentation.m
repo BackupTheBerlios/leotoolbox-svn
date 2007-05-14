@@ -146,7 +146,7 @@ if(frameRate==0)  %if MacOSX does not know the frame rate the 'FrameRate' will r
     frameRate=60; % good assumption for most labtopss/LCD screens
 end
 
-goOn=showInstruction(window, instr, keyNames);
+goOn=showInstruction(window, instruction, keyNames);
         if goOn==0
             display('User requested break');
             sca;

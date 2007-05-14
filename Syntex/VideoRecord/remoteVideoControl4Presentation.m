@@ -67,10 +67,10 @@ rightwardKey=KbName(keyNames.rightwardKey);
 
 
 % select which computer we want to control
-remoteVideoControl('recorder', recorder)
+% remoteVideoControl('recorder', recorder)
 
 % switch remote control on
-remoteVideoControl('switchon');
+% remoteVideoControl('switchon');
 
 WaitSecs(1);
 
@@ -78,28 +78,32 @@ WaitSecs(1);
 % we can create a new dir for each subject
 
 mvdir=[moviedir filesep subject]; % of course, this can be anything
-remoteVideoControl('moviedir', mvdir);
+% remoteVideoControl('moviedir', mvdir);
 
 % tell recorder to save to which movie file
 % each session can have its own movie file
 moviename=[subject '_session' num2str(session) '.mov' ]; % of course, this can be anything
-remoteVideoControl('moviename', moviename);
+% remoteVideoControl('moviename', moviename);
 
 
 disp('start recording');
-remoteVideoControl('startrecording');
+% remoteVideoControl('startrecording');
 
-remoteVideoControl('message', ['subject: ' subject ]);
-remoteVideoControl('message', ['session: ' num2str(session) ]);
+% remoteVideoControl('message', ['subject: ' subject ]);
+% remoteVideoControl('message', ['session: ' num2str(session) ]);
 
 np=MaxPriority(max(Screen('Screens')));
 op=Priority(np);
 
 WaitSecs(1);
 firstTT=-1;
+goOn=1;
 while 1
     disp(['Waiting for trigger']);
     goOn=WaitForTrigger(maxWait, keyNames);
+%     pause;
+        display('Trigger received');
+
     triggerTime=GetSecs;
     if firstTT<0
         firstTT=triggerTime;
@@ -107,7 +111,7 @@ while 1
     else
         deltaTT=triggerTime-firstTT;
     end
-    remoteVideoControl('message', ['trigger time: ' num2str(triggerTime) ' delta: ' num2str(deltaTT)]);
+%     remoteVideoControl('message', ['trigger time: ' num2str(triggerTime) ' delta: ' num2str(deltaTT)]);
     display('Trigger received');
 
     if goOn==0
@@ -116,10 +120,10 @@ while 1
     WaitSecs(waitTime);
 end
 
-remoteVideoControl('message', 'experiment end');
-
-disp('stop recording');
-remoteVideoControl('stoprecording');
+% remoteVideoControl('message', 'experiment end');
+% 
+% disp('stop recording');
+% remoteVideoControl('stoprecording');
 Priority(op);
 
 % WaitSecs(2);

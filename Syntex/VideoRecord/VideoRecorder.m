@@ -228,8 +228,8 @@ switch(lower(commandstr))
             vr.ts=GetSecs;
             vr.nrdropped=0;
             % should we make a texture?
-            disp('first dummy texture');
-            imdata=round(rand(vr.imwidth, vr.imheigth)*255);
+%             disp('first dummy texture');
+            imdata=round(rand(vr.imheigth, vr.imwidth)*255);
             if vr.tex >0 % close existing texture
                 Screen('Close', vr.tex);
             end
@@ -308,9 +308,9 @@ switch(lower(commandstr))
                 [vr.tex vr.ts vr.nrdropped]=Screen('GetCapturedImage', vr.win, vr.grabber, waitforimage, vr.tex);
             elseif waitforimage==1
                 % should we make a texture?
-                disp('dummy texture');
+%                 disp('dummy texture');
 
-                imdata=round(rand(vr.imwidth, vr.imheigth)*255);
+            imdata=round(rand(vr.imheigth, vr.imwidth)*255);
                 if vr.tex >0 % close existing texture
                     Screen('Close', vr.tex);
                 end
@@ -344,7 +344,7 @@ switch(lower(commandstr))
                 end
 
                 % Show it.
-                if vr.displayOn==1 % live display
+                if 0 & vr.displayOn==1 % live display
                     Screen('Flip', vr.win);
                 end
                 if 0

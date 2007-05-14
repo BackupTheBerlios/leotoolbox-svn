@@ -45,6 +45,8 @@ if status~=1
     return
 end
 
+rmv.logFramesOn=0;
+
 % open connection for remote control
 
 [status, rmv]=remoteVideo('open', rmv);
@@ -123,7 +125,7 @@ else
 end
 
 
-try
+% try
 
     screen=max(Screen('Screens'));
 
@@ -226,7 +228,8 @@ try
                     case 'start',
                         % start recording, grab first texture
                         % Capture video + audio to disk:
-                        grabber = Screen('OpenVideoCapture', win, 0, [0 0 320 240],[] ,[], [] ,[moviefullname codec], withsound);
+%                         grabber = Screen('OpenVideoCapture', win, 0, [0 0 320 240],[] ,[], [] ,[moviefullname codec], withsound);
+                        grabber = Screen('OpenVideoCapture', win, 0, [0 0 640 480],[] ,[], [] ,[moviefullname codec], withsound);
 %                         grabber = Screen('OpenVideoCapture', win, 0, [0 0 640 480],[] ,[], [] , moviefullname, withsound);
 %                         Screen('SetVideoCaptureParameter', grabber, 'printParameters'); % prints info to screen
 %                         brightness = Screen('SetVideoCaptureParameter', grabber, 'Brightness',383)
@@ -250,9 +253,9 @@ try
                         if tex>0
                             movieStartTime=GetSecs;
                             fprintf('%f MES start recording\n', pts );
-                            if 1==rmv.logFramesOn
+                            if 0 && 1==rmv.logFramesOn
 %                               fprintf('%f FRM %d delta %f nrdropped %d\n', pts, count, 0, nrdropped);
-                                fprintf('%f FRM %d totcnt %d delta %f nrdropped %d\n', pts, count, totcnt, delta, nrdropped);
+                                fprintf('%f FRM %d totcnt %d delta %f nrdropped %d\n', pts, count, totcnt, 0, nrdropped);
                             end
                         end
 
@@ -319,7 +322,7 @@ try
                     oldpts = pts;
                     totcnt=totcnt+nrdropped;
                     Screen('DrawText', win, sprintf('%.4f', delta), 0, 20, 255);
-                    if 1==rmv.logFramesOn
+                    if 00 && 1==rmv.logFramesOn
                         fprintf('%f FRM %d totcnt %d delta %f nrdropped %d\n', pts, count, totcnt, delta, nrdropped);
                     end
                 end;
@@ -343,8 +346,8 @@ try
     Priority(op);
     Screen('CloseAll');
     disp(['end ' mfilename]);
-catch
-    disp(['Some error in ' mfilename]);
-    Priority(0);
-    Screen('CloseAll');
-end;
+% catch
+%     disp(['Some error in ' mfilename]);
+%     Priority(0);
+%     Screen('CloseAll');
+% end;

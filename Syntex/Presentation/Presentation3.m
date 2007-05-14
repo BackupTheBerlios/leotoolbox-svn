@@ -18,6 +18,8 @@ function Presentation(subject, session, parfile)
 
 commandwindow;
 cd(FunctionFolder(mfilename));
+devices=GetKeyboardIndices;
+
 
 dummymode=1;
 TR=2.5;
@@ -32,7 +34,7 @@ rate=1;
 firstTriggerTime=-999999;
 
 % stuff for videorecording
-videoRecMode=1; % 0== rec off, 1==rec on, 2= dummymode
+videoRecMode=2; % 0== rec off, 1==rec on, 2= dummymode
 recmoviedir='movierecords';
 logVideoFrameMode='logFramesOff'; % 'logFramesOff;
 movieRecStartTime=0;
@@ -44,6 +46,11 @@ movieRecStartTime=0;
 oldVisualDebugLevel = Screen('Preference', 'VisualDebugLevel', 3);
 oldSuppressAllWarnings = Screen('Preference', 'SuppressAllWarnings', 1);
 Screen('Preference', 'SkipSyncTests', 1);
+
+if dummymode==0 && length(devices) < 2
+    warndlg('Only single keyboard found', 'No trigger device warning');
+end
+
 
 
 if ~exist('subject', 'var') || isempty(subject)
@@ -212,7 +219,7 @@ try
 
     % we'll first print some useful, non-trial specific information to the Eyelink file.
 
-    [tt goOn]=WaitForTrigger(triggerKey, quitKey, 0.1); % just so that we have used it
+    [tt goOn]=WaitForTrigger(devices,triggerKey, quitKey, 0.1); % just so that we have used it
     [mx, my, buttons]=GetMouse(window);
 
     [h v]=WindowSize(window);
@@ -357,7 +364,7 @@ try
         if waitForTrigger==1
             disp('Waiting for trigger');
             prevTriggerTime=triggerTime;
-            [triggerTime goOn]=WaitForTrigger(triggerKey, quitKey, maxWait);
+            [triggerTime goOn]=WaitForTrigger(devices, triggerKey, quitKey, maxWait);
             disp('Trigger received');
             if firstTriggerTime<0
                 firstTriggerTime=triggerTime;
@@ -641,7 +648,7 @@ Screen('Flip', window, [], 2);
 % Screen('Flip', window);
 
 
-function [tt goOn]=WaitForTrigger(triggerKey, quitKey, maxWait)
+function [tt goOn]=WaitForTrigger(devices, triggerKey, quitKey, maxWait)
 
 % wait for trigger from scanner
 % keyNames is a structure containing relevant keys
@@ -661,7 +668,7 @@ end
 endWait=GetSecs+maxWait;
 % wait for key press
 while GetSecs<endWait
-    [keyIsDown,tt,keyCode] = KbCheck;
+    [keyIsDown,tt,keyCode] = KbCheckAny(devices);
 
     % check if a key was pressed
     if keyIsDown==1

@@ -1845,3 +1845,72 @@ Waiting for trigger
 Trigger received
 stop recording
 The experiment has been completed, thanks for participating!
+Error in function OpenVideoCapture: 	Usage error
+Couldn't connect to video capture device! Device offline or disconnected?
+??? Usage:
+
+videoPtr = Screen('OpenVideoCapture', windowPtr [, deviceIndex] [,roirectangle] [, pixeldepth] [, numbuffers] [, allowfallback] [, targetmoviename] [, recordingflags]);
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/Presentation3.m,557,1">Presentation3 at 557</a>
+    psychrethrow(psychlasterror);
+
+Presentation3
+Subject name ('name')? 
+Experiment stopped
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session1
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session1_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+??? Input argument "maxWait" is undefined.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/Presentation3.m,557,1">Presentation3 at 557</a>
+    psychrethrow(psychlasterror);
+
+Presentation3
+Subject name ('name')?   
+Experiment stopped
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session11
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session11_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+Event 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_surprise.avi  , Duration: 3.000000 secs, 25.000000 fps
+Movie dummy play duration: 0.145319
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!
+Opening VideoRecorder in dummy mode.
+VideoRecorder: Movie name: movierecords/dummy/dummy_test2_session12
+VideoRecorder: Logfilename: movierecords/dummy/dummy_test2_session12_log.txt
+VideoRecorder: initialized in dummymode.
+start video recording
+Event 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_surprise.avi  , Duration: 3.000000 secs, 25.000000 fps
+Movie dummy play duration: 0.102730
+Upcoming event: WaitForScanner
+Upcoming event: Fixation
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+Upcoming event: Movie
+Waiting for trigger
+Trigger received
+stop recording
+The experiment has been completed, thanks for participating!

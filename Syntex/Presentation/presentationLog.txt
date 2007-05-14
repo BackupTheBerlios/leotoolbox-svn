@@ -4134,3 +4134,209 @@ actStimDur =
     0.5041
 
 The experiment has been completed, thanks for participating!
+Subject name ('name')? 
+Experiment stopped
+Subject name ('name')? 'd'
+Session nr (number)? 1
+Parameter file ('filename')? 'test2'
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {5x1 cell}
+       STIMULUS: {5x1 cell}
+        STIMDIR: {5x1 cell}
+       EVENTDUR: [5x1 double]
+        STIMDUR: [5x1 double]
+    INSTRUCTION: {5x1 cell}
+
+??? Undefined function or variable 'instr'.
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/Presentation.m,149,1">Presentation at 149</a>
+goOn=showInstruction(window, instr, keyNames);
+
+sca
+Presentation
+Subject name ('name')? 
+Experiment stopped
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {5x1 cell}
+       STIMULUS: {5x1 cell}
+        STIMDIR: {5x1 cell}
+       EVENTDUR: [5x1 double]
+        STIMDUR: [5x1 double]
+    INSTRUCTION: {5x1 cell}
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/Presentation.m,492,1">Presentation>showInstruction at 492</a>
+    WaitSecs(0.01);
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/Presentation.m,149,1">Presentation at 149</a>
+goOn=showInstruction(window, instruction, keyNames);
+
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {5x1 cell}
+       STIMULUS: {5x1 cell}
+        STIMDIR: {5x1 cell}
+       EVENTDUR: [5x1 double]
+        STIMDUR: [5x1 double]
+    INSTRUCTION: {5x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+Trigger received
+Warning: Could not find an exact (case-sensitive) match for 'Getsecs'.
+/Users/frans/Development/ptb3/trunk/Psychtoolbox/PsychBasic/GetSecs.mexmac is a case-insensitive match and will be used instead.
+You can improve the performance of your code by using exact
+name matches and we therefore recommend that you update your
+usage accordingly. Alternatively, you can disable this warning using
+warning('off','MATLAB:dispatcher:InexactMatch').
+> In <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/Presentation.m,273,1">Presentation at 273</a>
+resp and display loop
+
+stimulusOnsetTime =
+
+   1.0203e+05
+
+Upcoming event: Movie
+preploop
+Error in function OpenMovie: 	Usage error
+Couldn't load movie /Users/frans/Matlab/Charmaine/CvdGaag/male/FW/FW_anger.avi! Quicktime error code -43 [File not found.]
+??? Usage:
+
+[ moviePtr [duration] [fps] [width] [height] [count]]=Screen('OpenMovie', windowPtr, moviefile [, async=0]);
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/Presentation.m,229,1">Presentation at 229</a>
+                [movie movieduration fps imgw imgh] = Screen('OpenMovie', window, moviename);
+
+  t
+??? Undefined function or variable 't'.
+
+
+sca
+Presentation('dummy', 1,'test')
+
+myparfile =
+
+parfiles/test.txt
+
+
+par = 
+
+      EVENTTYPE: {9x1 cell}
+       STIMULUS: {9x1 cell}
+        STIMDIR: {9x1 cell}
+       EVENTDUR: [9x1 double]
+        STIMDUR: [9x1 double]
+    INSTRUCTION: {9x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   1.0212e+05
+
+Upcoming event: Movie
+preploop
+Error in function OpenMovie: 	Usage error
+Couldn't load movie /Users/frans/Matlab/Charmaine/CvdGaag/male/DA/DA_anger.avi! Quicktime error code -43 [File not found.]
+??? Usage:
+
+[ moviePtr [duration] [fps] [width] [height] [count]]=Screen('OpenMovie', windowPtr, moviefile [, async=0]);
+
+Error in ==> <a href="error:/Users/frans/MatlabArchive/OSX/LeoToolbox/leotoolbox/Syntex/Presentation/Presentation.m,229,1">Presentation at 229</a>
+                [movie movieduration fps imgw imgh] = Screen('OpenMovie', window, moviename);
+
+  tt
+??? Undefined function or variable 'tt'.
+
+
+Presentation('dummy', 1,'test2')
+
+myparfile =
+
+parfiles/test2.txt
+
+
+par = 
+
+      EVENTTYPE: {5x1 cell}
+       STIMULUS: {5x1 cell}
+        STIMDIR: {5x1 cell}
+       EVENTDUR: [5x1 double]
+        STIMDUR: [5x1 double]
+    INSTRUCTION: {5x1 cell}
+
+Upcoming event: WaitForScanner
+preploop
+preploop
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   1.0221e+05
+
+Upcoming event: Movie
+preploop
+Event 3, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   1.0222e+05
+
+Upcoming event: Movie
+preploop
+Event 4, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/FW/FW_surprise.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   1.0223e+05
+
+
+actStimDur =
+
+    3.0414
+
+Upcoming event: Movie
+preploop
+Event 5, Movie: /Users/frans/MatlabArchive/OSX/Charmaine/CvdGaag/male/DA/DA_anger.avi  , Duration: 3.000000 secs, 25.000000 fps
+Trigger received
+resp and display loop
+
+stimulusOnsetTime =
+
+   1.0223e+05
+
+
+actStimDur =
+
+    3.0248
+
+The experiment has been completed, thanks for participating!
