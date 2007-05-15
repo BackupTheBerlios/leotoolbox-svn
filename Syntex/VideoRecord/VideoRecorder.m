@@ -49,7 +49,7 @@ switch(lower(commandstr))
             vr.dummymode=0;
         end
         % set some defaults
-        if 1
+        if 0
             vr.imwidth=640;
             vr.imheigth=480;
         else
@@ -59,7 +59,7 @@ switch(lower(commandstr))
         vr.captureArea=[0 0  vr.imwidth vr.imheigth];
 
         vr.recordingOn=0;
-        vr.displayOn=0; % If non-zero, video will be shown onscreen during recording (default: Show it).
+        vr.displayOn=0; % If non-zero, video will be shown onscreen during recording.
         vr.logFramesOn=0;
         vr.withsound = 2; % 'withsound' If set to non-zero, sound will be recorded as well (default: record sound).
         vr.ts=-1;
