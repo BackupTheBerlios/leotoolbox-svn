@@ -6,11 +6,16 @@ function videoRecord4Presentation(subject, session)
 % 7 may 07  fwc runs at maxpriority, added waitsecs call, hopefully solves
 %                   problems of missing triggers.
 % adapted to videoRecord4Presentation
+% 15 may 2007   fwc triggering now character based.
+% 20.05.2007    fwc added update as option, we'll only update when we're
+%                   close to the next trigger
 
 commandwindow;
 
+% try
 devices=GetKeyboardIndices;
-if length(devices) < 2
+PsychJavaTrouble;
+if 0 && length(devices) < 2
     warndlg('Only single keyboard found', 'No trigger device warning');
 end
 
@@ -39,7 +44,11 @@ end
 
 
 % stuff for videorecording
-videoRecMode=1; % 0== rec off, 1==rec on, 2= dummymode
+videoRecMode=1; % 0== rec off, 1==rec on, 2=dummymode
+
+videoCaptModes={'getframe', 'gettimestamp', 'gettimestampnoblock', 'update'};
+videoCaptMode=1;
+% 'getframe', 'gettimestamp', 'gettimestampnoblock'
 recmoviedir='movierecords';
 logVideoFrameMode='logFramesOff'; % 'logFramesOff;
 movieRecStartTime=0;
@@ -47,7 +56,7 @@ movieRecStartTime=0;
 % subject='jantje';
 % session=1;
 
-waitTime=0.001; % time to wait once we've received a trigger
+waitTime=0.005; % time to wait once we've received a trigger
 
 
 maxWait=6000;
@@ -60,6 +69,7 @@ keyNames.nextKey='SPACE';
 keyNames.leftwardKey='LeftArrow';
 keyNames.rightwardKey='RightArrow';
 keyNames.triggerKey='t';
+% keyNames.triggerKey='5';
 
 % and convert them to codes for later use
 quitKey=KbName(keyNames.quitKey);
@@ -104,7 +114,6 @@ Screen('TextSize',window, 30);
 Screen('TextStyle', window, 1);
 
 
-
 if videoRecMode>0
     % tell recorder where to save movie files
     % we can create a new dir for each subject
@@ -125,16 +134,13 @@ if videoRecMode>0
     end
     % log each frame?
     VideoRecorder( logVideoFrameMode );
-    VideoRecorder( 'DisplayOn' );
+    VideoRecorder( 'DisplayOff' );
 
     VideoRecorder('message', ['Subject: ' subject ] );
     VideoRecorder('message', ['Session: ' num2str(session) ] );
     %     VideoRecorder('message', ['Par file: ' myparfile ] );
 end
 
-
-
-WaitSecs(1);
 
 
 
@@ -146,39 +152,50 @@ if videoRecMode>0
     VideoRecorder('message', ['MovieRecStartTime: ' sprintf('%.2f', movieRecStartTime ) ] );
 end
 
-[trigger triggerTime goOn]=CheckForTrigger(devices, triggerKey, quitKey, -1); % just so that we have used it
+tstring='Video On';
+DrawFormattedText(window, tstring, 'center', 'center', WhiteIndex(window));
+Screen('Flip', window);
+FlushEvents('keydown');
+ListenChar(0);
+ListenChar;
+WaitSecs(.5);
+
+[trigger triggerTime goOn]=CheckForTriggerChar(devices, keyNames.triggerKey, quitKey, -1); % just so that we have used it
 [mx, my, buttons]=GetMouse(window);
 
 np=MaxPriority(max(Screen('Screens')));
 op=Priority(np);
 
-WaitSecs(1);
+WaitSecs(.5);
 
 
 % goOn=WaitForScanner(window, keyNames);
-VideoRecorder('message', ['Wait for scanner'] );
+% VideoRecorder('message', ['Wait for scanner'] );
 VideoRecorder('message', sprintf('MovieTriggerTime\tExpTriggerTime\tTriggerInterval'));
 
 delta=0;
 frameCount=1;
 pts=0;
+doFlip=1;
+cft=zeros(10000,1);
+
+vcts=zeros(10000,1);
+vcc=1;
 TR=2.5;
 prevTriggerTime=-1;
 nextTriggerDelay=TR-0.5;
 firstTriggerReceived=0;
 checkTime=movieRecStartTime;
 while 1
-
-
     % wait for trigger, when stimulus is ready
 
-    [trigger triggerTime goOn]=CheckForTrigger(devices, triggerKey, quitKey, checkTime);
+    [trigger triggerTime goOn]=CheckForTriggerChar(devices, keyNames.triggerKey, quitKey, checkTime);
     if goOn==0
         display('User requested break');
         break
     end
 
-    if trigger>0
+    if trigger==1
         disp('Trigger received');
         checkTime=triggerTime+nextTriggerDelay; % time to check for next trigger
 
@@ -196,34 +213,49 @@ while 1
             deltaTT=triggerTime-prevTriggerTime;
             prevTriggerTime=triggerTime;
         end
-
         tt=triggerTime-movieRecStartTime; % triggertime relative to moviestart
         VideoRecorder('message', sprintf('%.2f\t%.2f\t%.2f\t', tt, expTT, deltaTT ));
 
-        Screen('FillRect', window, gray, [0 0 h 40]);
+        Screen('FillRect', window, gray, [0 0 h 60]);
         DrawFormattedTextOnPoint(window, ['Tt: ' sprintf('%.2f', tt)], 400, 20, white, 'center', 'center');
-
         doFlip=1;
     end
 
-    [status tex ts]=VideoRecorder('getframe');
-    %     [status tex ts]=VideoRecorder('gettimestampnoblock');
+    start=GetSecs;
+%     [status mytex vcts(vcc)]=VideoRecorder('getframe');
 
-    if tex>0
+    % only if we're still far away in time from the next trigger, we try to
+    % get videoframes, otherwise we'll just update
+    if GetSecs<checkTime
+        [status mytex vcts(vcc)]=VideoRecorder(videoCaptModes{videoCaptMode});
+    else
+        status=VideoRecorder('update'); % only donate some processing time
+        vcts(vcc)=GetSecs;
+    end
+    
+    cft(vcc)=GetSecs-start;
+%     mytex=0;
+    ts=vcts(vcc);
+    vcc=vcc+1;
+
+    if mytex>0
         frameCount=frameCount+1;
-        %         Screen('DrawTexture', window, tex, [], [], 0, 0);
-        %         Screen('Close', tex);
-        %         tex=0;
+        if 1
+                Screen('DrawTexture', window, mytex);
+                Screen('Close', mytex);
+                mytex=0;
+        end
         Screen('FillRect', window, gray, [0 v-50 h v]);
         if frameCount>1
-          delta=ts-pts;
-            DrawFormattedTextOnPoint(window, ['Dt: ' sprintf('%d', round(delta*1000))], 400, v-40, white, 'center', 'center');
-        pts=ts;
+            delta=ts-pts;
+            DrawFormattedTextOnPoint(window, ['Dt: ' sprintf('%d  %d', round(delta*1000), frameCount)], 400, v-40, white, 'center', 'center');
+            pts=ts;
             doFlip=1;
         end
     end
     if doFlip==1
-        Screen('Flip', window, [], 2);
+        %         Screen('Flip', window, [], 2);
+        Screen('Flip', window,[],1);
         doFlip=0;
     end
 
@@ -240,44 +272,76 @@ Priority(op);
 
 Screen('CloseAll');
 
+vcts=vcts(find(vcts>0));
+vcts=diff(vcts);
+mi=min(vcts)
+ma=max(vcts)
+me=mean(vcts)
+
+cft=cft(find(cft>0));
+mi=min(cft)
+ma=max(cft)
+me=mean(cft)
+
+ListenChar(0); % turn char listening off
+% catch
+%     Priority(0);
+%     Screen('CloseAll');
+%     psychrethrow(psychlasterror);
+%
+% end
 
 
-
-function [tt goOn]=WaitForTrigger(triggerKey, quitKey, maxWait)
+function [t tt goOn]=CheckForTriggerChar(devices, triggerChar, quitKey, checkTime)
 
 % wait for trigger from scanner
 % keyNames is a structure containing relevant keys
 % function returns a parameter indicating whether or not to go on
 % with the experiment.
+% we only check for a trigger when checkTime has passed,
+% to avoid multiple detections of the same trigger
 
-goOn=0; % do not continue with experiment
+persistent listening
 
-% wait for key release
-while KbCheck
-    WaitSecs(0.001);
-end
-
-% quitKey=KbName(keyNames.quitKey);
-% triggerKey=KbName(keyNames.triggerKey);
+goOn=1; % do not continue with experiment
+tt=-1; % trigger time
+t=-1; % trigger flag
 %
-endWait=GetSecs+maxWait;
-% wait for key press
-while GetSecs<endWait
-    [keyIsDown,tt,keyCode] = KbCheck;
-
-    % check if a key was pressed
-    if keyIsDown==1
-        % test if the user wanted to stop
-        if keyCode(quitKey)
-            %             display('User requested break');
-            break;
-        elseif keyCode(triggerKey)
-            %             display('Trigger received');
-            goOn=1; % okidoki
-            break;
+if GetSecs > checkTime
+    if isempty(listening) % when it's time to start checking we'll first clear the queue
+        FlushEvents('keydown');
+        ListenChar;
+        listening=1;
+    end
+    % wait for key press
+    while CharAvail
+        [mychar when]=GetChar;
+        %     mychar;
+        %     strcmpi(mychar, triggerChar)
+        if 1==strcmp(mychar, triggerChar)
+            tt=GetSecs; % we could also get this using the when option from getchar.
+            fprintf('Getsecs: %f GetChar.secs: %f  diff: %d\n', tt, when.secs, round((tt-when.secs)*1000));
+            t=1;
+            ListenChar(0); % turn char listening off and clear buffer
+%             ListenChar;
+            listening=[];
+            return;
+        elseif 1==strcmp(mychar, 'Q')
+            goOn=0;
+            return
         end
     end
-    WaitSecs(0.01);
+    return
+    % if no trigger was detected using getchar, we use KbCheck to detect
+    % any quit commmand.
+    [keyIsDown,tt,keyCode] = KbCheckAny(devices);
+
+    % test if the user wanted to stop
+    if keyCode(quitKey)
+        goOn=0;
+        %             display('User requested break');
+        return
+    end
 end
 
 function [t tt goOn]=CheckForTrigger(devices, triggerKey, quitKey, checkTime)
@@ -313,70 +377,4 @@ if GetSecs > checkTime
         end
     end
 end
-
-
-%
-% function goOn=WaitForTrigger(maxWait, keyNames)
-%
-% % wait for trigger from scanner
-% % keyNames is a structure containing relevant keys
-% % function returns a parameter indicating whether or not to go on
-% % with the experiment.
-%
-% goOn=0; % do not continue with experiment
-%
-%
-% % wait for key release
-% while KbCheck
-%     WaitSecs(0.001);
-% end
-%
-% quitKey=KbName(keyNames.quitKey);
-% triggerKey=KbName(keyNames.triggerKey);
-%
-% endWait=GetSecs+maxWait;
-% % wait for key press
-% while GetSecs<endWait
-%     [keyIsDown,secs,keyCode] = KbCheck;
-%
-%     % check if a key was pressed
-%     if keyIsDown==1
-%         % test if the user wanted to stop
-%         if keyCode(quitKey)
-%             display('User requested break');
-%             break;
-%         elseif keyCode(triggerKey)
-%             goOn=1; % okidoki
-%             break;
-%         end
-%     end
-%     WaitSecs(0.001);
-% end
-%
-%
-%
-
-function goOn=WaitForScanner(window, keyNames)
-
-% wait for scanner
-% keyNames is a structure containing relevant keys
-% function returns a parameter indicating whether or not to go on
-% with the experiment. Screen is erased before returning.
-
-goOn=1; % do not continue with experiment
-
-tstring='Waiting for scanner';
-
-% tstring=[tstring '\n\n\n\n'];
-% tstring=[tstring 'Press the ''' keyNames.triggerKey ''' key to advance\n'];
-% tstring=[tstring 'Press the ''' keyNames.quitKey ''' key to abort,\n'];
-
-
-Screen('TextFont',window, 'Arial');
-Screen('TextSize',window, 30);
-Screen('TextStyle', window, 1);
-
-
-DrawFormattedTextOnPoint(window, tstring, 400, 20, WhiteIndex(window), 'center', 'center');
-Screen('Flip', window, [], 2);
 

@@ -13,7 +13,8 @@ function Presentation(subject, session, parfile)
 %               fMRI experiment.
 %           fwc add (remote control of) video recording
 % 09-05-07 fwc  add (local) video recording
-
+% 20.05.07  fwc  char based trigger waiting, added update option to
+%                video-recording
 
 
 commandwindow;
@@ -477,7 +478,8 @@ try
             end
 
 %             VideoRecorder('gettimestamp');
-            status=VideoRecorder('gettimestampnoblock');
+%             status=VideoRecorder('gettimestampnoblock');
+            status=VideoRecorder('update');
             
             % return control to the OS for a short time, to keep it happy.
             % we may loose real-time priority if we do not. Make this time
@@ -685,6 +687,8 @@ while GetSecs<endWait
         end
     end
     WaitSecs(0.01);
+    status=VideoRecorder('update');
+
 end
 
 

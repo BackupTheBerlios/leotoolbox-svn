@@ -17,9 +17,43 @@ function [status tex ts]=VideoRecorder( commandstr, varargin)
 
 % History:
 % 11.2.2007 Written (MK).
-% 13.2.2007 fwc adapted
+% 13.2.2007 fwc adapted 
 % 13.4.2007 fwc further adapted
 % 09.5.2007 fwc adapted to simpler  video recorder shell script
+% 20.5.2007 fwc added option #4 to getcaptureimage
+
+
+% Here's some background info from a response of MK:
+% the recording engine needs frequent calls to Screen('GetCapturedImage')
+% to keep it running. That's how you "donate" processing time to the
+% engine for buffer management, video encoding and writeout to disk.
+% 
+% I've just updated the trunk with a slight improvement. In your trial
+% loop you can call Screen('GetCapturedImage', window, grabber, 4);
+% --> Mode 4 doesn't poll or wait for images and doesn't return any
+% information or captured images. Its only there for driving video
+% recording to disk, doing the minimal amount of internal processing
+% to keep video encoding and writeout active.
+% 
+% Still you need to call that frequently, presumably at least every
+% 1/hz seconds for a recording framerate of hz, e.g., 1/30th second
+% at 30 Hz. So you have to break up long waiting periods into chunks
+% small enough.
+% 
+% Theoretically one could move that call into a background thread,
+% but then you wouln't have any control of when Quicktime is hogging
+% the cpu - bad for controlled timing of the matlab script.
+% 
+% Apples Quicktime codecs for Intel based Macs still lag
+% behind the corresponding PowerPC implementations in terms of
+% efficiency -- not yet well optimized for the intel cpu architecture.
+% 
+% Did you play around with different video codecs? Each of them has
+% a different tradeoff between movie file size and cpu load/encoding time.
+% By choosing a codec that creates bigger files, you may be able to increase
+% recording framerate or reduce cpu load and get it more skip free.
+% 
+
 
 persistent vr; % structure to hold video recorder settings
 
@@ -90,7 +124,7 @@ switch(lower(commandstr))
         vr.grabber=-1;
         % specify the video codec
         % the codec is added to the moviefilename
-        vr.codec=0;
+        vr.codec=1;
 
         switch(vr.codec)
             case 0,
@@ -296,11 +330,14 @@ switch(lower(commandstr))
         vr.withsound=2;
     case 'soundoff',       % switch sound recording off
         vr.withsound=0;
-    case {'getframe', 'gettimestamp', 'gettimestampnoblock'}, % get image (and) timestamp
+    case {'getframe', 'gettimestamp', 'gettimestampnoblock', 'update'}, % get image (and) timestamp, or just donate some 
+        % processing cycles to quicktime
         if strcmpi( commandstr, 'gettimestamp')
             waitforimage=2;
         elseif strcmpi( commandstr, 'getframe')
             waitforimage=1;
+        elseif strcmpi( commandstr, 'update')
+            waitforimage=4;
         elseif strcmpi( commandstr, 'gettimestampnoblock')
             waitforimage=0;
         else
@@ -313,7 +350,13 @@ switch(lower(commandstr))
             % as texture, if waitforimage == 2, do not return it (no preview,
             % but faster). Recycle texture.
             if vr.dummymode==0
-                [vr.tex vr.ts vr.nrdropped]=Screen('GetCapturedImage', vr.win, vr.grabber, waitforimage, vr.tex);
+                if waitforimage==4 % just donate some processing time
+                    Screen('GetCapturedImage', vr.win, vr.grabber, 4);
+                    status=1;
+                    return
+                else
+                    [vr.tex vr.ts vr.nrdropped]=Screen('GetCapturedImage', vr.win, vr.grabber, waitforimage, vr.tex);
+                end
             elseif waitforimage==1
                 % should we make a texture?
                 %                 disp('dummy texture');
@@ -332,8 +375,13 @@ switch(lower(commandstr))
                     Screen('Close', vr.tex);
                 end
                 vr.tex=0; % do not return a valid texture.
+            elseif waitforimage==4
+                    status=1;
+                    return
             end
 
+            
+            
             if vr.tex>0
                 % Draw new texture from frame grabber.
                 if vr.displayOn==1 % live display

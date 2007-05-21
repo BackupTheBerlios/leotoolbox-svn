@@ -1,4 +1,7 @@
-function [rating, rt, stop]=mult_SliderResponse(window, judg_cellstrs, instr)
+function [rating, rt, stop]=mult_SliderResponseVideo(window, judg_cellstrs, instr)
+
+
+%  20.05.2007    fwc     added "update" call for videoRecording
 
 quitKey=KbName('ESCAPE');
 stopKey = KbName('SPACE');
@@ -52,7 +55,8 @@ first=1;
 while 1
     WaitSecs(.002);
                 
-    status=VideoRecorder('gettimestampnoblock');
+    status=VideoRecorder('update'); % donate some processing cycles to video recording
+%     status=VideoRecorder('gettimestampnoblock');
 %     status=VideoRecorder('gettimestamp');
 
     % get mouse buttons:

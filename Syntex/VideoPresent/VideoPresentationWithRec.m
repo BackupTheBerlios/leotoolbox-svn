@@ -293,8 +293,7 @@ end
 
         while GetSecs<itiEnd || KbCheck
             if videoRecMode>0
-                 [status vtx vts(dltc)]=VideoRecorder('gettimestampnoblock');
-  
+                 VideoRecorder('update');
             end
             WaitSecs(0.01);
         end
@@ -398,7 +397,9 @@ end
             end
 
 %             status=VideoRecorder('gettimestamp');
-            [status vtx vts(vtsc)]=VideoRecorder('gettimestampnoblock');
+%             [status vtx vts(vtsc)]=VideoRecorder('gettimestampnoblock');
+            status=VideoRecorder('update');
+            vts(vtsc)=GetSecs;
             vtsc=vtsc+1;
             
             % check state of keyboard
@@ -454,7 +455,8 @@ end
 
         Screen('Close'); % this will close any textures used
 
-        
+        % calculate "timestamp" interval, to get an idea of whether we
+        % call quicktime often enough.
         vts=vts(find(vts>0));
         vts=diff(vts);
         mi=min(vts)
