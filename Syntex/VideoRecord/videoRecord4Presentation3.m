@@ -11,6 +11,7 @@ function videoRecord4Presentation(subject, session)
 %                   close to the next trigger
 
 commandwindow;
+cd(FunctionFolder(mfilename));
 
 % try
 devices=GetKeyboardIndices;
@@ -48,6 +49,7 @@ videoRecMode=1; % 0== rec off, 1==rec on, 2=dummymode
 
 videoCaptModes={'getframe', 'gettimestamp', 'gettimestampnoblock', 'update'};
 videoCaptMode=1;
+movieMag=2; % movie magnification
 % 'getframe', 'gettimestamp', 'gettimestampnoblock'
 recmoviedir='movierecords';
 logVideoFrameMode='logFramesOff'; % 'logFramesOff;
@@ -171,11 +173,12 @@ WaitSecs(.5);
 
 % goOn=WaitForScanner(window, keyNames);
 % VideoRecorder('message', ['Wait for scanner'] );
-VideoRecorder('message', sprintf('MovieTriggerTime\tExpTriggerTime\tTriggerInterval'));
+VideoRecorder('message', sprintf('MovieTriggerTime\tExpTriggerTime\tTriggerInterval\tTriggerDelay'));
 
 delta=0;
 frameCount=1;
 pts=0;
+mytex=0;
 doFlip=1;
 cft=zeros(10000,1);
 
@@ -186,10 +189,12 @@ prevTriggerTime=-1;
 nextTriggerDelay=TR-0.5;
 firstTriggerReceived=0;
 checkTime=movieRecStartTime;
+checkTime=GetSecs+3;
+
 while 1
     % wait for trigger, when stimulus is ready
 
-    [trigger triggerTime goOn]=CheckForTriggerChar(devices, keyNames.triggerKey, quitKey, checkTime);
+    [trigger triggerTime triggerDelay goOn]=CheckForTriggerChar(devices, keyNames.triggerKey, quitKey, checkTime);
     if goOn==0
         display('User requested break');
         break
@@ -214,7 +219,7 @@ while 1
             prevTriggerTime=triggerTime;
         end
         tt=triggerTime-movieRecStartTime; % triggertime relative to moviestart
-        VideoRecorder('message', sprintf('%.2f\t%.2f\t%.2f\t', tt, expTT, deltaTT ));
+        VideoRecorder('message', sprintf('%.2f\t%.2f\t%.2f\t%d', tt, expTT, deltaTT, (triggerDelay*1000) ));
 
         Screen('FillRect', window, gray, [0 0 h 60]);
         DrawFormattedTextOnPoint(window, ['Tt: ' sprintf('%.2f', tt)], 400, 20, white, 'center', 'center');
@@ -222,28 +227,28 @@ while 1
     end
 
     start=GetSecs;
-%     [status mytex vcts(vcc)]=VideoRecorder('getframe');
+    %     [status mytex vcts(vcc)]=VideoRecorder('getframe');
 
     % only if we're still far away in time from the next trigger, we try to
     % get videoframes, otherwise we'll just update
-    if GetSecs<checkTime
+    if 1 && GetSecs<checkTime
         [status mytex vcts(vcc)]=VideoRecorder(videoCaptModes{videoCaptMode});
     else
         status=VideoRecorder('update'); % only donate some processing time
         vcts(vcc)=GetSecs;
     end
-    
+
     cft(vcc)=GetSecs-start;
-%     mytex=0;
     ts=vcts(vcc);
     vcc=vcc+1;
 
     if mytex>0
         frameCount=frameCount+1;
         if 1
-                Screen('DrawTexture', window, mytex);
-                Screen('Close', mytex);
-                mytex=0;
+%             Screen('DrawTexture', window, mytex);
+            Screen('DrawTexture', window, mytex, [], CenterRectInWindow(Screen('Rect', mytex)*movieMag, window));
+            Screen('Close', mytex);
+            mytex=0;
         end
         Screen('FillRect', window, gray, [0 v-50 h v]);
         if frameCount>1
@@ -272,16 +277,26 @@ Priority(op);
 
 Screen('CloseAll');
 
+if 0
+disp('loop or time stamp time');
 vcts=vcts(find(vcts>0));
 vcts=diff(vcts);
 mi=min(vcts)
 ma=max(vcts)
 me=mean(vcts)
 
+figure(1)
+hist(vcts);
+
+disp('capture time');
 cft=cft(find(cft>0));
 mi=min(cft)
 ma=max(cft)
 me=mean(cft)
+
+figure(2)
+hist(cft);
+end
 
 ListenChar(0); % turn char listening off
 % catch
@@ -292,7 +307,7 @@ ListenChar(0); % turn char listening off
 % end
 
 
-function [t tt goOn]=CheckForTriggerChar(devices, triggerChar, quitKey, checkTime)
+function [t tt td goOn]=CheckForTriggerChar(devices, triggerChar, quitKey, checkTime)
 
 % wait for trigger from scanner
 % keyNames is a structure containing relevant keys
@@ -300,18 +315,22 @@ function [t tt goOn]=CheckForTriggerChar(devices, triggerChar, quitKey, checkTim
 % with the experiment.
 % we only check for a trigger when checkTime has passed,
 % to avoid multiple detections of the same trigger
-
+% t= trigger or not
+% tt = trigger time
+% td = trigger delay
+% goOn=break or not
 persistent listening
 
 goOn=1; % do not continue with experiment
+td=0; % trigger delay (difference between when.secs and GetSecs at time of return
 tt=-1; % trigger time
 t=-1; % trigger flag
 %
 if GetSecs > checkTime
     if isempty(listening) % when it's time to start checking we'll first clear the queue
         FlushEvents('keydown');
-        ListenChar;
-        listening=1;
+        ListenChar; % start listening
+        listening=1; % set flag
     end
     % wait for key press
     while CharAvail
@@ -319,12 +338,13 @@ if GetSecs > checkTime
         %     mychar;
         %     strcmpi(mychar, triggerChar)
         if 1==strcmp(mychar, triggerChar)
-            tt=GetSecs; % we could also get this using the when option from getchar.
-            fprintf('Getsecs: %f GetChar.secs: %f  diff: %d\n', tt, when.secs, round((tt-when.secs)*1000));
-            t=1;
+            %             fprintf('Getsecs: %f GetChar.secs: %f  diff: %d\n', tt, when.secs, round((tt-when.secs)*1000));
             ListenChar(0); % turn char listening off and clear buffer
-%             ListenChar;
+            %             ListenChar;
             listening=[];
+            t=1;
+            tt=GetSecs;
+            td=tt-when.secs; % determine possible delay
             return;
         elseif 1==strcmp(mychar, 'Q')
             goOn=0;
