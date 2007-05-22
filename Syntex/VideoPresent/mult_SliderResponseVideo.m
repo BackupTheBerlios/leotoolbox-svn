@@ -1,5 +1,4 @@
-function [rating, rt, stop]=mult_SliderResponseVideo(window, judg_cellstrs, instr)
-
+function [rating, rt, stop]=mult_SliderResponse(window, judg_cellstrs, instr)
 
 %  20.05.2007    fwc     added "update" call for videoRecording
 
@@ -7,7 +6,7 @@ quitKey=KbName('ESCAPE');
 stopKey = KbName('SPACE');
 nJudg = size(judg_cellstrs,2);
 gray=round(GrayIndex(window));
-rating = ones(1,nJudg)*-0; % unlikely value
+rating = ones(1,nJudg)*0; % unlikely value
 col=[0 0 255];
 rect=[0 0 25 25];
 for ind = 1 : nJudg
@@ -50,8 +49,10 @@ t1=GetSecs;
 mousedown = 0;
 nearest_slider = -1;
 origin=a; % -50 - +50
-% origin=minSlider; % 0-100
+%origin=minSlider; % 0-100
+%origin = insetSlider;
 first=1;
+pass = 1;
 while 1
     WaitSecs(.002);
                 
@@ -67,8 +68,17 @@ while 1
     % if mouse moved
     if omx~=mx || omy~=my
         % rescale
-        mxs=round(origin+((mx-origin)*(100-2*insetSlider)/100));
+        %mxs=round(origin+((mx-origin)*(100-2*insetSlider)/100));
 
+        if pass == 1
+            mxs = minSlider;    
+        else
+            mxs=round(a+((mx-a)*(100-2*insetSlider)/100));
+        end
+        pass = 0;
+
+        
+        
         % check for each slider
         for ind=1:nJudg
 
@@ -97,7 +107,7 @@ while 1
     if any(buttons)
         mousedown = 1;
         rt=GetSecs-t1;
-        r=(mxs-origin)/(maxSlider-minSlider)*100;
+        r=(mxs-origin)/(maxSlider-minSlider)*100+50;
         nearest_slider = getNearest(my,svs);
     else
         if mousedown==1 % fix rating on release
