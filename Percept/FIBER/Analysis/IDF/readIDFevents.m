@@ -1,5 +1,5 @@
 function[ trials ] = readIDFevents( filename, separator_type, parameters )
-%% IDF Event reader v0.3
+%% IDF Event reader v0.4
 %
 % INPUT  : 1) filename of exported IDF file (SMI GmbH)
 %          2) type of trial separator
@@ -54,6 +54,9 @@ function[ trials ] = readIDFevents( filename, separator_type, parameters )
 % 10/03/2007        JBM          - Event index added
 %                                - Removal of short fixations around blinks added                         
 %
+% 22/05/2007        JBM          Time based trial separation added
+%
+%
 % EXAMPLES:
 %
 % %% this call will pop a file selection dialog for message based parsing.
@@ -66,7 +69,7 @@ function[ trials ] = readIDFevents( filename, separator_type, parameters )
 %
 
 %% define trial separator struct
-separator = struct('type', 'set', 'regular_expression', '', 'logfile', '', 'reference_times', []);
+separator = struct('type', 'set', 'regular_expression', '', 'logfile', '', 'reference_times', [], 'reference_index', 1);
 
 %% parse input parameters
 if nargin ==0
@@ -99,14 +102,12 @@ if nargin == 2
         separator.regular_expression = separator_type;
         separator.type = 'message';
         filename = user_select_file;
-    else        
-      if strcmp(separator_type,'message')
+    elseif strcmp(separator_type,'message')
          error('Regular expression required as third argument');
-      elseif strcmp(separator_type,'time')
-         fprintf('You did not provide an array of timings, please select a log file to extract if from\n.'); 
-         [separator.reference_times separator.logfile] = extract_set_timings;
-         
-      end;
+    elseif strcmp(filename,'time')
+         separator.type = 'time';
+         separator.reference_times = separator_type;
+         filename = user_select_file;
     end
 end
 
@@ -197,8 +198,9 @@ while (feof(file) == false)
     current_trial= trial;
        
     if (isa(obj, 'struct'))
-    
-      if (trial_separator( separator, obj, type, current_trial, previous_trial ))        
+      [separate separator] = trial_separator( separator, obj, type, current_trial, previous_trial );
+
+      if (separate)
          trials(trial_index).end = obj(1).start -1;
          trials(trial_index).duration = trials(trial_index).end - trials(trial_index).start;
          trial_index = trial_index +1;  
@@ -256,10 +258,11 @@ function[obj set] =  parse_type(type, line, event_index)
   end;
 
 %% switch function for trial index increase
-function[ bool ] = trial_separator( separator, obj, obj_type, current_trial, previous_trial )
+function[ bool separator ] = trial_separator( separator, obj, obj_type, current_trial, previous_trial )
   type = separator.type;
   regular_expression = separator.regular_expression;
   reference_times = separator.reference_times;
+  reference_index = min(separator.reference_index, length(reference_times)-1);
   
   bool = false;
   if (strcmp(type, 'message'))
@@ -271,9 +274,23 @@ function[ bool ] = trial_separator( separator, obj, obj_type, current_trial, pre
   elseif (strcmp(type, 'set'))
     bool = (current_trial ~= previous_trial); 
   elseif (strcmp(type, 'time'))
-    reference_times;
+    lowerbound = reference_times(reference_index);
+    upperbound = reference_times(reference_index +1);
+    starttime = obj.start / 1000; %% convert to seconds
+    if ( (starttime > lowerbound) && (starttime < upperbound) )
+        bool = false;
+    else
+        if (starttime < lowerbound)
+            bool = false;
+        else
+            separator.reference_index = reference_index + 1;
+            bool = true;
+            fprintf('lowerbound : %f\tupperbound : %f\t starttime : %f\n', lowerbound, upperbound, starttime);
+    
+        end
+      end
   end
-
+  
 %% helper function for saccade parser
 function [ saccade, set ]   = parse_saccade_line ( line, event_index )
   saccade = struct('set', 0, ...
@@ -421,7 +438,8 @@ end
 
 
 function[ filename ] = user_select_file()
-    cd '/Users/marsman/Documents/Programming/Matlab/leotoolbox/Percept/IDF/sample';
+    path = FunctionFolder(mfilename);
+    cd(path);
     [f, path] = uigetfile({'*.txt; *.dat'},'Choose an ascii-exported IVIEW file');
     if (f == 0)
         error('User aborted');
