@@ -386,7 +386,7 @@ end
 
 
 function[ filename ] = user_select_file()
-    path = FunctionFolder(mfilename)
+    path = FunctionFolder(mfilename);
     cd(path);
     [f, path] = uigetfile({'*.txt; *.dat'},'Choose an ascii-exported IVIEW file');
     if (f == 0)
