@@ -386,7 +386,8 @@ end
 
 
 function[ filename ] = user_select_file()
-    cd '/Users/marsman/Documents/Programming/Matlab/leotoolbox/Percept/IDF/sample';
+    path = FunctionFolder(mfilename)
+    cd(path);
     [f, path] = uigetfile({'*.txt; *.dat'},'Choose an ascii-exported IVIEW file');
     if (f == 0)
         error('User aborted');
