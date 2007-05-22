@@ -1,0 +1,4 @@
+** aaveProcessData (2)22.1.2007 (17:3h) **
+- getting data
+  detecting fixations...................... 
+- save('D:\Coding\Matlab\vs\d6s01cp.mat' , 'd6s01cp');
