@@ -1,4 +1,15 @@
 function[ data filename ] = read_logfile(filename)
+%%
+%
+%  Reads my logfiles
+%
+%  J.B.C. Marsman
+%  
+%
+%
+%
+%
+%
 
 if nargin == 0
     [file path] = uigetfile({'*.txt; *.*'},'Choose an experiment logfile');
