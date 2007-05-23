@@ -8,7 +8,7 @@ checkoutcommand=[svnpath 'svn update'];
 
 fprintf('The following Update command asks the Subversion client to \nupdate the Leotoolbox:\n');
 fprintf('%s\n',checkoutcommand);
-fprintf('Updating. It can a while. \nPlease be patient ...\n');
+fprintf('Updating. It can take a while. \nPlease be patient ...\n');
 if IsOSX
     [err,result]=system(checkoutcommand);
 else
