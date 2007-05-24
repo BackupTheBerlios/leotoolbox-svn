@@ -6,7 +6,7 @@ function[ trials ] = readIDFevents( filename, separator_type, parameters )
 %             - 'set'
 %             - 'message'
 %
-% OUTPUT : structure-array of trials corresponding with the number of sets in the
+% OUTPUT... : structure-array of trials corresponding with the number of sets in the
 %          datafile. Each structure contains the following fields:
 %           
 %          trial(x).saccades   : structure-array of saccades, each
