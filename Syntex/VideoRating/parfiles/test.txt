@@ -1,0 +1,1 @@
+MOVIE	MOVIEDIR	BREAKDURmy_bodyguard_QT.mov	/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli	2marathon_man_QT.mov	/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli	10Golden_pond_QT.mov	/Users/frans/MatlabArchive/OSX/Charmaine/QT_stimuli	30

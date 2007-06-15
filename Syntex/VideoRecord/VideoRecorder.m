@@ -344,6 +344,7 @@ switch(lower(commandstr))
             waitforimage=1;
         end
         % capture video if started, get texture with image
+%         vr
         if vr.recordingOn==1
 
             % Wait blocking for next image. If waitforimage == 1 then return it
@@ -400,7 +401,7 @@ switch(lower(commandstr))
                 end
 
                 % Show it.
-                if 0 & vr.displayOn==1 % live display
+                if 0 && vr.displayOn==1 % live display
                     Screen('Flip', vr.win);
                 end
                 if 0

@@ -43,3 +43,6 @@ forp.modifierKey=KbName('LeftShift');
 
 
 % forp
+FlushEvents('keydown');
+ListenChar(0);
+ListenChar;
